@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +12,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Eco-Friendly',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'Poppins',
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.lightGreenAccent),
+        //canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        textTheme: ThemeData.light().textTheme.copyWith(
+          bodyText1: TextStyle(color: Colors.green, fontSize: 35, fontFamily: 'LilitaOne',fontWeight: FontWeight.bold),
+          bodyText2: TextStyle(color: Colors.black,),
+        ),
+
+
       ),
       home: SplashScreen(),
     );

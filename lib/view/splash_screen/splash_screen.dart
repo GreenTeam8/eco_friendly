@@ -10,6 +10,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ThemeData style = Theme.of(context);
+
     return AnimatedSplashScreen(
         splash: Column(
           ///here we created a column of the splash_screen screen content
@@ -17,7 +20,7 @@ class SplashScreen extends StatelessWidget {
           children: [
             Lottie.asset('assets/json/splash_animation.json',),
             //Image.asset('assets/images/tree_animation.png'),
-            Text('Eco-Friendly', style:TextStyle(fontSize: 40, fontFamily: 'LilitaOne'),)
+            Text('Eco-Friendly', style: style.textTheme.bodyText1,)
           ],
         ),
         ///specifying the splash_screen icon size

@@ -14,7 +14,7 @@ class dotsBuilder extends StatelessWidget {
       margin: EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.greenAccent
+          color: Theme.of(context).colorScheme.primary
       ),
     );
   }

@@ -1,6 +1,7 @@
-import 'package:eco_friendly/view/onboarding_screen/onboarding_model.dart';
 import 'package:flutter/material.dart';
-import '../screens/home_screen.dart';
+
+import '/view/onboarding_screen/onboarding_model.dart';
+import '/view/onboarding_screen/onboarding_widgets/button_widget.dart';
 import 'onboarding_widgets/dots_widget.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+
   int currentIndex = 0;
   PageController? _controller;
 
@@ -28,9 +30,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    ThemeData style = Theme.of(context);
     return Scaffold(
       body: Column(
         children: [
@@ -49,10 +51,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: Column(
                       children: [
                         Image.asset(onboardingContent[index].imagePath!),
-                        Text(onboardingContent[index].title!, style: TextStyle(fontFamily: 'LilitaOne', fontSize: 35),),
+                        SizedBox(height: 10,),
+                        Text(onboardingContent[index].title!, style: style.textTheme.bodyText1,),
                         Divider(),
                         Text(onboardingContent[index].description!,
-                        style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, color: Colors.grey[800]) ,)
+                        style: style.textTheme.bodyText2,)
                       ],
                     ),
                   );
@@ -61,7 +64,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              //textBaseline: TextBaseline.alphabetic,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
@@ -74,32 +76,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                      elevation: MaterialStateProperty.all(0),
-                      //padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 50))
-                    ),
-                    child: Text(currentIndex == onboardingContent.length-1 ?'Home':'>', style: TextStyle(fontSize: 30),),
-                    onPressed: (){
-                      if(currentIndex == onboardingContent.length -1){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
-                      }
-                      _controller!.nextPage(duration: Duration(milliseconds: 100), curve: Curves.bounceIn);
-                    },
-                  ),
+                  child: ButtonWidget(style: style, currentIndex: currentIndex, controller: _controller),
                 )
-
             ],
             ),
           ),
-
 
         ],
       ),
     );
   }
 }
+
+
 
 
