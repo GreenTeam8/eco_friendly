@@ -1,6 +1,9 @@
+import 'package:eco_friendly/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../screens/home_screen.dart';
+import '../../../size_config.dart';
+import '../../root_screen/root_screen.dart';
 import '../onboarding_model.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -17,19 +20,22 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    double width = SizeConfig.screenWidth!;
+
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(style.colorScheme.primary),
+        backgroundColor: MaterialStateProperty.all(kPrimaryColor),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
         elevation: MaterialStateProperty.all(0),
-        padding: MaterialStateProperty.all(EdgeInsets.all( 10))
+        padding: MaterialStateProperty.all(EdgeInsets.all(width* 0.03))
       ),
-      child: Text(currentIndex == onboardingContent.length-1 ?'Home':'>', style: const TextStyle(fontSize: 30),),
+      child: Text(currentIndex == onboardingContent.length-1 ?'home':'>', style: const TextStyle(fontSize: 25),),
       onPressed: (){
         if(currentIndex == onboardingContent.length -1){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+          Get.off(RootScreen());
         }
-        _controller!.nextPage(duration: const Duration(milliseconds: 100), curve: Curves.bounceIn);
+        _controller!.nextPage(duration: const Duration(milliseconds: 100), curve: Curves.bounceInOut);
       },
     );
   }

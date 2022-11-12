@@ -1,3 +1,4 @@
+import 'package:eco_friendly/constants.dart';
 import 'package:get/get.dart';
 
 import '/view/splash_screen/splash_screen.dart';
@@ -15,17 +16,17 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Eco-Friendly',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+      theme:
+      ThemeData(
         fontFamily: 'Poppins',
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.lightGreenAccent),
-        //canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
-          bodyText1: TextStyle(color: Colors.green, fontSize: 35, fontFamily: 'LilitaOne',fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(color: Colors.black,),
+          bodyText1: const TextStyle(color: kPrimaryColor, fontSize: 35, fontFamily: 'LilitaOne',fontWeight: FontWeight.bold),
+          bodyText2: const TextStyle(color: Colors.black,fontFamily: 'Poppins'),
         ),
 
-
       ),
+
       home: SplashScreen(),
     );
   }

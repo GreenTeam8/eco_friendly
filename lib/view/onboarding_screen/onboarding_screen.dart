@@ -1,3 +1,4 @@
+import 'package:eco_friendly/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '/view/onboarding_screen/onboarding_model.dart';
@@ -32,6 +33,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     ThemeData style = Theme.of(context);
     return Scaffold(
       body: Column(
@@ -47,13 +49,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 },
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding:  EdgeInsets.all(SizeConfig.screenWidth! * 0.1),
                     child: Column(
                       children: [
                         Image.asset(onboardingContent[index].imagePath!),
-                        SizedBox(height: 10,),
+                        SizedBox(height: SizeConfig.screenHeight! * 0.02,),
                         Text(onboardingContent[index].title!, style: style.textTheme.bodyText1,),
-                        Divider(),
+                        const Divider(),
                         Text(onboardingContent[index].description!,
                         style: style.textTheme.bodyText2,)
                       ],
@@ -62,19 +64,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 } ,),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(SizeConfig.screenWidth! * 0.03),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
                   child: Row(
                     children: List.generate(onboardingContent.length, (index) =>
-                        dotsBuilder(listIndex: index,currentIndex: currentIndex,)
+                        DotsBuilder(listIndex: index,currentIndex: currentIndex,)
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: 20),
+                  margin: EdgeInsets.only(bottom: SizeConfig.screenHeight! * 0.02),
                   alignment: Alignment.bottomRight,
                   child: ButtonWidget(style: style, currentIndex: currentIndex, controller: _controller),
                 )

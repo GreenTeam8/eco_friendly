@@ -1,9 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:eco_friendly/view/onboarding_screen/onboarding_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
-import '/view/screens/home_screen.dart';
+
+
+import '/view/onboarding_screen/onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,7 +20,6 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset('assets/json/splash_animation.json',),
-            //Image.asset('assets/images/tree_animation.png'),
             Text('Eco-Friendly', style: style.textTheme.bodyText1,)
           ],
         ),
@@ -30,9 +30,9 @@ class SplashScreen extends StatelessWidget {
         ///the way of displaying the splash_screen content
         splashTransition: SplashTransition.fadeTransition,
         /// the duration of splash_screen transition
-        animationDuration: Duration(milliseconds: 500),
+        animationDuration: const Duration(milliseconds: 600),
         /// how to transition the splash_screen screen
-        pageTransitionType: PageTransitionType.rightToLeft,
+        pageTransitionType: PageTransitionType.leftToRight,
         nextScreen: OnBoardingScreen());
     /// need more enhancement : green color at the top + text upgrade
   }
