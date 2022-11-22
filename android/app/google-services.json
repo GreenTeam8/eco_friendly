@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "635831172336",
+    "project_id": "climate-change-1aa43",
+    "storage_bucket": "climate-change-1aa43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635831172336:android:7d8bb1c8b8b433c466d635",
+        "android_client_info": {
+          "package_name": "com.example.eco_friendly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635831172336-a49pk9dlgq98i808umseiebavghh4395.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrOS2eDqVnfyBZ2JyoUcOP22DOj7Z_gKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635831172336-a49pk9dlgq98i808umseiebavghh4395.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,49 +1,94 @@
-import 'package:eco_friendly/constants.dart';
-import 'package:eco_friendly/view/home/home_widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
+import '/size_config.dart';
+import '/view/home/home_widgets/web/body/banner_web.dart';
+import 'home_widgets/drawer_section.dart';
+import '/constants.dart';
+import '/responsive.dart';
+import '/view/home/home_widgets/mobile/product_card_mobile.dart';
+import 'home_widgets/web/body/custom_appBar_web.dart';
+import 'home_widgets/web/body/product_card_web.dart';
 
-import 'home_widgets/search_widget.dart';
-
-class HomeScreen extends StatefulWidget {
-
-   HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: const Text('Eco-Friendly', style: TextStyle(fontFamily: 'LilitaOne',fontWeight: FontWeight.bold, fontSize: 30,color: kPrimaryColor)),
-        leading: IconButton(
-          onPressed: (){},
-          icon: SvgPicture.asset('assets/svg/menu.svg',color: kPrimaryColor,),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notification_important),
-            color: kPrimaryColor,
-            onPressed: (){}, )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Search(),
-            ProductCard()
-          ],
-        ),
-      ),
-      );
+    SizeConfig().init(context);
+    double width = SizeConfig.screenWidth!;
+    double height = SizeConfig.screenHeight!;
 
+    return Scaffold(
+      appBar: Responsive.isWeb(context)
+          ? null
+          : AppBar(
+              centerTitle: true,
+              title: Image.asset('assets/images/eco-logo.png',
+                  fit: BoxFit.contain, width: 150, height: 150),
+              leading: IconButton(
+                  onPressed: () {
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                    color: kPC,
+                    size: 30,
+                  ),
+                ),
+
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.notifications_active),
+                  color: kPC,
+                  onPressed: () {},
+                )
+              ],
+            ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Responsive.isWeb(context)
+              ///Web UI
+              ? Padding(
+                  padding: EdgeInsets.all(height * 0.01),
+                  child: Column(
+                    children: [
+                      const CustomAppBarWeb(),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 2,
+                              child: DrawerSection()),
+                          Expanded(
+                            flex: 7,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const BannerCardWeb(),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                                Text(
+                                  'Products',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                const ProductCardWeb(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ///Mobile UI
+              : Column(
+                  children: const [
+                    ProductCardMobile(),
+                  ],
+                ),
+        ),
+      ),
+    );
   }
 }
+

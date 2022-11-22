@@ -4,12 +4,10 @@ import 'package:eco_friendly/constants.dart';
 import 'package:eco_friendly/size_config.dart';
 import 'package:flutter/material.dart';
 
-import '/model/dummy_product_list.dart';
 
-
+/// DEPRECATED
+@deprecated
 class Categories extends StatefulWidget {
-
-  /// DEPRECATED
 
    Categories({Key? key}) : super(key: key);
 
@@ -26,6 +24,7 @@ class _CategoriesState extends State<Categories> {
     SizeConfig().init(context);
     double height = SizeConfig.screenHeight! ;
     double width = SizeConfig.screenWidth! ;
+    var productItem;
     return Container(
       height: height * 0.1,
       child: ListView.builder(
@@ -34,7 +33,7 @@ class _CategoriesState extends State<Categories> {
         itemBuilder: (context, index) {
         return GestureDetector(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPadding/2, vertical: kPadding/2),
+            padding: EdgeInsets.symmetric(horizontal: kPadding/2, vertical: kPadding/2),
             child: Container(
               margin: const EdgeInsets.only(right: kMargin),
               alignment: Alignment.center,

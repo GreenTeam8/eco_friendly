@@ -10,9 +10,9 @@ class SizeConfig{
   void init(BuildContext context){
   _mediaQueryData = MediaQuery.of(context);
   screenWidth = _mediaQueryData!.size.width;
-  //print('width ''$screenWidth');
+  print('width ''$screenWidth');
   screenHeight = _mediaQueryData!.size.height;
-  //print('height ''$screenHeight');
+  print('height ''$screenHeight');
   orientation = _mediaQueryData!.orientation;
 
   defaultSize = orientation == Orientation.landscape ? screenHeight! * 0.024 : screenWidth! * 0.024;
