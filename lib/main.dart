@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             textTheme: ThemeData.light().textTheme.copyWith(
                   bodyText1: const TextStyle(
                       color: kPC,
-                      fontSize: 35,
+                      fontSize: 20,
                       fontFamily: 'LilitaOne',
                       fontWeight: FontWeight.bold),
                   bodyText2: const TextStyle(
