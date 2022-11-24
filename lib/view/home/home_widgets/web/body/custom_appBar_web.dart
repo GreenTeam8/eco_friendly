@@ -29,14 +29,20 @@ class CustomAppBarWeb extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-        width: width * 0.05,
-        height: height * 0.05,
-        decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white,
-            image: DecorationImage(image: AssetImage('assets/images/eco-logo.png'),fit: BoxFit.cover,)
-        ),
+        //   Container(
+        // width: width * 0.05,
+        // height: height * 0.05,
+        // decoration: const BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     color: Colors.white,
+        //     image: DecorationImage(image: AssetImage('assets/images/eco-logo.png'),fit: BoxFit.cover,)
+        // ),
+        //   ),
+          CircleAvatar(
+            backgroundImage: AssetImage('assets/images/eco-logo.png',),
+            radius: height* 0.03,
+            backgroundColor: Colors.white,
+
           ),
           SizedBox(width: width* 0.01,),
           const Spacer(),

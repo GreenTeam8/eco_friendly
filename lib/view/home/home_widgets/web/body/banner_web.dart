@@ -31,7 +31,7 @@ class BannerCardWeb extends StatelessWidget {
                   BlendMode.multiply)),
           boxShadow: [
             BoxShadow(
-                color: Colors.black26.withOpacity(0.10),
+                color: Colors.black26.withOpacity(0.30),
                 offset: const Offset(-10, 10),
                 blurRadius: 10)
           ]),

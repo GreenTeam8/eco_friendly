@@ -25,7 +25,10 @@ class SideItems extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.grey[700],),
           SizedBox(width: width * 0.003,),
-          Text(text,style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.grey[700]),)
+          Text(text,style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              color: Colors.grey[700],
+              fontSize: width <= 880 ? 11 : null
+          ),)
         ],
       ),
     );

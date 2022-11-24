@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../size_config.dart';
 import 'drawer_components.dart';
-import 'help_center_web.dart';
+import 'help_center.dart';
 
 class DrawerSection extends StatelessWidget {
 
@@ -18,9 +18,10 @@ class DrawerSection extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
 
-    return SafeArea(
+    return Container(
+      height: height,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Stay Aware!',
@@ -33,7 +34,9 @@ class DrawerSection extends StatelessWidget {
           SizedBox(
             height: height * 0.02,
           ),
+          Spacer(),
           const HelpCenter(),
+
         ],
       ),
     );

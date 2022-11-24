@@ -12,13 +12,14 @@ class ProductCardMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double height = SizeConfig.screenHeight!;
-
+    double width = SizeConfig.screenWidth!;
 
     return GetBuilder<HomeController>(
         init: HomeController(),
         builder: (controller) {
           return Container(
-            height: height * 0.40,
+            height: height * 0.30,
+            width: width ,
             margin: EdgeInsets.only(top: height * 0.01),
             child: ListView.builder(
               itemCount: controller.productsList.length,

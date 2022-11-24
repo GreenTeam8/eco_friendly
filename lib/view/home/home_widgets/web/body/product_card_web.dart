@@ -20,14 +20,14 @@ class ProductCardWeb extends StatelessWidget {
       builder: (controller) {
         return  Container(
                 width: width,
-                height: height ,
+                height: height * 0.7 ,
                 child: GridView.builder(
                   itemCount: controller.productsList.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 3 / 2,
                     crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    mainAxisSpacing: 1,
                   ),
                   itemBuilder: (context, index) {
                     return ProductCardWidget(controller: controller, index: index);

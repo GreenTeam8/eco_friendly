@@ -26,7 +26,7 @@ class DrawerComponents extends StatelessWidget {
         children: [
           SideItems(icon: Icons.snowing,text: 'Climate Change',onTap: (){}),
           SizedBox(height: height * 0.04,),
-          SideItems(icon: Icons.task_alt,text: 'Egypt\nContribution',onTap: (){}),
+          SideItems(icon: Icons.task_alt,text: 'Egypt Contribution',onTap: (){}),
           SizedBox(height: height * 0.04,),
           SideItems(icon: Icons.newspaper,text: 'News',onTap: (){}),
           SizedBox(height: height * 0.04,),

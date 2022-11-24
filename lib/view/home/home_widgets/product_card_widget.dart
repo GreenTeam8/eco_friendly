@@ -22,12 +22,12 @@ class ProductCardWidget extends StatelessWidget {
       focusColor: kPC,
       child: Container(
         alignment: Alignment.bottomLeft,
-        width: width * 0.85,
+        width: width * 0.90,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(35),
-                bottomRight: Radius.circular(35)),
+                topLeft: Radius.circular(100),
+                bottomRight: Radius.circular(100)),
            // color: controller.productsList[index].color,
             image: DecorationImage(
                 image: AssetImage('assets/images/'
@@ -39,7 +39,7 @@ class ProductCardWidget extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 //color: productItem[index].color!.withOpacity(0.60),
-                  color: Colors.black26.withOpacity(0.10),
+                  color: Colors.black26.withOpacity(0.30),
                   offset: const Offset(-10, 10),
                   blurRadius: 10)
             ]),

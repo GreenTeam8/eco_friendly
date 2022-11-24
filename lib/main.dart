@@ -1,3 +1,4 @@
+import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -44,10 +45,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white,
               elevation: 0,
             )),
-        home: Builder(
-            builder: (context) {
-             return Responsive.isWeb(context) ? HomeScreen() : SplashScreen();
-            },
-        ));
+        home: Responsive.checkPlatform() ? RootScreen() : SplashScreen(),
+
+        );
   }
 }

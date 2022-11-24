@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:eco_friendly/constants.dart';
+import 'package:eco_friendly/responsive.dart';
 import 'package:eco_friendly/size_config.dart';
+import 'package:eco_friendly/view/Home/home_screen.dart';
+import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +13,8 @@ import 'package:flutter/material.dart';
 import '/view/onboarding_screen/onboarding_screen.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+   SplashScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +47,10 @@ class SplashScreen extends StatelessWidget {
         /// the duration of splash_screen transition
         animationDuration: const Duration(milliseconds: 1200),
         /// how to transition the splash_screen screen
-        pageTransitionType: PageTransitionType.topToBottom,
+        pageTransitionType: PageTransitionType.bottomToTop,
         curve: Curves.easeOut,
-        nextScreen: const OnBoardingScreen());
+        nextScreen: Responsive.checkPlatform() ?  RootScreen() : OnBoardingScreen() ,
+    );
     /// need more enhancement : green color at the top + text upgrade
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/view/home/home_widgets/mobile/search_mobile.dart';
 import '/size_config.dart';
 import '/view/home/home_widgets/web/body/banner_web.dart';
 import 'home_widgets/drawer_section.dart';
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Responsive.isWeb(context)
               ///Web UI
-              ? Padding(
+              ? Container(
                   padding: EdgeInsets.all(height * 0.01),
                   child: Column(
                     children: [
@@ -76,6 +77,14 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      ///for footer
+                      Container(
+                        color: kPC,
+                        height: height * 0.4,
                       )
                     ],
                   ),
@@ -83,6 +92,7 @@ class HomeScreen extends StatelessWidget {
               ///Mobile UI
               : Column(
                   children: const [
+                    SearchMobile(),
                     ProductCardMobile(),
                   ],
                 ),
