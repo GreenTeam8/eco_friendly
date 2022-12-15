@@ -1,12 +1,12 @@
-import 'package:eco_friendly/constants.dart';
-import 'package:eco_friendly/size_config.dart';
+import '../../../zhelpers/constants.dart';
+import '../../../zhelpers/size_config.dart';
 import 'package:flutter/material.dart';
 
 class DotsBuilder extends StatelessWidget {
 
   int? listIndex;
   int? currentIndex;
-  DotsBuilder({this.listIndex,this.currentIndex, Key? key,}) : super(key: key);
+   DotsBuilder({this.listIndex,this.currentIndex, Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

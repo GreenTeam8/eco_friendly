@@ -1,16 +1,14 @@
-import 'dart:io';
+
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:eco_friendly/constants.dart';
-import 'package:eco_friendly/responsive.dart';
-import 'package:eco_friendly/size_config.dart';
-import 'package:eco_friendly/view/Home/home_screen.dart';
 import 'package:eco_friendly/view/root_screen/root_screen.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
-
+import 'package:page_transition/page_transition.dart';
 
 import '/view/onboarding_screen/onboarding_screen.dart';
+import '../../zhelpers/constants.dart';
+import '../../zhelpers/responsive.dart';
+import '../../zhelpers/size_config.dart';
 
 class SplashScreen extends StatelessWidget {
    SplashScreen({Key? key}) : super(key: key);

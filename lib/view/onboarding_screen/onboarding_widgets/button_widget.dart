@@ -1,9 +1,9 @@
-import 'package:eco_friendly/constants.dart';
+import '../../../zhelpers/constants.dart';
 import 'package:eco_friendly/controller/onboarding_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../size_config.dart';
+import '../../../zhelpers/size_config.dart';
 import '../../root_screen/root_screen.dart';
 
 
@@ -39,7 +39,7 @@ class ButtonWidget extends StatelessWidget {
       child: Text(currentIndex == onController.onboardingContent.length-1 ?'Home':'>', style: const TextStyle(fontSize: 25),),
       onPressed: (){
         if(currentIndex == onController.onboardingContent.length -1){
-          Get.off(const RootScreen());
+          Get.off(RootScreen());
         }
         _controller!.nextPage(duration: const Duration(milliseconds: 100), curve: Curves.easeIn);
       },

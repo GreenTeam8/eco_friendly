@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../size_config.dart';
-import 'drawer_components.dart';
+
+import '../../../zhelpers/size_config.dart';
+import 'drawer_components_widget.dart';
 import 'help_center.dart';
 
 class DrawerSection extends StatelessWidget {
@@ -16,7 +17,7 @@ class DrawerSection extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double height = SizeConfig.screenHeight!;
-    double width = SizeConfig.screenWidth!;
+    //double width = SizeConfig.screenWidth!;
 
     return Container(
       height: height,
@@ -30,7 +31,7 @@ class DrawerSection extends StatelessWidget {
           SizedBox(
             height: height * 0.02,
           ),
-          const DrawerComponents(),
+          const DrawerComponentsWidget(),
           SizedBox(
             height: height * 0.02,
           ),

@@ -1,6 +1,6 @@
-import 'package:eco_friendly/constants.dart';
+import '../../zhelpers/constants.dart';
 import 'package:eco_friendly/controller/onboarding_controller.dart';
-import 'package:eco_friendly/size_config.dart';
+import '../../zhelpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

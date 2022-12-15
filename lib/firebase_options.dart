@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAmG7_Nevt0nFmjYaHMBgwvJrCyMaUP2uU',
-    appId: '1:635831172336:web:80a78a6f5c58df5b66d635',
-    messagingSenderId: '635831172336',
-    projectId: 'climate-change-1aa43',
-    authDomain: 'climate-change-1aa43.firebaseapp.com',
-    storageBucket: 'climate-change-1aa43.appspot.com',
-    measurementId: 'G-BT395BSE3F',
+    apiKey: 'AIzaSyBBKIza55wn7zSvV6MINNbWmYG4Gr7n3Ew',
+    appId: '1:653724507145:web:e612da2a053441f25eecd8',
+    messagingSenderId: '653724507145',
+    projectId: 'climate-change-ec951',
+    authDomain: 'climate-change-ec951.firebaseapp.com',
+    storageBucket: 'climate-change-ec951.appspot.com',
+    measurementId: 'G-Y5GGNDJKJC',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCrOS2eDqVnfyBZ2JyoUcOP22DOj7Z_gKI',
-    appId: '1:635831172336:android:7d8bb1c8b8b433c466d635',
-    messagingSenderId: '635831172336',
-    projectId: 'climate-change-1aa43',
-    storageBucket: 'climate-change-1aa43.appspot.com',
+    apiKey: 'AIzaSyBamt_cH3x46-ErYOVEPBaqn9EeK1n7ICw',
+    appId: '1:653724507145:android:7e02e68d5043b9675eecd8',
+    messagingSenderId: '653724507145',
+    projectId: 'climate-change-ec951',
+    storageBucket: 'climate-change-ec951.appspot.com',
   );
 }

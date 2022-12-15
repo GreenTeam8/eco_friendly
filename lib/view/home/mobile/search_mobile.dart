@@ -1,7 +1,7 @@
-import 'package:eco_friendly/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../size_config.dart';
+import '../../../zhelpers/constants.dart';
+import '../../../zhelpers/size_config.dart';
 
 class SearchMobile extends StatelessWidget {
   const SearchMobile({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class SearchMobile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: width! * 0.04),
+            margin: EdgeInsets.symmetric(horizontal: width * 0.04),
             height: height * 0.07,
             width: width * 0.75,
             decoration: BoxDecoration(
@@ -40,7 +40,9 @@ class SearchMobile extends StatelessWidget {
               padding: EdgeInsets.all(height * 0.015),
               decoration: BoxDecoration(
                   color: kPC,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)),
                   boxShadow: [
                     BoxShadow(
                         color: Colors.black26.withOpacity(0.3),

@@ -1,15 +1,20 @@
-import 'dart:async';
-
-import 'package:eco_friendly/constants.dart';
-import 'package:eco_friendly/size_config.dart';
+import 'package:eco_friendly/controller/products_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../controller/category_controller.dart';
+import '../../../model/category.dart';
+import '../../../zhelpers/constants.dart';
+import '../../../zhelpers/size_config.dart';
 
 
 /// DEPRECATED
 @deprecated
 class Categories extends StatefulWidget {
 
-   Categories({Key? key}) : super(key: key);
+  List<Category> categories;
+
+   Categories({required this.categories,Key? key}) : super(key: key);
 
   @override
   State<Categories> createState() => _CategoriesState();
@@ -24,12 +29,13 @@ class _CategoriesState extends State<Categories> {
     SizeConfig().init(context);
     double height = SizeConfig.screenHeight! ;
     double width = SizeConfig.screenWidth! ;
-    var productItem;
+    //var productItem;
+    //final products = Provider.of<ProductController>(context).getProductsList!;
     return Container(
       height: height * 0.1,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: productItem.length,
+        itemCount: widget.categories.length,
         itemBuilder: (context, index) {
         return GestureDetector(
           child: Padding(
@@ -46,7 +52,7 @@ class _CategoriesState extends State<Categories> {
                     )
                   )
               ),
-              child: Text(productItem[index].name, style: TextStyle(
+              child: Text(widget.categories[index].categoryName!, style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 30,
                   color: _selectedIndex == index ? Colors.black : Colors.grey,
                   letterSpacing: 1.2,

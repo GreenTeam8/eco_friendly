@@ -24,17 +24,17 @@ static bool isWeb(BuildContext context){
   }
 
   static bool checkPlatform(){
-    bool kisweb;
+    bool isWeb;
     try{
       if(Platform.isAndroid) {
-        kisweb=false;
+        isWeb=false;
       } else {
-        kisweb=true;
+        isWeb=true;
       }
     } catch(e){
-      kisweb=true;
+      isWeb=true;
     }
-    return kisweb;
+    return isWeb;
   }
 
 

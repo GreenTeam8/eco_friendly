@@ -4,5 +4,4 @@ class OnBoardingModel {
   String? description;
 
   OnBoardingModel({this.title, this.imagePath, this.description});
-
 }

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Product {
-  String name;
-  String image;
-  String price;
-  String kg;
-  Color? color;
-  String description;
-  String longDescription;
+class Product with ChangeNotifier {
+  String? productId;
+  String? productName;
+  String? productImage;
+  int? productPrice;
+  String? productDescription;
+  String? productCategory;
 
-  Product(this.name, this.image, this.price, this.kg, this.color,
-      this.description, this.longDescription);
+  Product(
+      {this.productId,
+      this.productName,
+      this.productImage,
+      this.productPrice,
+      this.productDescription,
+      this.productCategory});
 }
