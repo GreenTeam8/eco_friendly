@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 class HelpCenter extends StatelessWidget {
   const HelpCenter({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class HelpCenter extends StatelessWidget {
       height: height * 0.3,
       padding: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
-          color: kPC.withOpacity(0.6),
+          color: pColor.withOpacity(0.6),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -42,7 +42,7 @@ class HelpCenter extends StatelessWidget {
             child: const Icon(
               Icons.question_mark,
               size: 40,
-              color: kPC,
+              color: pColor,
             ),
           ),
           Text('Help Center',
@@ -71,7 +71,7 @@ class HelpCenter extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(fontWeight: FontWeight.bold, color: kPC),
+                  .copyWith(fontWeight: FontWeight.bold, color: pColor),
             ),
             onPressed: () {},
           ),

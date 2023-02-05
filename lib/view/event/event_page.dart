@@ -2,7 +2,7 @@
 
 import 'package:intl/intl.dart';
 
-import '../../zhelpers/constants.dart';
+import '../../helpers/constants.dart';
 import '../Home/mobile/search_mobile.dart';
 import 'add_event.dart';
 
@@ -30,7 +30,7 @@ class _EventPageState extends State<EventPage> {
           },
           icon: const Icon(
             Icons.menu,
-            color: kPC,
+            color: pColor,
             size: 30,
           ),
         ),
@@ -38,7 +38,7 @@ class _EventPageState extends State<EventPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_active),
-            color: kPC,
+            color: pColor,
             onPressed: () {},
           )
         ],

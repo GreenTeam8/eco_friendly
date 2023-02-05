@@ -1,5 +1,5 @@
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 import 'package:flutter/material.dart';
 
 class DotsBuilder extends StatelessWidget {
@@ -14,12 +14,12 @@ class DotsBuilder extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
 
     return Container(
-      height:  height * 0.02,
+      height:  height * 0.015,
       width: currentIndex == listIndex ? 25 : 10,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: kPC
+          color: mColor
       ),
     );
   }

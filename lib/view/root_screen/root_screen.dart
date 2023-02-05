@@ -1,13 +1,16 @@
+import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
-import '../../zhelpers/size_config.dart';
+import '../../controller/authentication_controller.dart';
+import '../../helpers/size_config.dart';
 import '/view/Home/home_screen.dart';
-import '../../zhelpers/constants.dart';
-import '../../zhelpers/responsive.dart';
+import '../../helpers/constants.dart';
+import '../../helpers/responsive.dart';
 import '../Favorites/favorites_screen.dart';
 import '../cart/cart_screen.dart';
-import '../profile/profile_screen.dart';
+import '../profile/register_screen.dart';
 
 class RootScreen extends StatefulWidget {
   RootScreen({Key? key}) : super(key: key);
@@ -22,8 +25,11 @@ class _RootScreenState extends State<RootScreen> {
   List<Widget> screens = [
     HomeScreen(),
     FavoritesScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
+     CartScreen(),
+    Consumer<AuthenticationController>(
+        builder: (context, value, child) =>
+        value.isAuth? UserProfileScreen()
+            :RegisterScreen()),
   ];
 
   @override
@@ -32,6 +38,7 @@ class _RootScreenState extends State<RootScreen> {
     //double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     return Scaffold(
+     // resizeToAvoidBottomInset: false,
       body: screens[currentIndex],
       bottomNavigationBar: Responsive.isWeb(context)
           ? null
@@ -39,11 +46,12 @@ class _RootScreenState extends State<RootScreen> {
               padding: const EdgeInsets.all(8.0),
               child: GNav(
                   backgroundColor: Colors.white,
-                  color: Colors.grey[500],
-                  activeColor: kPC,
+                  color: Colors.grey[400],
+                  activeColor: mainColor,
                   curve: Curves.bounceIn,
                   gap: 1,
-                  tabActiveBorder: Border.all(color: kPC, width: 1),
+                  //tabBackgroundColor: kPC,
+                  //tabActiveBorder: Border.all(color: kPC, width: 1),
                   padding: EdgeInsets.all(height * 0.02),
                   selectedIndex: currentIndex,
                   onTabChange: (value) {

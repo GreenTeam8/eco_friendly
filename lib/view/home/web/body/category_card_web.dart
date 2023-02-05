@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../../zhelpers/size_config.dart';
+import '../../../../helpers/size_config.dart';
 import '/view/home/home_widgets/category_card_widget.dart';
 import '/controller/category_controller.dart';
 

@@ -1,9 +1,9 @@
-import '../../../zhelpers/constants.dart';
+import '../../../helpers/constants.dart';
 import 'package:eco_friendly/controller/onboarding_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/size_config.dart';
 import '../../root_screen/root_screen.dart';
 
 
@@ -28,13 +28,13 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.screenWidth!;
-
+    double height = SizeConfig.screenHeight!;
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(kPC),
+        backgroundColor: MaterialStateProperty.all(mColor),
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
         elevation: MaterialStateProperty.all(0),
-        padding: MaterialStateProperty.all(EdgeInsets.all(width* 0.03))
+        padding: MaterialStateProperty.all(EdgeInsets.all(height* 0.03))
       ),
       child: Text(currentIndex == onController.onboardingContent.length-1 ?'Home':'>', style: const TextStyle(fontSize: 25),),
       onPressed: (){

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 import 'drawer_items_widget.dart';
 
 class DrawerComponentsWidget extends StatelessWidget {
@@ -17,7 +17,7 @@ class DrawerComponentsWidget extends StatelessWidget {
       padding: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: kPC)),
+          border: Border.all(color: pColor)),
       child: Column(
         children: [
           SideItemsWidget(

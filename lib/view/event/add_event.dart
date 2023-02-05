@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../../zhelpers/constants.dart';
+import '../../helpers/constants.dart';
 
 
 class AddEventPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class AddEventPage extends StatelessWidget {
           },
           icon: const Icon(
             Icons.menu,
-            color: kPC,
+            color: pColor,
             size: 30,
           ),
         ),
@@ -27,7 +27,7 @@ class AddEventPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_active),
-            color: kPC,
+            color: pColor,
             onPressed: () {},
           )
         ],

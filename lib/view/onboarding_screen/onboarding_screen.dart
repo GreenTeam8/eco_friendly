@@ -1,6 +1,8 @@
-import '../../zhelpers/constants.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+
+import '../../helpers/constants.dart';
 import 'package:eco_friendly/controller/onboarding_controller.dart';
-import '../../zhelpers/size_config.dart';
+import '../../helpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,67 +43,79 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: GetBuilder<OnBoardingController>(
         init: OnBoardingController(),
         builder: (controller) {
-          return Column(
+          return Stack(
             children: [
-              Expanded(
-                child: PageView.builder(
-                  controller: _controller,
-                  itemCount: controller.onboardingContent.length,
-                  onPageChanged: (index) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.all(width * 0.1),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(controller.onboardingContent[index].imagePath!),
-                          SizedBox(
-                            height: height * 0.02,
-                          ),
-                          Text(
-                            controller.onboardingContent[index].title!,
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                          const Divider(
-                            color: kPC,
-                            thickness: 2,
-                          ),
-                          Text(
-                            controller.onboardingContent[index].description!,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          )
-                        ],
-                      ),
-                    );
-                  },
+              Positioned(
+                top: 0,
+                child: ClipPath(
+                  child: Container(
+                    color: mColor,
+                    width: width,
+                    height: height! * 0.4,
+                  ),
+                  clipper: OvalBottomBorderClipper(),
                 ),
               ),
-              ///dots with button widget
-              Padding(
-                padding: EdgeInsets.all(width * 0.03),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: List.generate(
-                            controller.onboardingContent.length,
-                                (index) => DotsBuilder(
-                              listIndex: index,
-                              currentIndex: currentIndex,
-                            )),
-                      ),
-                    ),
-                    ButtonWidget(
+              PageView.builder(
+                controller: _controller,
+                itemCount: controller.onboardingContent.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(width * 0.1),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(controller.onboardingContent[index].imagePath!),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(
+                          controller.onboardingContent[index].title!,
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        const Divider(
+                          color: mColor,
+                          thickness: 1,
+                        ),
+                        Text(
+                          controller.onboardingContent[index].description!,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
 
-                        style: Theme.of(context),
-                        currentIndex: currentIndex,
-                        controller: _controller,
-                        onController: controller,)
-                  ],
+                      ],
+                    ),
+                  );
+                },
+              ),
+              ///dots with button widget
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.all(width * 0.03),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: List.generate(
+                              controller.onboardingContent.length,
+                                  (index) => DotsBuilder(
+                                listIndex: index,
+                                currentIndex: currentIndex,
+                              )),
+                        ),
+                      ),
+                      ButtonWidget(
+                          style: Theme.of(context),
+                          currentIndex: currentIndex,
+                          controller: _controller,
+                          onController: controller,)
+                    ],
+                  ),
                 ),
               ),
             ],

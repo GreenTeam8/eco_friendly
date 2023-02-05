@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../zhelpers/constants.dart';
-import '../../../../zhelpers/size_config.dart';
+import '../../../../helpers/constants.dart';
+import '../../../../helpers/size_config.dart';
 import '../../../Favorites/favorites_screen.dart';
 import 'menu_item_widget.dart' as MI;
 
@@ -19,7 +19,7 @@ class CustomAppBarWeb extends StatelessWidget {
       margin: EdgeInsets.all(height * 0.01),
       padding: EdgeInsets.all(height * 0.02),
       decoration: BoxDecoration(
-          color: kPC,
+          color: pColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(

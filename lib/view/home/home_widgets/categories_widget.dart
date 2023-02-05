@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../controller/category_controller.dart';
 import '../../../model/category.dart';
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 
 /// DEPRECATED

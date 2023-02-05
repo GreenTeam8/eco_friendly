@@ -4,8 +4,8 @@ import 'package:eco_friendly/view/event/event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:eco_friendly/model/event.dart';
 
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 
 class EventHomeCard extends StatelessWidget {
@@ -18,11 +18,17 @@ class EventHomeCard extends StatelessWidget {
     double width = SizeConfig.screenWidth! ;
     return InkWell(
       onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>EventPage()));},
-      splashColor: kPC,
-      focusColor: kPC,
+      splashColor: pColor,
+      focusColor: pColor,
       child: Column(
         children: [
-          Text('Events', style: Theme.of(context).textTheme.bodyText1,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.event_note,color: Colors.grey[700], size: 20,),
+              Text('Events', style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold, fontSize: 20),),
+            ],
+          ),
           Container(
             alignment: Alignment.bottomLeft,
             width: width * 0.90,

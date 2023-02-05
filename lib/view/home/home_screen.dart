@@ -1,12 +1,13 @@
 import 'package:eco_friendly/controller/category_controller.dart';
 import 'package:eco_friendly/view/home/mobile/banner_card_mobile.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../zhelpers/constants.dart';
-import '../../zhelpers/responsive.dart';
-import '../../zhelpers/size_config.dart';
+import '../../helpers/constants.dart';
+import '../../helpers/responsive.dart';
+import '../../helpers/size_config.dart';
 import '../event/event_widgets/event_home_card.dart';
 import 'home_widgets/drawer_section.dart';
 import 'mobile/category_card_mobile.dart';
@@ -26,16 +27,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var _isInit = true;
 
-  @override
-  void didChangeDependencies() {
-    if (_isInit) {
-      Provider.of<CategoryController>(context).fetchCategories();
-      _isInit = false;
-    }
+  Future? _categoryFuture;
 
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
+  Future _obtainProductsFuture (){
+    return Provider.of<CategoryController>(context, listen: false).fetchCategories();
   }
+
+  @override
+  void initState() {
+    _categoryFuture = _obtainProductsFuture();
+    super.initState();
+  }
+
+  // @override
+  // void didChangeDependencies() {
+  //   if (_isInit) {
+  //     Provider.of<CategoryController>(context).fetchCategories();
+  //     _isInit = false;
+  //   }
+  //
+  //   // TODO: implement didChangeDependencies
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +57,29 @@ class _HomeScreenState extends State<HomeScreen> {
     double height = SizeConfig.screenHeight!;
 
     return Scaffold(
+      drawer: Drawer(elevation: 0,),
       appBar: Responsive.isWeb(context)
           ? null
           : AppBar(
               centerTitle: true,
-              title: Image.asset('assets/images/eco-logo.png',
-                  fit: BoxFit.contain, width: 150, height: 150),
-              leading: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.menu,
-                  color: kPC,
-                  size: 30,
+              title: Image.asset('assets/images/ecoIcon.png',
+                  fit: BoxFit.fill, width: 50, height: 50),
+              leading: Builder(
+                builder: (context)=> IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.dashboard,
+                    color: mColor,
+                    size: 25,
+                  ),
                 ),
               ),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.notifications_active),
-                  color: kPC,
+                  color: mColor,
                   onPressed: () {},
                 )
               ],
@@ -118,7 +136,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     SearchMobile(),
                     BannerCardMobile(),
-                    CategoryCardMobile(),
+                    FutureBuilder(
+                        future: _categoryFuture,
+                        builder: (context, snapshot) {
+                          if(snapshot.connectionState == ConnectionState.waiting){
+                            return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
+                          }else{
+                            return CategoryCardMobile();
+                          }
+                        }),
                     EventHomeCard()
                   ],
                 ),

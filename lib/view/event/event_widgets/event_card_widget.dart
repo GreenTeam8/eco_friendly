@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:eco_friendly/model/event.dart';
 
 import '../../../controller/dummy_event_list.dart';
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 
 class EventCard extends StatelessWidget {

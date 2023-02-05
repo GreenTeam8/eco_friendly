@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 class SearchMobile extends StatelessWidget {
   const SearchMobile({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class SearchMobile extends StatelessWidget {
             width: width * 0.75,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: kPC.withOpacity(0.3)),
+                color: mainColor.withOpacity(0.3)),
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
@@ -39,16 +39,11 @@ class SearchMobile extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(height * 0.015),
               decoration: BoxDecoration(
-                  color: kPC,
+                  color: mColor,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black26.withOpacity(0.3),
-                        offset: Offset(-10, 10),
-                        blurRadius: 20)
-                  ]),
+                 ),
               child: Icon(
                 Icons.search,
                 color: Colors.white,

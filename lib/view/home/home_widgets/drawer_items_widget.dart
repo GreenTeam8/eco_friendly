@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/size_config.dart';
 
 class SideItemsWidget extends StatelessWidget {
   final String text;

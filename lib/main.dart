@@ -1,8 +1,14 @@
 
+import 'package:eco_friendly/controller/authentication_controller.dart';
+import 'package:eco_friendly/controller/carousel_controller.dart';
+import 'package:eco_friendly/controller/cart_controller.dart';
+import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
 import 'package:eco_friendly/view/products/product_detail_widget.dart';
 import 'package:eco_friendly/view/products/products_screen.dart';
+import 'package:eco_friendly/view/profile/register_screen.dart';
+import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +16,12 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '/view/splash_screen/splash_screen.dart';
-import '../../zhelpers/constants.dart';
-import '../../zhelpers/responsive.dart';
+import '../../helpers/constants.dart';
+import '../../helpers/responsive.dart';
 import 'controller/category_controller.dart';
 import 'firebase_options.dart';
-import 'zhelpers/horizontal_scroll_helper.dart';
+import 'model/product.dart';
+import 'helpers/horizontal_scroll_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,9 +40,31 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CategoryController(),),
+          create: (context) => CarousellController(),),
         ChangeNotifierProvider(
-          create: (context) => ProductController(),),
+          create: (context) => CategoryController(),),
+        // ChangeNotifierProvider(
+        //   create: (context) => ProductController(),),
+        ChangeNotifierProvider(
+          create: (context) => AuthenticationController(),),
+
+        ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
+          create: (context) => ProductController('','', []),
+          update: (context, auth, previousProducts) {
+            return ProductController(auth.token, auth.userId, previousProducts == null ? [] : previousProducts.getProductsList);
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartController(),),
+        ChangeNotifierProxyProvider<AuthenticationController, OrdersController>(
+          create: (context) => OrdersController('','', []),
+          update: (context, auth, previousOrders) {
+            return OrdersController(auth.token!, auth.userId!,previousOrders == null ? [] : previousOrders.orders);
+          },
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Product(),),
+
       ],
         child: GetMaterialApp(
             title: 'Eco-Friendly',
@@ -43,16 +72,18 @@ class MyApp extends StatelessWidget {
             scrollBehavior: MyCustomScrollBehavior(),
             theme: ThemeData(
                 fontFamily: 'Poppins',
-                primaryColor: kPC,
+                primaryColor: mColor,
+                //canvasColor: mmColor,
                 //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.lightGreenAccent),
                 textTheme: ThemeData.light().textTheme.copyWith(
                       bodyText1: const TextStyle(
-                          color: kPC,
-                          fontSize: 35,
+                          color: mainColor,
+                          fontSize: 25,
                           fontFamily: 'LilitaOne',
+                          letterSpacing: 1.2,
                           fontWeight: FontWeight.bold),
-                      bodyText2: const TextStyle(
-                          color: Colors.black, fontFamily: 'Poppins', fontSize: 18,),
+                      bodyText2: TextStyle(
+                          color: Colors.grey[700], fontFamily: 'Poppins', fontSize: 16,),
                     ),
                 appBarTheme: const AppBarTheme(
                   backgroundColor: Colors.white,
@@ -62,7 +93,8 @@ class MyApp extends StatelessWidget {
             routes: {
               ProductsScreen.PRODUCTS_ROUTE_NAME: (context)=> ProductsScreen(),
               ProductDetailsWidget.PRODUCTS_DETAILS_ROUTE_NAME: (context) => ProductDetailsWidget(),
-
+              UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME: (context) => UserProfileScreen(),
+              RegisterScreen.REGISTERSCREEN_ROUTE_NAME: (context) => RegisterScreen(),
             },
             ),
 

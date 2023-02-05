@@ -1,8 +1,9 @@
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/size_config.dart';
 import '/view/home/home_widgets/category_card_widget.dart';
 import '/controller/category_controller.dart';
 
@@ -17,28 +18,41 @@ class CategoryCardMobile extends StatelessWidget {
     final categoriesData = Provider.of<CategoryController>(context);
     final categories = categoriesData.getCategoriesList;
     return Container(
-      height: height * 0.35,
+      height: height * 0.4,
       width: width,
-      margin: EdgeInsets.only(top: height * 0.01),
-      child: Column(
-        children: [
-          Text(
-            'Products',
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-          Container(
-            height: height * 0.25,
-            child: ListView.builder(
-              itemCount: categoriesData.getCategoriesList.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return ChangeNotifierProvider.value(
-                    value: categories[index],
-                    child: CategoryCardWidget(index: index));
-              },
+      margin: EdgeInsets.symmetric(vertical: height * 0.01),
+      child: Container(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.category, color: Colors.grey[700], size: 20,),
+                Text(
+                  'Categories',
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith( fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ],
             ),
-          )
-        ],
+            Container(
+              height: height * 0.35,
+              child: GridView.builder(
+                itemCount: categoriesData.getCategoriesList.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3/2,
+                  crossAxisSpacing: width * 0.01,
+                  mainAxisSpacing: height *0.01,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                      return ChangeNotifierProvider.value(
+                          value: categories[index],
+                          child: CategoryCardWidget(index: index));
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

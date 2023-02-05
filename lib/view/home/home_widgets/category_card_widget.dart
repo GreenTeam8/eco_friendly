@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/products_controller.dart';
-import '../../../zhelpers/constants.dart';
-import '../../../zhelpers/size_config.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
 
 class CategoryCardWidget extends StatefulWidget {
   int index;
@@ -35,8 +35,8 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
     final categories = Provider.of<CategoryController>(context, listen: false);
-    final products = Provider.of<ProductController>(context, listen: false);
-    Provider.of<ProductController>(context, listen: false).fetchProducts();
+    //final products = Provider.of<ProductController>(context, listen: false);
+    //Provider.of<ProductController>(context, listen: false).fetchProducts();
 
     return InkWell(
       onTap: () {
@@ -46,38 +46,32 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
           //'productCategory': product.productCategory
         });
         //products.fetchProducts();
-        print(products.getProductsList[widget.index].productName);
+        // print(products.getProductsList[widget.index].productName);
       },
-      splashColor: kPC,
-      focusColor: kPC,
+      splashColor: pColor,
+      focusColor: pColor,
       child: Container(
         alignment: Alignment.bottomLeft,
         height: height,
         width: width * 0.70,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(18)),
-            // color: controller.productsList[index].color,
-            image: DecorationImage(
-                image: NetworkImage(
-                    categories.getCategoriesList[widget.index].categoryImage!),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.25), BlendMode.multiply)),
-            boxShadow: [
-              BoxShadow(
-                  //color: productItem[index].color!.withOpacity(0.60),
-                  color: Colors.black26.withOpacity(0.20),
-                  offset: const Offset(6, 6),
-                  blurRadius: 20)
-            ]),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          // color: controller.productsList[index].color,
+          image: DecorationImage(
+              image: NetworkImage(
+                  categories.getCategoriesList[widget.index].categoryImage!),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.25), BlendMode.multiply)),
+        ),
         child: Padding(
           padding: EdgeInsets.all(width * 0.01),
           child: Text(
             categories.getCategoriesList[widget.index].categoryName!,
             //CategoryController.categoriesList[index].categoryName!,
             style: const TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
       ),
