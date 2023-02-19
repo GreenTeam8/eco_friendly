@@ -1,3 +1,5 @@
+import 'package:eco_friendly/view/drawer/mobile/climate_change_mobile.dart';
+import 'package:eco_friendly/view/drawer/mobile/climate_voices.dart';
 import 'package:flutter/material.dart';
 
 import '../../../helpers/constants.dart';
@@ -21,7 +23,12 @@ class DrawerComponentsWidget extends StatelessWidget {
       child: Column(
         children: [
           SideItemsWidget(
-              icon: Icons.snowing, text: 'Climate Change', onTap: () {}),
+              icon: Icons.snowing, text: 'Climate Change', onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ClimateChangeMobile()));
+          }),
           SizedBox(
             height: height * 0.04,
           ),
@@ -30,7 +37,12 @@ class DrawerComponentsWidget extends StatelessWidget {
           SizedBox(
             height: height * 0.04,
           ),
-          SideItemsWidget(icon: Icons.newspaper, text: 'News', onTap: () {}),
+          SideItemsWidget(icon: Icons.vertical_split, text: 'Voices of Change ', onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ClimateVoices()));
+          }),
           SizedBox(
             height: height * 0.04,
           ),

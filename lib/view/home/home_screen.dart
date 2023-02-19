@@ -1,4 +1,5 @@
 import 'package:eco_friendly/controller/category_controller.dart';
+import 'package:eco_friendly/view/drawer/web/footer.dart';
 import 'package:eco_friendly/view/home/mobile/banner_card_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -55,9 +56,12 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
     //double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
-
+    final GlobalKey<ScaffoldState>_scaffoldKey=GlobalKey<ScaffoldState>();
     return Scaffold(
-      drawer: Drawer(elevation: 0,),
+      key: _scaffoldKey,
+      drawer: Drawer(elevation: 0,
+        child: DrawerSection(),
+      ),
       appBar: Responsive.isWeb(context)
           ? null
           : AppBar(
@@ -123,10 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
 
                       ///for footer
-                      // Container(
-                      //   color: kPC,
-                      //   height: height * 0.4,
-                      // )
+                      FooterWeb(),
                     ],
                   ),
                 )

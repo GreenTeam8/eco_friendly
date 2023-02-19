@@ -2,8 +2,10 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/carousel_controller.dart';
 import 'package:eco_friendly/controller/cart_controller.dart';
+import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
+import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
 import 'package:eco_friendly/view/products/product_detail_widget.dart';
 import 'package:eco_friendly/view/products/products_screen.dart';
@@ -64,7 +66,8 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Product(),),
-
+        ChangeNotifierProvider(
+          create: (context) => ClimateChangeController(),),
       ],
         child: GetMaterialApp(
             title: 'Eco-Friendly',
@@ -95,6 +98,7 @@ class MyApp extends StatelessWidget {
               ProductDetailsWidget.PRODUCTS_DETAILS_ROUTE_NAME: (context) => ProductDetailsWidget(),
               UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME: (context) => UserProfileScreen(),
               RegisterScreen.REGISTERSCREEN_ROUTE_NAME: (context) => RegisterScreen(),
+              ClimateChangeDetail.CLIMATE_DETAILS_ROUTE_NAME:(context)=>ClimateChangeDetail(),
             },
             ),
 
