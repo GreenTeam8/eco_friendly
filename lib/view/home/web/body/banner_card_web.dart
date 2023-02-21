@@ -13,8 +13,9 @@ class BannerCardWeb extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
     return Container(
-      height: height ,
+      height: height * 0.75,
       width: width,
+
       child: Stack(
         children: [
           BannerCardWidget(),
@@ -44,7 +45,7 @@ class BannerCardWeb extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
-                                    .copyWith(color: pColor, fontWeight: FontWeight.bold)),
+                                    .copyWith(color: mainColor, fontWeight: FontWeight.bold)),
                             onPressed: () {},
                           ),
                           SizedBox(
@@ -56,14 +57,14 @@ class BannerCardWeb extends StatelessWidget {
                                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
                                 side: MaterialStateProperty.all(
-                                    const BorderSide(color: pColor)),
+                                    const BorderSide(color: mainColor)),
                                 padding: MaterialStateProperty.all(
                                     EdgeInsets.all(height * 0.03))),
                             child: Text('Download Simulation',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
-                                    .copyWith(color: pColor, fontWeight: FontWeight.bold)),
+                                    .copyWith(color: mainColor, fontWeight: FontWeight.bold)),
                             onPressed: () {},
                           )
                         ],

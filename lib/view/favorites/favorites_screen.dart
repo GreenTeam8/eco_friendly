@@ -8,13 +8,13 @@ import '../../controller/products_controller.dart';
 import '../../model/product.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/size_config.dart';
-import '../products/product_detail_widget.dart';
-import '../products/product_widget_mobile.dart';
+import '../products/mobile/product_detail_mobile.dart';
+
 import '../profile/register_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {
 
-  static String routeName = '/FavoriteScreen';
+  static String FAVORITES_ROUTE_NAME = '/FavoriteScreen';
    FavoritesScreen({Key? key}) : super(key: key);
 
   @override
@@ -63,7 +63,7 @@ bool _isInit = true;
                   IconButton(
                       icon: Icon(Icons.favorite, color: Colors.red,),
                       onPressed: (){
-
+                        productsData.deleteFavProduct(value.userId, product.productId!);
                       },)
                 ],
               ),

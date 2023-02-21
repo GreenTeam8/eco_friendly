@@ -50,7 +50,7 @@ dependencies:
   shared_preferences: ^2.0.17
   lottie: ^1.4.2
   card_swiper: ^2.0.1
-  flutter_svg: ^2.0.1
+
 
 
 

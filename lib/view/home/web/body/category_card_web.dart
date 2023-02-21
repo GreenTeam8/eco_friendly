@@ -1,3 +1,4 @@
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -6,8 +7,8 @@ import '../../../../helpers/size_config.dart';
 import '/view/home/home_widgets/category_card_widget.dart';
 import '/controller/category_controller.dart';
 
-class ProductCardWeb extends StatelessWidget {
-  const ProductCardWeb({Key? key}) : super(key: key);
+class CategoryCardWeb extends StatelessWidget {
+  const CategoryCardWeb({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,15 @@ class ProductCardWeb extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Products',
-          style: Theme.of(context).textTheme.bodyText1,
+        Row(
+          children: [
+            Icon(Icons.category, color: mainColor, size: 25,),
+            Text(
+              'Categories',
+              style: Theme.of(context).textTheme.bodyText1!.copyWith( fontWeight: FontWeight.bold, ),
+            ),
+
+          ],
         ),
         Container(
           //width: width,

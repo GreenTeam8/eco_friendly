@@ -36,7 +36,7 @@ class DrawerSection extends StatelessWidget {
             height: height * 0.02,
           ),
           Spacer(),
-          const HelpCenter(),
+          //const HelpCenter(),
 
         ],
       ),

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/cart_controller.dart';
-import '../../helpers/size_config.dart';
-import '../profile/register_screen.dart';
+import '../../../controller/cart_controller.dart';
+import '../../../helpers/size_config.dart';
+import '../../profile/register_screen.dart';
 
-class ProductDetailsWidget extends StatelessWidget {
-  static const PRODUCTS_DETAILS_ROUTE_NAME = '/productsDetailsScreen';
+class ProductDetailsMobile extends StatelessWidget {
+  static const PRODUCTS_DETAILS_MOBILE_ROUTE_NAME = '/productsDetailsMobileScreen';
 
-  ProductDetailsWidget({Key? key}) : super(key: key);
+  ProductDetailsMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,8 @@ class ProductDetailsWidget extends StatelessWidget {
     final product =
         Provider.of<ProductController>(context).findProductById(productId!);
     final cart = Provider.of<CartController>(context, listen: false);
+    final delFavProduct = Provider.of<ProductController>(context,listen: false);
+    final auth = Provider.of<AuthenticationController>(context,listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -92,9 +94,26 @@ class ProductDetailsWidget extends StatelessWidget {
                                   },
                                 ),
                                 IconButton(
-                                  icon: Icon(Icons.favorite_border,
+                                  icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border,
                                       color: Colors.red, size: 25),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if(auth.isAuth){
+                                      product.toggleFavoriteStatue(auth.token!, auth.userId!,);
+                                    }
+                                    if(product.isFavorite == false){
+                                      delFavProduct.deleteFavProduct(auth.userId, product.productId!);
+                                    }
+                                    else{
+                                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
+                                        duration: Duration(seconds: 3),
+                                      )
+                                      );
+                                    }
+
+
+                                  },
                                 ),
                               ],
                             ),
@@ -211,7 +230,12 @@ class ProductDetailsWidget extends StatelessWidget {
               )
               );
             }else{
-              Navigator.pushNamed(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
+                duration: Duration(seconds: 3),
+              )
+              );
             }
           },
         ),

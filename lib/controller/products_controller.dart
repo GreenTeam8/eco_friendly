@@ -7,11 +7,11 @@ import 'package:http/http.dart' as http;
 class ProductController with ChangeNotifier {
   List<Product> _productsList = [];
   List<Product> _favsList = [];
-  final String authToken;
-  final String userId;
+  final String? authToken;
+  final String? userId;
 
-  ProductController(this.authToken, this.userId, this._productsList);
-
+  ProductController({this.authToken, this.userId, });
+  //ProductController({this.authToken, this.userId, this._productsList});
 
 
   /// getter for productsList to access the list from widgets and screen ENCAPSULATION Approach

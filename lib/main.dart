@@ -6,9 +6,12 @@ import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
+import 'package:eco_friendly/view/cart/cart_screen.dart';
+
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
-import 'package:eco_friendly/view/products/product_detail_widget.dart';
+import 'package:eco_friendly/view/products/mobile/product_detail_mobile.dart';
 import 'package:eco_friendly/view/products/products_screen.dart';
+import 'package:eco_friendly/view/products/web/product_details_web.dart';
 import 'package:eco_friendly/view/profile/register_screen.dart';
 import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:eco_friendly/view/root_screen/root_screen.dart';
@@ -45,17 +48,17 @@ class MyApp extends StatelessWidget {
           create: (context) => CarousellController(),),
         ChangeNotifierProvider(
           create: (context) => CategoryController(),),
-        // ChangeNotifierProvider(
-        //   create: (context) => ProductController(),),
+        ChangeNotifierProvider(
+          create: (context) => ProductController(),),
         ChangeNotifierProvider(
           create: (context) => AuthenticationController(),),
 
-        ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
-          create: (context) => ProductController('','', []),
-          update: (context, auth, previousProducts) {
-            return ProductController(auth.token, auth.userId, previousProducts == null ? [] : previousProducts.getProductsList);
-          },
-        ),
+        // ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
+        //   create: (context) => ProductController('','', []),
+        //   update: (context, auth, previousProducts) {
+        //     return ProductController(auth.token!, auth.userId!, previousProducts == null ? [] : previousProducts.getProductsList);
+        //   },
+        // ),
         ChangeNotifierProvider(
           create: (context) => CartController(),),
         ChangeNotifierProxyProvider<AuthenticationController, OrdersController>(
@@ -95,10 +98,16 @@ class MyApp extends StatelessWidget {
             home: Responsive.checkPlatform() ? RootScreen() : SplashScreen(),
             routes: {
               ProductsScreen.PRODUCTS_ROUTE_NAME: (context)=> ProductsScreen(),
-              ProductDetailsWidget.PRODUCTS_DETAILS_ROUTE_NAME: (context) => ProductDetailsWidget(),
+              ProductDetailsMobile.PRODUCTS_DETAILS_MOBILE_ROUTE_NAME: (context) => ProductDetailsMobile(),
+              ProductDetailsWeb.PRODUCTS_DETAILS_WEB_ROUTE_NAME: (context) => ProductDetailsWeb(),
               UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME: (context) => UserProfileScreen(),
               RegisterScreen.REGISTERSCREEN_ROUTE_NAME: (context) => RegisterScreen(),
+
               ClimateChangeDetail.CLIMATE_DETAILS_ROUTE_NAME:(context)=>ClimateChangeDetail(),
+
+              FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
+              CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),
+
             },
             ),
 

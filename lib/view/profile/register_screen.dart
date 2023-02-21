@@ -5,6 +5,8 @@ import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
+import '../../helpers/responsive.dart';
+
 class RegisterScreen extends StatelessWidget {
   static const REGISTERSCREEN_ROUTE_NAME = '/registerScreen';
   const RegisterScreen({Key? key}) : super(key: key);
@@ -21,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
             child: Container(
               color: mColor,
               width: width,
-              height: height! * 0.5,
+              height: height! * 0.4,
             ),
             clipper: OvalBottomBorderClipper(),
           ),

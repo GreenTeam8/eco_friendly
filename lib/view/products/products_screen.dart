@@ -1,13 +1,17 @@
+
+import 'package:eco_friendly/view/products/web/product_widget_web.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import 'package:eco_friendly/controller/products_controller.dart';
 
+import '../../helpers/responsive.dart';
 import '../../model/product.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/size_config.dart';
-import 'product_widget_mobile.dart';
+import 'mobile/product_widget_mobile.dart';
+
 
 class ProductsScreen extends StatefulWidget {
   static const PRODUCTS_ROUTE_NAME = '/products_screen';
@@ -71,20 +75,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
               productCategoryId!.toUpperCase(),
               style: Theme.of(context).textTheme.bodyText1,
             )),
-        leading: IconButton(
+        leading: Responsive.isWeb(context) ? null : IconButton(
           icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        actions: [
-          Switch(
-              activeColor: mColor,
-              value: showFavorite,
-              onChanged: (_) {
-                showFavorite = !showFavorite;
-              })
-        ],
       ),
       body: FutureBuilder(
           future: _productFuture,
@@ -92,7 +88,23 @@ class _ProductsScreenState extends State<ProductsScreen> {
             if(snapshot.connectionState == ConnectionState.waiting){
               return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
             }else{
-              return Column(
+              return Responsive.isWeb(context)
+                ? GridView.builder(
+                itemCount: loadedProducts.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: width <= 1000 ? 2 : 3,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  return ChangeNotifierProvider.value(
+                      value: loadedProducts[index],
+                      child: ProductWidgetWeb());
+                },
+              )
+
+               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(

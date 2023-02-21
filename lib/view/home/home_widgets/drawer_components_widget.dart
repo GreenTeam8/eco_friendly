@@ -19,7 +19,7 @@ class DrawerComponentsWidget extends StatelessWidget {
       padding: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: pColor)),
+          border: Border.all(color: mainColor)),
       child: Column(
         children: [
           SideItemsWidget(

@@ -1,14 +1,15 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/cart_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
+import 'package:eco_friendly/view/products/mobile/product_detail_mobile.dart';
 import 'package:eco_friendly/view/profile/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/product.dart';
-import '../../helpers/size_config.dart';
-import '../../helpers/constants.dart';
-import 'product_detail_widget.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/size_config.dart';
+import '../../../model/product.dart';
+
 
 class ProductWidgetMobile extends StatelessWidget {
   const ProductWidgetMobile({Key? key}) : super(key: key);
@@ -75,7 +76,7 @@ class ProductWidgetMobile extends StatelessWidget {
         InkWell(
           onTap: () {
             Navigator.of(context).pushNamed(
-              ProductDetailsWidget.PRODUCTS_DETAILS_ROUTE_NAME,
+              ProductDetailsMobile.PRODUCTS_DETAILS_MOBILE_ROUTE_NAME,
               arguments: {'ProductId': product.productId},
             );
           },
@@ -147,7 +148,7 @@ class ProductWidgetMobile extends StatelessWidget {
                                   if(value.isAuth){
                                     cart.addItem(product.productId!, product.productPrice!, product.productName!);
                                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                    ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                       content: Text('Item added to cart!',style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor)),
                                       duration: Duration(seconds: 3),
                                       action: SnackBarAction(label: 'Undo',
@@ -157,7 +158,12 @@ class ProductWidgetMobile extends StatelessWidget {
                                     )
                                     );
                                   }else{
-                                    Navigator.pushNamed(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
+                                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
+                                      duration: Duration(seconds: 3),
+                                    )
+                                    );
                                   }
 
                                 }),
@@ -170,10 +176,12 @@ class ProductWidgetMobile extends StatelessWidget {
                                   ),
                                   color: Colors.red,
                                   onPressed: () {
-                                    if(auth.isAuth || product.isFavorite == false){
+                                    if(auth.isAuth){
                                       product.toggleFavoriteStatue(auth.token!, auth.userId!,);
-                                      delFavProduct.deleteFavProduct(auth.userId, product.productId!);
-                                    }
+                                     }
+                                      // if(product.isFavorite == false){
+                                      //   delFavProduct.deleteFavProduct(auth.userId, product.productId!);
+                                      // }
                                     else{
                                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

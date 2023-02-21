@@ -48,8 +48,8 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
         //products.fetchProducts();
         // print(products.getProductsList[widget.index].productName);
       },
-      splashColor: pColor,
-      focusColor: pColor,
+      splashColor: mColor,
+      focusColor: mColor,
       child: Container(
         alignment: Alignment.bottomLeft,
         height: height,
@@ -57,19 +57,17 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          // color: controller.productsList[index].color,
           image: DecorationImage(
               image: NetworkImage(
                   categories.getCategoriesList[widget.index].categoryImage!),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.25), BlendMode.multiply)),
+                  Colors.black.withOpacity(0.35), BlendMode.multiply)),
         ),
         child: Padding(
           padding: EdgeInsets.all(width * 0.01),
           child: Text(
             categories.getCategoriesList[widget.index].categoryName!,
-            //CategoryController.categoriesList[index].categoryName!,
             style: const TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -78,3 +76,4 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
     );
   }
 }
+

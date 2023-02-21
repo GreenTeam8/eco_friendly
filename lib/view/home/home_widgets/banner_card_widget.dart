@@ -21,7 +21,6 @@ class BannerCardWidget extends StatelessWidget {
       width: width,
       margin: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
-
           borderRadius: BorderRadius.circular(12),
           // image: DecorationImage(
           //     image: const AssetImage('assets/images/banner.jpg'),
@@ -48,6 +47,8 @@ class BannerCardWidget extends StatelessWidget {
               autoPlayAnimationDuration: Duration(
                   seconds: 2
               ),
+              disableCenter: true,
+              enlargeFactor: 0.5,
               enlargeCenterPage: true,
               autoPlayCurve: Curves.fastOutSlowIn
             ),
@@ -56,7 +57,7 @@ class BannerCardWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: ColorFiltered(
                     colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.multiply),
-                    child: Image.asset('assets/images/${carouselController.carouselList[index].carouselImage}', fit: BoxFit.fill,)),
+                    child: Image.asset('assets/images/${carouselController.carouselList[index].carouselImage}', fit: BoxFit.cover,)),
               );
             },
 

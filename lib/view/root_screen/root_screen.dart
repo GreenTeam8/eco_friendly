@@ -25,7 +25,7 @@ class _RootScreenState extends State<RootScreen> {
   List<Widget> screens = [
     HomeScreen(),
     FavoritesScreen(),
-     CartScreen(),
+    CartScreen(),
     Consumer<AuthenticationController>(
         builder: (context, value, child) =>
         value.isAuth? UserProfileScreen()

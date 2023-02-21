@@ -12,7 +12,7 @@ class BannerCardMobile extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     //double width = SizeConfig.screenWidth!;
     return Container(
-      height: height * 0.45,
+      height: height * 0.4,
       //pageview
       child: BannerCardWidget(),
     );

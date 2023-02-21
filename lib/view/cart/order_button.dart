@@ -33,6 +33,6 @@ class _OrderButtonState extends State<OrderButton> {
           });
           widget.cart.clearCart();
         }, child:_isLoading ? Lottie.asset('assets/lottie/loading.json', height: 60)
-        : Text('Place Order', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),));
+        : Text('Check out', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor, fontWeight: FontWeight.bold),));
   }
 }

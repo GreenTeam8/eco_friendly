@@ -91,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Responsive.isWeb(context)
-
               ///Web UI
               ? Container(
                   padding: EdgeInsets.all(height * 0.01),
@@ -111,12 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   height: height * 0.02,
                                 ),
-                                const ProductCardWeb(),
-                                // Container(
-                                //   height: height* 0.40,
-                                //   color: Colors.red,
-                                //
-                                // )
+                                const CategoryCardWeb(),
+                                EventHomeCard()
                               ],
                             ),
                           ),

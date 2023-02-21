@@ -23,6 +23,7 @@ class CategoryCardMobile extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: height * 0.01),
       child: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,12 +38,11 @@ class CategoryCardMobile extends StatelessWidget {
             Container(
               height: height * 0.35,
               child: GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: categoriesData.getCategoriesList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 3/2,
-                  crossAxisSpacing: width * 0.01,
-                  mainAxisSpacing: height *0.01,
                 ),
                 itemBuilder: (BuildContext context, int index) {
                       return ChangeNotifierProvider.value(
@@ -50,7 +50,7 @@ class CategoryCardMobile extends StatelessWidget {
                           child: CategoryCardWidget(index: index));
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

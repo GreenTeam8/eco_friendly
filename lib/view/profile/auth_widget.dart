@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:eco_friendly/controller/authentication_controller.dart';
+import 'package:eco_friendly/view/profile/register_screen.dart';
+import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/constants.dart';
 
+import '../../helpers/responsive.dart';
 import '../../helpers/size_config.dart';
 
 
@@ -114,11 +117,13 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
     SizeConfig().init(context);
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
+    final auth = Provider.of<AuthenticationController>(context);
     return Column(
       children: [
         Padding(
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
+              width: Responsive.isWeb(context) ? width * 0.4 : width,
               margin: EdgeInsets.only(right: width * 0.05, left:width * 0.05 ),
               padding: EdgeInsets.all(width *0.05),
               decoration: BoxDecoration(
@@ -130,7 +135,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
             child: Column(
               children: [
                 TextFormField(
-                  cursorColor: pColor,
+                  cursorColor: mainColor,
                   decoration: InputDecoration(
                     hintText: 'example@example.com',
                     labelText: 'E-mail',
@@ -151,7 +156,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 ),
                 SizedBox(height: height * 0.02,),
                 TextFormField(
-                  cursorColor: pColor,
+                  cursorColor: mainColor,
                   obscureText: hidePassword,
                   decoration: InputDecoration(
                       labelText: 'Password',
@@ -181,7 +186,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 SizedBox(height: height * 0.02,),
                if(_authMode == AuthMode.SignUp)
                  TextFormField(
-                   cursorColor: pColor,
+                   cursorColor: mainColor,
                    decoration: InputDecoration(
                        labelText: 'Mobile number',
                        hintText: '0123456789',
@@ -203,7 +208,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 SizedBox(height: height * 0.02,),
                if(_authMode == AuthMode.SignUp)
                  TextFormField(
-                   cursorColor: pColor,
+                   cursorColor: mainColor,
                    maxLines: 2,
                    decoration: InputDecoration(
                        labelText: 'Address',
@@ -228,10 +233,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                    style: ButtonStyle(
                      backgroundColor: MaterialStateProperty.all(mColor),
                      elevation: MaterialStateProperty.all(0),
-                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.3))
+                     padding:  Responsive.isWeb(context)
+                         ? MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.1, vertical: width * 0.015))
+                         : MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.3))
                    ),
                    onPressed:(){
                      _submit();
+                     Responsive.isWeb(context)?
+                     Future(() => Future.delayed(Duration(seconds: 3)),).then((value) {
+                       if(auth.isAuth){
+                         Navigator.pushNamed(context, UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME);
+                         Navigator.pop(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
+                       }
+                     })
+                   :null;
+
+
+
                    }
                      ,)
               ],
