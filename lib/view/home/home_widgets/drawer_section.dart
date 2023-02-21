@@ -19,26 +19,28 @@ class DrawerSection extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     //double width = SizeConfig.screenWidth!;
 
-    return Container(
-      height: height,
-      child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Stay Aware!',
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          const DrawerComponentsWidget(),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Spacer(),
-          const HelpCenter(),
+    return SafeArea(
+      child: Container(
+        height: height,
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Stay Aware!',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            const DrawerComponentsWidget(),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Spacer(),
+            const HelpCenter(),
 
-        ],
+          ],
+        ),
       ),
     );
   }

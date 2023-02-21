@@ -29,7 +29,6 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
     final loadedItems = Provider.of<ClimateChangeController>(context)
         .findItemsById(ItemCategoryId!);
     return Scaffold(
-      // backgroundColor: Colors.green[50],
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -85,10 +84,13 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                               .textTheme
                               .bodyMedium!
                               .copyWith(
-                            color: Colors.black,
+                            color: mainColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        SizedBox(
+                          height: height*0.02,
                         ),
                         Text(
                           loadedItems.ItemDescription!,
@@ -96,7 +98,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                               .textTheme
                               .bodyMedium!
                               .copyWith(
-                            color: Colors.black,
+                            color: Colors.grey[800],
                             fontSize: 20,
                           ),
                           maxLines: isShowmore ? 3: null,
@@ -113,7 +115,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                             isShowmore ? "Show more" : "Show less",
                             style: TextStyle(
                               fontSize: 18,
-                              color: kPrimaryColor,
+                              color: mainColor,
                             ),
                           ),
                         ),
@@ -135,7 +137,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                           .textTheme
                           .bodyLarge!
                           .copyWith(
-                        color: kPrimaryColor,
+                        color: mainColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -183,7 +185,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: kPrimaryColor,
+                                      color: mainColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -193,7 +195,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.black,
+                                      color: Colors.grey[800],
                                     ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
@@ -241,7 +243,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: kPrimaryColor,
+                                      color: mainColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -251,7 +253,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.black,
+                                      color: Colors.grey[800],
                                     ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
@@ -283,13 +285,6 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                         Container(
                           width: width*0.90,
                           height: height * 0.35,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.only(
-                            //   bottomRight: Radius.circular(30),
-                            //   bottomLeft: Radius.circular(30),
-                            // ),
-                            // color: Colors.green[100],
-                          ),
                           child: Container(
                             color: Colors.green[50],
                             padding: EdgeInsets.all(height*0.020),
@@ -304,7 +299,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: kPrimaryColor,
+                                      color: mainColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -314,7 +309,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                        color: Colors.black,
+                                        color: Colors.grey[800],
                                       ),
                                       overflow: TextOverflow.fade,
                                       textAlign: TextAlign.justify
@@ -360,7 +355,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: kPrimaryColor,
+                                      color: mainColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -370,7 +365,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.black,
+                                      color: Colors.grey[800],
                                     ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
