@@ -71,9 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fit: BoxFit.fill, width: 50, height: 50),
                 leading: Builder(
                   builder: (context)=> IconButton(
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
+                    onPressed: () => _scaffoldKey.currentState!.openDrawer(),
                     icon: const Icon(
                       Icons.dashboard,
                       color: mColor,
