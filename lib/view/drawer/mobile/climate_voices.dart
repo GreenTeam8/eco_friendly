@@ -4,6 +4,7 @@ import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/drawer_widget/voice_of_change_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class  ClimateVoices extends StatefulWidget {
@@ -14,16 +15,15 @@ class  ClimateVoices extends StatefulWidget {
 }
 
 class _ClimateVoicesState extends State<ClimateVoices> {
-  bool _isInit = true;
-  void didChangeDependencies() {
-    if (_isInit) {
-      Provider.of<ClimateChangeController>(context).fetchVoiceOfChange();
+  Future? _climateVoices;
+  Future _climateVoicesItems (){
+    return Provider.of<ClimateChangeController>(context, listen: false).fetchVoiceOfChange();
+  }
 
-      _isInit = false;
-    }
-
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
+  @override
+  void initState() {
+    _climateVoices = _climateVoicesItems();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _ClimateVoicesState extends State<ClimateVoices> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: mColor,
           leading:  IconButton(
             icon: Icon(
               Icons.arrow_back_ios,
@@ -63,25 +63,34 @@ class _ClimateVoicesState extends State<ClimateVoices> {
           ],
         ),
         body:SafeArea(
-          child: ListView(
-            children: [
-              Container(
-                // width: width,
-                height: height ,
-                child: Swiper(
-                  itemWidth: width*0.90,
-                  itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
-                  itemBuilder: (Context,index) {
-                    return ChangeNotifierProvider.value(
-                        value: VoiceOfChange[index],
-                        child: VoicesOfChangeWidget(index: index));
-                  },
-                  layout: SwiperLayout.STACK,
-                  scale: 0.8,
-      ),
-              ),
-            ],
-          ),
+          child:FutureBuilder(
+              future: _climateVoices,
+              builder: (context, snapshot) {
+                if(snapshot.connectionState == ConnectionState.waiting){
+                  return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
+                }else{
+                  return ListView(
+                    children: [
+                      Container(
+                        width: width,
+                        height: height ,
+                        child: Swiper(
+                          itemWidth: width*0.90,
+                          itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
+                          itemBuilder: (Context,index) {
+                            return ChangeNotifierProvider.value(
+                                value: VoiceOfChange[index],
+                                child: VoicesOfChangeWidget(index: index));
+                          },
+                          layout: SwiperLayout.STACK,
+                          scale: 0.8,
+                          index: 0,
+                        ),
+                      ),
+                    ],
+                  );
+                }
+              }),
         ),
       ),
     );

@@ -23,20 +23,15 @@ class _VoicesOfChangeWidgetState extends State<VoicesOfChangeWidget> {
         Container(
           alignment: Alignment.bottomLeft,
           width: width,
-          height: height*0.35,
+          height: height*0.36,
           margin: EdgeInsets.all(height * 0.01),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight:Radius.circular(10),
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
+            borderRadius:BorderRadius.circular(20),
               image: DecorationImage(
                   image:NetworkImage(
                     climateChange.getVoiceOfChangeList[widget.index].VoiceImage!,
                   ),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
               ),
           ),
           child:  Container(
@@ -48,7 +43,7 @@ class _VoicesOfChangeWidgetState extends State<VoicesOfChangeWidget> {
                   .textTheme
                   .bodyMedium!
                   .copyWith(
-                color: Colors.black87,
+                color: Colors.grey[800],
                 fontWeight: FontWeight.bold
               ),
             ),
@@ -61,14 +56,16 @@ class _VoicesOfChangeWidgetState extends State<VoicesOfChangeWidget> {
           color: Colors.green[100],
           height: height*0.50,
           padding: EdgeInsets.all(10),
-          child: Text(
-            climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(
-              color: Colors.black87,
+          child: SingleChildScrollView(
+            child: Text(
+              climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(
+                color: Colors.grey[800],
 
+              ),
             ),
           ),
         ),

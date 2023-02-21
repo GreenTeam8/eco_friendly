@@ -15,27 +15,21 @@ class ClimateChangeMobile extends StatefulWidget {
 }
 
 class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
+  Future? _caroelChange;
   Future? _climateChange;
 
-  Future _caroselItems (){
+  Future _climateChangeItem (){
     return Provider.of<ClimateChangeController>(context, listen: false).fetchClimateChange();
+  }
+  Future _caroselItems (){
+    return Provider.of<ClimateChangeController>(context, listen: false).fetchcaroselSlider();
   }
 
   @override
   void initState() {
-    _climateChange = _caroselItems();
+    _climateChange = _climateChangeItem();
+    _caroelChange = _caroselItems();
     super.initState();
-  }
-  bool _isInit = true;
-  void didChangeDependencies() {
-    if (_isInit) {
-      Provider.of<ClimateChangeController>(context).fetchClimateChange();
-      Provider.of<ClimateChangeController>(context).fetchcaroselSlider();
-      _isInit = false;
-    }
-
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
   }
 
   @override
@@ -45,91 +39,99 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
     double height = SizeConfig.screenHeight!;
     final ClimateChangeData = Provider.of<ClimateChangeController>(context);
     final climateChange = ClimateChangeData.getClimateChangeList;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kPrimaryColor,
-        leading:  IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-            size: 25,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Center(
-          child: Text(
-            "Fight for Green",
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: mColor,
+          leading:  IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
               color: Colors.white,
-              // fontWeight: FontWeight.bold,
+              size: 25,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: Center(
+            child: Text(
+              "Fight for Green",
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Colors.white,
+                // fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.language_sharp),
+              color: Colors.white,
+              onPressed: () {},
+            ),
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.language_sharp),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: ListView(
-        physics: NeverScrollableScrollPhysics(),
-        children: [
-          Column(
-            children: [
-             Container(
-               height: height*0.30,
-               // width: width*0.90,
-      child:FutureBuilder(
-          future: _climateChange,
-          builder: (context, snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
-            }else{
-              return ClimateChangeCarosel();
-            }
-          }),
-             ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        body: FutureBuilder(
+            future: _caroelChange,
+            builder: (context, snapshot) {
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
+              }else{
+                return  ListView(
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
-                    Text(
-                      "Climate Issues",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: kPrimaryColor,
-                        // fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      children: [
+                        Container(
+                          height: height*0.30,
+                          // width: width*0.90,
+                          child:ClimateChangeCarosel(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Climate Issues",
+                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                  color: mainColor,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                          FutureBuilder(
+                              future: _climateChange,
+                              builder: (context, snapshot) {
+                                return Container(
+                                  // width: width,
+                                  height: height*0.55 ,
+                                  child: GridView.builder(
+                                    itemCount: ClimateChangeData.getClimateChangeList.length,
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 3 / 2,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                    ),
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      return ChangeNotifierProvider.value(
+                                          value: climateChange[index],
+                                          child: ClimateChangeWidget(index: index));
+                                    },
+                                  ),
+                                );
+                              }
+                          ),
+                      ],
                     ),
                   ],
-                ),
-              ),
-              Container(
-                // width: width,
-                height: height*0.55 ,
-                child: GridView.builder(
-                  itemCount: ClimateChangeData.getClimateChangeList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return ChangeNotifierProvider.value(
-                        value: climateChange[index],
-                        child: ClimateChangeWidget(index: index));
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
+                );
+              }
+            }),
+       
       ),
     );
   }

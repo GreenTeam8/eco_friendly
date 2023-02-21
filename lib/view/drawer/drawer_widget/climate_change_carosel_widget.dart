@@ -24,12 +24,7 @@ class _MobileCarosileWidgetState extends State<MobileCarosileWidget> {
       height: height * 0.30,
       margin: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(10),
-          topLeft: Radius.circular(10),
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-        ),
+        borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
             image: NetworkImage(
               climateCarosel.getClimateCaroselList[widget.index].image!,

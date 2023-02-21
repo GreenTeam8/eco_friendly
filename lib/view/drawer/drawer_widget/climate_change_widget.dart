@@ -34,12 +34,7 @@ class _ClimateChangeWidgetState extends State<ClimateChangeWidget> {
         height: height,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topRight:Radius.circular(10),
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-            ),
+          borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
                 image:NetworkImage(
                   climateChange.getClimateChangeList[widget.index].image!,
