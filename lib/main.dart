@@ -3,11 +3,13 @@ import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/carousel_controller.dart';
 import 'package:eco_friendly/controller/cart_controller.dart';
 import 'package:eco_friendly/controller/climate_change_controller.dart';
+import 'package:eco_friendly/controller/event_controller.dart';
+import 'package:eco_friendly/controller/eventcategory_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/cart/cart_screen.dart';
-
+import 'package:eco_friendly/view/event/web/event_details_web.dart';
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
 import 'package:eco_friendly/view/products/mobile/product_detail_mobile.dart';
 import 'package:eco_friendly/view/products/products_screen.dart';
@@ -27,6 +29,9 @@ import 'controller/category_controller.dart';
 import 'firebase_options.dart';
 import 'model/product.dart';
 import 'helpers/horizontal_scroll_helper.dart';
+import 'package:eco_friendly/view/event/event_detail_widget.dart';
+import 'package:eco_friendly/view/event/events_screen.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,6 +72,23 @@ class MyApp extends StatelessWidget {
             return OrdersController(auth.token!, auth.userId!,previousOrders == null ? [] : previousOrders.orders);
           },
         ),
+
+        /*
+        ChangeNotifierProxyProvider<AuthenticationController, EventController>(
+          create: (context) => EventController('','', []),
+          update: (context, auth, previousEvents) {
+            return EventController(auth.token!, auth.userId!, previousEvents == null ? [] : previousEvents.getEventsList);
+          },
+        ),
+         */
+
+        ChangeNotifierProvider(
+          create: (context) => EventController(),),
+
+        ChangeNotifierProvider(
+          create: (context) => ECategoryController(),),
+
+
         ChangeNotifierProvider(
           create: (context) => Product(),),
         ChangeNotifierProvider(
@@ -107,6 +129,10 @@ class MyApp extends StatelessWidget {
 
               FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
               CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),
+
+              Test_Page.EVENTS_ROUTE_NAME:(context)=> Test_Page(),
+              EventDetailsWidget.EVENTS_DETAILS_ROUTE_NAME: (context) => EventDetailsWidget(),
+              EventDetailsWeb.EVENTS_DETAILS_WEB_ROUTE_NAME: (context) => EventDetailsWeb(),
 
             },
             ),

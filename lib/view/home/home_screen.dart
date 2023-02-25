@@ -1,15 +1,16 @@
 import 'package:eco_friendly/controller/category_controller.dart';
 import 'package:eco_friendly/view/drawer/web/footer.dart';
 import 'package:eco_friendly/view/home/mobile/banner_card_mobile.dart';
+import 'package:eco_friendly/view/home/web/body/event_category_card_web.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:eco_friendly/controller/eventcategory_controller.dart';
+import 'package:eco_friendly/view/home/mobile/ecategory_card_mobile.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/constants.dart';
 import '../../helpers/responsive.dart';
 import '../../helpers/size_config.dart';
-import '../event/event_widgets/event_home_card.dart';
 import 'home_widgets/drawer_section.dart';
 import 'mobile/category_card_mobile.dart';
 import 'mobile/search_mobile.dart';
@@ -29,14 +30,18 @@ class _HomeScreenState extends State<HomeScreen> {
   var _isInit = true;
 
   Future? _categoryFuture;
+  Future? _ecategoryFuture;
 
   Future _obtainProductsFuture (){
     return Provider.of<CategoryController>(context, listen: false).fetchCategories();
   }
-
+  Future _obtainEventsFuture (){
+    return Provider.of<ECategoryController>(context, listen: false).fetchEventCategories();
+  }
   @override
   void initState() {
     _categoryFuture = _obtainProductsFuture();
+    _ecategoryFuture = _obtainEventsFuture();
     super.initState();
   }
 
@@ -111,6 +116,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: height * 0.02,
                                   ),
                                   const CategoryCardWeb(),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                  const EventCardWeb(),
                                   // Container(
                                   //   height: height* 0.40,
                                   //   color: Colors.red,
@@ -145,7 +154,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               return CategoryCardMobile();
                             }
                           }),
-                      EventHomeCard()
+                      FutureBuilder(
+                          future: _ecategoryFuture,
+                          builder: (context, snapshot) {
+                            if(snapshot.connectionState == ConnectionState.waiting){
+                              return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
+                            }else{
+                              return ECategoryCardMobile();
+                            }
+                          }),
                     ],
                   ),
           ),

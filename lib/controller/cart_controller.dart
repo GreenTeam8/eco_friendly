@@ -48,6 +48,7 @@ class CartController with ChangeNotifier{
     _items.remove(ProductId);
     notifyListeners();
   }
+
   void removeSingleItem(String productId){
     if(!_items.containsKey(productId)){
       return;
