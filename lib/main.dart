@@ -7,10 +7,13 @@ import 'package:eco_friendly/controller/event_controller.dart';
 import 'package:eco_friendly/controller/eventcategory_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
+import 'package:eco_friendly/view/Home/home_screen.dart';
+
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/cart/cart_screen.dart';
 import 'package:eco_friendly/view/event/web/event_details_web.dart';
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
+import 'package:eco_friendly/view/orders/orders_screen.dart';
 import 'package:eco_friendly/view/products/mobile/product_detail_mobile.dart';
 import 'package:eco_friendly/view/products/products_screen.dart';
 import 'package:eco_friendly/view/products/web/product_details_web.dart';
@@ -69,7 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<AuthenticationController, OrdersController>(
           create: (context) => OrdersController('','', []),
           update: (context, auth, previousOrders) {
-            return OrdersController(auth.token!, auth.userId!,previousOrders == null ? [] : previousOrders.orders);
+            return OrdersController(auth.token!, auth.userId!,previousOrders == null ? [] : previousOrders.getOrdersList);
           },
         ),
 
@@ -107,7 +110,7 @@ class MyApp extends StatelessWidget {
                       bodyText1: const TextStyle(
                           color: mainColor,
                           fontSize: 25,
-                          fontFamily: 'LilitaOne',
+                          fontFamily: 'Russo One',
                           letterSpacing: 1.2,
                           fontWeight: FontWeight.bold),
                       bodyText2: TextStyle(
@@ -118,21 +121,22 @@ class MyApp extends StatelessWidget {
                   elevation: 0,
                 )),
             home: Responsive.checkPlatform() ? RootScreen() : SplashScreen(),
+           // initialRoute: Responsive.checkPlatform() ? RootScreen.ROOT_SCREEN_ROUTE_NAME : null,
+          //  onUnknownRoute: Responsive.checkPlatform() ? (settings) => MaterialPageRoute(builder: (context) => RootScreen(),) : null,
             routes: {
+            //  '/' : (context)=> RootScreen(),
               ProductsScreen.PRODUCTS_ROUTE_NAME: (context)=> ProductsScreen(),
               ProductDetailsMobile.PRODUCTS_DETAILS_MOBILE_ROUTE_NAME: (context) => ProductDetailsMobile(),
               ProductDetailsWeb.PRODUCTS_DETAILS_WEB_ROUTE_NAME: (context) => ProductDetailsWeb(),
               UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME: (context) => UserProfileScreen(),
               RegisterScreen.REGISTERSCREEN_ROUTE_NAME: (context) => RegisterScreen(),
-
               ClimateChangeDetail.CLIMATE_DETAILS_ROUTE_NAME:(context)=>ClimateChangeDetail(),
-
               FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
               CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),
-
               Test_Page.EVENTS_ROUTE_NAME:(context)=> Test_Page(),
               EventDetailsWidget.EVENTS_DETAILS_ROUTE_NAME: (context) => EventDetailsWidget(),
               EventDetailsWeb.EVENTS_DETAILS_WEB_ROUTE_NAME: (context) => EventDetailsWeb(),
+              OrdersScreen.ORDERS_SCREEN_ROUTE_NAME:(context) => OrdersScreen(),
 
             },
             ),

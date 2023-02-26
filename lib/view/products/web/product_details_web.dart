@@ -32,12 +32,24 @@ class ProductDetailsWeb extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
+            Positioned(
+              bottom: 0,
+              child: ClipPath(
+                child: Container(
+                  color: mColor,
+                  width: width,
+                  height: height! * 0.3,
+                ),
+                clipper: OvalTopBorderClipper(),
+              ),
+            ),
             Container(
               width: width,
               margin: EdgeInsets.all(width * 0.05),
               //height: height* 0.5,
               child: Row(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     flex: 2,
@@ -197,17 +209,6 @@ class ProductDetailsWeb extends StatelessWidget {
                     ),
                   )
                 ],
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: ClipPath(
-                child: Container(
-                  color: mColor,
-                  width: width,
-                  height: height! * 0.3,
-                ),
-                clipper: OvalTopBorderClipper(),
               ),
             ),
           ],

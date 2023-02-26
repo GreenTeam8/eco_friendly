@@ -5,21 +5,21 @@ import 'package:http/http.dart' as http;
 
 
 class Product with ChangeNotifier {
-  String? productId;
-  String? productName;
-  String? productImage;
-  int? productPrice;
-  String? productDescription;
-  String? productCategory;
+  final String? productId;
+  final String? productName;
+  final String? productImage;
+  final double? productPrice;
+  final String? productDescription;
+  final String? productCategory;
   bool isFavorite;
 
   Product(
-      {this.productId,
-      this.productName,
-      this.productImage,
-      this.productPrice,
-      this.productDescription,
-      this.productCategory,
+      { this.productId,
+       this.productName,
+       this.productImage,
+       this.productPrice,
+       this.productDescription,
+        this.productCategory,
       this.isFavorite = false
       });
 

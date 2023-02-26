@@ -25,7 +25,7 @@ class EventCardWeb extends StatelessWidget {
         ),
         Container(
           //width: width,
-          height: height * 0.7,
+          height: height * 0.5,
           child: GridView.builder(
             itemCount: eventCategoriesData.getECategoriesList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

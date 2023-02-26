@@ -54,9 +54,9 @@ class BannerCardWidget extends StatelessWidget {
             ),
             itemBuilder: (BuildContext context, int index, int realIndex) {
               return  ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 child: ColorFiltered(
-                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.35), BlendMode.multiply),
+                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.15), BlendMode.multiply),
                     child: Image.asset('assets/images/${carouselController.carouselList[index].carouselImage}', fit: BoxFit.cover,)),
               );
             },
@@ -80,7 +80,7 @@ class BannerCardWidget extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: Responsive.isWeb(context) ? 35 : 16))
+                                fontSize: Responsive.isWeb(context) ? 35 : 14))
                       ])),
                 ],
               )),

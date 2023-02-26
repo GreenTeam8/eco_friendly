@@ -51,25 +51,38 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
       splashColor: mColor,
       focusColor: mColor,
       child: Container(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.center,
         height: height,
         width: width * 0.70,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          image: DecorationImage(
-              image: NetworkImage(
-                  categories.getCategoriesList[widget.index].categoryImage!),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.35), BlendMode.multiply)),
+          color: categories.categoryColor[widget.index],
         ),
-        child: Padding(
-          padding: EdgeInsets.all(width * 0.01),
-          child: Text(
-            categories.getCategoriesList[widget.index].categoryName!,
-            style: const TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        child: FittedBox(
+          child: Padding(
+            padding: EdgeInsets.all(width * 0.01),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            Container(
+              alignment: Alignment.center,
+                child: Image.network(categories.getCategoriesList[widget.index].categoryImage!,
+                  fit: BoxFit.contain,
+                  height: height * 0.15,
+                )
+            ),
+            Text(
+              categories.getCategoriesList[widget.index].categoryName!,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ],
+            ),
+
           ),
         ),
       ),
@@ -77,3 +90,26 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
   }
 }
 
+// Container(
+// alignment: Alignment.bottomLeft,
+// height: height,
+// width: width * 0.70,
+// margin: EdgeInsets.all(height * 0.01),
+// decoration: BoxDecoration(
+// borderRadius: const BorderRadius.all(Radius.circular(10)),
+// image: DecorationImage(
+// image: NetworkImage(
+// categories.getCategoriesList[widget.index].categoryImage!),
+// fit: BoxFit.cover,
+// colorFilter: ColorFilter.mode(
+// Colors.black.withOpacity(0.35), BlendMode.multiply)),
+// ),
+// child: Padding(
+// padding: EdgeInsets.all(width * 0.01),
+// child: Text(
+// categories.getCategoriesList[widget.index].categoryName!,
+// style: const TextStyle(
+// fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+// ),
+// ),
+// ),

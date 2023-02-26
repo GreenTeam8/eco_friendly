@@ -1,3 +1,4 @@
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -22,6 +23,7 @@ class DrawerSection extends StatelessWidget {
     return SafeArea(
       child: Container(
         height: height,
+        //color: mColor.withOpacity(0.3),
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,8 +38,8 @@ class DrawerSection extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
-            Spacer(),
-            const HelpCenter(),
+            //Spacer(),
+            //const HelpCenter(),
 
           ],
         ),

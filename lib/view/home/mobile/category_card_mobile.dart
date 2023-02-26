@@ -18,7 +18,7 @@ class CategoryCardMobile extends StatelessWidget {
     final categoriesData = Provider.of<CategoryController>(context);
     final categories = categoriesData.getCategoriesList;
     return Container(
-      height: height * 0.4,
+      height: height * 0.6,
       width: width,
       margin: EdgeInsets.symmetric(vertical: height * 0.01),
       child: Container(
@@ -36,13 +36,13 @@ class CategoryCardMobile extends StatelessWidget {
               ],
             ),
             Container(
-              height: height * 0.35,
+              height: height * 0.55,
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: categoriesData.getCategoriesList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 3/2,
+                  childAspectRatio: 1/1,
                 ),
                 itemBuilder: (BuildContext context, int index) {
                       return ChangeNotifierProvider.value(

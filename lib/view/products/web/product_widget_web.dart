@@ -31,7 +31,7 @@ class ProductWidgetWeb extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(width * 0.02),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
         child: GridTile(
           footer: GridTileBar(
             backgroundColor: Colors.black87.withOpacity(0.4),
@@ -67,22 +67,20 @@ class ProductWidgetWeb extends StatelessWidget {
                   }
                 },
             ),
-            title: Column(children: [
-              Hero(
-                  tag: 'heroName${product.productId}',
-                  child: Text(
-                    product.productName!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),
-                  )),
-              Hero(
-                  tag: 'heroPrice${product.productId}',
-                  child: Text(
-                    '${product.productPrice!}' ' \$',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16),
-                  ))
-            ]),
+            title: Hero(
+                tag: 'heroName${product.productId}',
+                child: Text(
+                  product.productName!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                )),
+            subtitle:Hero(
+                tag: 'heroPrice${product.productId}',
+                child: Text(
+                  '${product.productPrice!}' ' \$',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                )),
             trailing: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 color: mColor,
@@ -100,7 +98,17 @@ class ProductWidgetWeb extends StatelessWidget {
                     )
                     );
                   }else{
-                    Navigator.pushNamed(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        'Please Sign In !',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2!
+                            .copyWith(color: mainColor),
+                      ),
+                      duration: Duration(seconds: 3),
+                    ));
                   }
                 }),
           ),

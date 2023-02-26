@@ -23,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
             child: Container(
               color: mColor,
               width: width,
-              height: height! * 0.4,
+              height: height! * 0.40,
             ),
             clipper: OvalBottomBorderClipper(),
           ),

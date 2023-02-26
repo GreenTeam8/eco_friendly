@@ -45,7 +45,7 @@ class _ECategoryCardWidgetState extends State<ECategoryCardWidget> {
                   Ecategories.getECategoriesList[widget.index].eCategoryImage!),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.25), BlendMode.multiply)),
+                  Colors.black.withOpacity(0.2), BlendMode.multiply)),
         ),
         child: Padding(
           padding: EdgeInsets.all(width * 0.01),

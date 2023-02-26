@@ -15,12 +15,14 @@ const pColor2 = Color(0xFF94D82D);
 const secondaryColor = Color(0xFFb9c48c);
 
 ///new palette
-const mColor =  Color(0xFF3c5733);
-const mainColor = Color(0xFF94a359);
+const mColor =  Color(0xff4b7043);
+const mainColor = Color(0xffbdd071);
 const mmColor = Color(0xFFFFFFD3);
 
 
-
+// const mColor =  Color(0xFF3c5733);
+// const mainColor = Color(0xFF94a359);
+// const mmColor = Color(0xFFFFFFD3);
 
 
 

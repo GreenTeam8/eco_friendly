@@ -38,8 +38,8 @@ class CategoryCardWeb extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: width <= 1000 ? 2 : 3,
               childAspectRatio: 3 / 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+              // crossAxisSpacing: 10,
+              // mainAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
               return ChangeNotifierProvider.value(

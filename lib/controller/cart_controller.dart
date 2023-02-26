@@ -28,7 +28,7 @@ class CartController with ChangeNotifier{
     return total;
   }
 
-  void addItem(String productId, int price, String title){
+  void addItem(String productId, double price, String title){
     if(_items.containsKey(productId)){
       _items.update(productId, (existingCartItem) => CartItem(
           itemId: existingCartItem.itemId,

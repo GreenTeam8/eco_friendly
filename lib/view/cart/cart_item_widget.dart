@@ -9,7 +9,7 @@ import '../../helpers/size_config.dart';
 class CartItemWidget extends StatelessWidget {
   final String cartItemId;
   final String productId;
-  final int price;
+  final double price;
   final int quantity;
   final String title;
 

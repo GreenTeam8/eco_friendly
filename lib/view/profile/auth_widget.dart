@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/view/profile/register_screen.dart';
 import 'package:eco_friendly/view/profile/user_profile_screen.dart';
+import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -227,28 +228,29 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                      //user!.address = newValue;
                    },
                  ),
-
+                SizedBox(height: height * 0.01,),
                ElevatedButton(
                    child: Text(_authMode == AuthMode.SignIn ? 'Sign In' : 'Sign Up'),
                    style: ButtonStyle(
                      backgroundColor: MaterialStateProperty.all(mColor),
-                     elevation: MaterialStateProperty.all(0),
+                     elevation: MaterialStateProperty.all(2),
                      padding:  Responsive.isWeb(context)
                          ? MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.1, vertical: width * 0.015))
-                         : MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.3))
+                         : MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: width * 0.3, vertical: height * 0.025))
                    ),
                    onPressed:(){
                      _submit();
-                     Responsive.isWeb(context)?
-                     Future(() => Future.delayed(Duration(seconds: 3)),).then((value) {
-                       if(auth.isAuth){
-                         Navigator.pushNamed(context, UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME);
-                         Navigator.pop(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
-                       }
-                     })
-                   :null;
-
-
+                     Responsive.checkPlatform()
+                         ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RootScreen(),))
+                         : null;
+                   //   Responsive.isWeb(context)?
+                   //   Future(() => Future.delayed(Duration(seconds: 3)),).then((value) {
+                   //     if(auth.isAuth){
+                   //       Navigator.pushNamed(context, UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME);
+                   //       Navigator.pop(context, RegisterScreen.REGISTERSCREEN_ROUTE_NAME);
+                   //     }
+                   //   })
+                   // :null;
 
                    }
                      ,)

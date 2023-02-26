@@ -1,7 +1,8 @@
 import 'package:eco_friendly/controller/category_controller.dart';
-import 'package:eco_friendly/view/drawer/web/footer.dart';
+
 import 'package:eco_friendly/view/home/mobile/banner_card_mobile.dart';
 import 'package:eco_friendly/view/home/web/body/event_category_card_web.dart';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:eco_friendly/controller/eventcategory_controller.dart';
@@ -11,6 +12,10 @@ import 'package:provider/provider.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/responsive.dart';
 import '../../helpers/size_config.dart';
+
+
+import 'home_widgets/climateGoal_card_widget.dart';
+
 import 'home_widgets/drawer_section.dart';
 import 'mobile/category_card_mobile.dart';
 import 'mobile/search_mobile.dart';
@@ -18,8 +23,11 @@ import 'mobile/search_mobile.dart';
 import 'web/body/banner_card_web.dart';
 import 'web/body/custom_appBar_web.dart';
 import 'web/body/category_card_web.dart';
+import '../drawer/web/footer.dart';
+
 
 class HomeScreen extends StatefulWidget {
+  static const HOME_SCREEN_ROUTE_NAME = '/home_Screen';
   HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -95,7 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Responsive.isWeb(context)
-
                 ///Web UI
                 ? Container(
                     padding: EdgeInsets.all(height * 0.01),
@@ -115,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
+                                  ClimateGoal(),
                                   const CategoryCardWeb(),
                                   SizedBox(
                                     height: height * 0.02,
@@ -135,7 +143,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         ///for footer
-                        FooterWeb(),
+                       // FooterWeb(),
+                        FooterWeb()
                       ],
                     ),
                   )
@@ -145,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       SearchMobile(),
                       BannerCardMobile(),
+                      ClimateGoal(),
                       FutureBuilder(
                           future: _categoryFuture,
                           builder: (context, snapshot) {

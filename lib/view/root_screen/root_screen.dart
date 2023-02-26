@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../controller/authentication_controller.dart';
 import '../../helpers/size_config.dart';
+import '../Home/web/body/custom_appBar_web.dart';
 import '/view/Home/home_screen.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/responsive.dart';
@@ -13,6 +14,7 @@ import '../cart/cart_screen.dart';
 import '../profile/register_screen.dart';
 
 class RootScreen extends StatefulWidget {
+  static const ROOT_SCREEN_ROUTE_NAME = '/rootscreen';
   RootScreen({Key? key}) : super(key: key);
 
   @override
