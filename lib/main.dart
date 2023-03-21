@@ -5,8 +5,11 @@ import 'package:eco_friendly/controller/cart_controller.dart';
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
 import 'package:eco_friendly/controller/products_controller.dart';
+import 'package:eco_friendly/view/Home/home_screen.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/cart/cart_screen.dart';
+import 'package:eco_friendly/view/drawer/web/climate_change_details_web.dart';
+import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
 import 'package:eco_friendly/view/products/mobile/product_detail_mobile.dart';
@@ -18,6 +21,7 @@ import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '/view/splash_screen/splash_screen.dart';
@@ -36,10 +40,30 @@ Future<void> main() async {
    .catchError((e) => print(e.toString()));
   runApp(MyApp());
 }
-
+// final GoRouter _router =GoRouter(
+//   initialLocation: '/',
+//   routes: <GoRoute>[
+//     GoRoute(
+//       routes: <GoRoute>[
+//         GoRoute(
+//           path: 'page2',
+//           builder: (BuildContext context, GoRouterState state )=>
+//           const ClimateChangeWeb(),
+//         ),
+//         GoRoute(
+//           path: 'page3',
+//           builder: (BuildContext context, GoRouterState state )=>
+//               ClimateChangeDetailWeb(),
+//         ),
+//       ],
+//       path: '/',
+//       builder: (BuildContext context, GoRouterState state )=>
+//           HomeScreen(),
+//     ),
+//   ],
+// );
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -73,6 +97,10 @@ class MyApp extends StatelessWidget {
           create: (context) => ClimateChangeController(),),
       ],
         child: GetMaterialApp(
+
+          // routerDelegate:_router.routerDelegate ,
+          // routeInformationParser: _router.routeInformationParser,
+          // routeInformationProvider: _router.routeInformationProvider,
             title: 'Eco-Friendly',
             debugShowCheckedModeBanner: false,
             scrollBehavior: MyCustomScrollBehavior(),
@@ -96,21 +124,21 @@ class MyApp extends StatelessWidget {
                   elevation: 0,
                 )),
             home: Responsive.checkPlatform() ? RootScreen() : SplashScreen(),
-            routes: {
+          routes:{
               ProductsScreen.PRODUCTS_ROUTE_NAME: (context)=> ProductsScreen(),
               ProductDetailsMobile.PRODUCTS_DETAILS_MOBILE_ROUTE_NAME: (context) => ProductDetailsMobile(),
               ProductDetailsWeb.PRODUCTS_DETAILS_WEB_ROUTE_NAME: (context) => ProductDetailsWeb(),
               UserProfileScreen.USERPROFILESCREEN_ROUTE_NAME: (context) => UserProfileScreen(),
               RegisterScreen.REGISTERSCREEN_ROUTE_NAME: (context) => RegisterScreen(),
 
-              ClimateChangeDetail.CLIMATE_DETAILS_ROUTE_NAME:(context)=>ClimateChangeDetail(),
+              ClimateChangeDetailMobil.CLIMATE_DETAILS_MOBILE_ROUTE_NAME:(context)=>ClimateChangeDetailMobil(),
+              ClimateChangeDetailWeb.CLIMATE_DETAILS_WEB_ROUTE_NAME:(context)=>ClimateChangeDetailWeb(),
 
               FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
               CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),
 
             },
             ),
-
     );
   }
 }

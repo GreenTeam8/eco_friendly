@@ -3,6 +3,7 @@ import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../mobile/climate_change_mobile.dart';
 
 class ClimateChangeWidget extends StatefulWidget {
   int index;
@@ -21,17 +22,14 @@ class _ClimateChangeWidgetState extends State<ClimateChangeWidget> {
     final climateChange = Provider.of<ClimateChangeController>(context, listen: false);
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(
-          ClimateChangeDetail.CLIMATE_DETAILS_ROUTE_NAME, arguments:
-        {'Id': climateChange.getClimateChangeList[widget.index].Id
-        },
-        );
+          Navigator.of(context).pushNamed(
+            ClimateChangeDetailMobil.CLIMATE_DETAILS_MOBILE_ROUTE_NAME, arguments:
+          {'Id': climateChange.getClimateChangeList[widget.index].Id},);
       },
       child: Container(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.bottomCenter,
         width: width,
-        height: height,
+        height: height*0.50,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -45,12 +43,12 @@ class _ClimateChangeWidgetState extends State<ClimateChangeWidget> {
         child:  Container(
           padding: EdgeInsets.all(10),
           child: Text(
-            climateChange.getClimateChangeList[widget.index].name!,
+            transs?climateChange.getClimateChangeList[widget.index].name!: climateChange.getClimateChangeList[widget.index].nameAr!,
             style: Theme.of(context)
                 .textTheme
-                .bodyMedium!
+                .bodyText1!
                 .copyWith(
-              color: Colors.white,
+              color: Colors.grey[100],
 
               // fontWeight: FontWeight.bold,
             ),

@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class  ClimateVoices extends StatefulWidget {
-  const ClimateVoices({Key? key}) : super(key: key);
+class  ClimateVoicesMobile extends StatefulWidget {
+  const ClimateVoicesMobile({Key? key}) : super(key: key);
 
   @override
-  State<ClimateVoices> createState() => _ClimateVoicesState();
+  State<ClimateVoicesMobile> createState() => _ClimateVoicesMobileState();
 }
 
-class _ClimateVoicesState extends State<ClimateVoices> {
+class _ClimateVoicesMobileState extends State<ClimateVoicesMobile> {
   Future? _climateVoices;
   Future _climateVoicesItems (){
     return Provider.of<ClimateChangeController>(context, listen: false).fetchVoiceOfChange();
@@ -32,66 +32,68 @@ class _ClimateVoicesState extends State<ClimateVoices> {
     double height = SizeConfig.screenHeight!;
     final VoicesOfChangeData = Provider.of<ClimateChangeController>(context);
     final  VoiceOfChange = VoicesOfChangeData.getVoiceOfChangeList;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: mColor,
-          leading:  IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: mColor,
+        leading:  IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 25,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Center(
+          child: Text(
+            lan?"Speak up now! ":"! تكلم الآن",
+            style: Theme.of(context).textTheme.bodyText1!.copyWith(
               color: Colors.white,
-              size: 25,
             ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.g_translate),
+            color: Colors.white,
             onPressed: () {
-              Navigator.pop(context);
+              setState(() {
+                lan=!lan;
+              });
             },
           ),
-          title: Center(
-            child: Text(
-              "Speak up and act now! ",
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.join_right_outlined),
-              color: Colors.white,
-              onPressed: () {},
-            ),
-          ],
-        ),
-        body:SafeArea(
-          child:FutureBuilder(
-              future: _climateVoices,
-              builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting){
-                  return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
-                }else{
-                  return ListView(
-                    children: [
-                      Container(
-                        width: width,
-                        height: height ,
-                        child: Swiper(
-                          itemWidth: width*0.90,
-                          itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
-                          itemBuilder: (Context,index) {
-                            return ChangeNotifierProvider.value(
-                                value: VoiceOfChange[index],
-                                child: VoicesOfChangeWidget(index: index));
-                          },
-                          layout: SwiperLayout.STACK,
-                          scale: 0.8,
-                          index: 0,
-                        ),
+        ],
+      ),
+      body:SafeArea(
+        child:FutureBuilder(
+            future: _climateVoices,
+            builder: (context, snapshot) {
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
+              }else{
+                return ListView(
+                  children: [
+                    Container(
+                      width: width,
+                      height: height ,
+                      child: Swiper(
+                        itemWidth: width*0.90,
+                        itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
+                        itemBuilder: (Context,index) {
+                          return ChangeNotifierProvider.value(
+                              value: VoiceOfChange[index],
+                              child: VoicesOfChangeWidget(index: index));
+                        },
+                        layout: SwiperLayout.STACK,
+                        scale: 0.8,
+                        index: 0,
                       ),
-                    ],
-                  );
-                }
-              }),
-        ),
+                    ),
+                  ],
+                );
+              }
+            }),
       ),
     );
   }

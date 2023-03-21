@@ -3,19 +3,21 @@ import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'climate_change_mobile.dart';
 
-class ClimateChangeDetail extends StatefulWidget {
-  static const CLIMATE_DETAILS_ROUTE_NAME = '/ClimateChangeDetail';
+class ClimateChangeDetailMobil extends StatefulWidget {
+  static const CLIMATE_DETAILS_MOBILE_ROUTE_NAME = '/ClimateChangeDetail';
 
-  ClimateChangeDetail({Key? key}) : super(key: key);
+  ClimateChangeDetailMobil({Key? key}) : super(key: key);
 
   @override
-  State<ClimateChangeDetail> createState() => _ClimateChangeDetailState();
+  State<ClimateChangeDetailMobil> createState() =>
+      _ClimateChangeDetailMobilState();
 }
 
-class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
+class _ClimateChangeDetailMobilState extends State<ClimateChangeDetailMobil> {
   String? ItemCategoryId;
-  bool isShowmore=true;
+  bool isShowmore = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +25,18 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     final Map routeArguments =
-    ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
+        ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
 
     ItemCategoryId = routeArguments['Id'];
     final loadedItems = Provider.of<ClimateChangeController>(context)
         .findItemsById(ItemCategoryId!);
+    // void transs(){
+    //   setState(() {
+    //     dataToTrans=loadedItems.ItemImage!;
+    //     print(dataToTrans);
+    //   });
+    //
+    // }
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,8 +45,8 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
             children: [
               Container(
                 alignment: Alignment.topLeft,
-                margin: EdgeInsets.only(top: height*0.020),
-                width: width*0.90,
+                margin: EdgeInsets.only(top: height * 0.020),
+                width: width * 0.90,
                 height: height * 0.40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -48,22 +57,27 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                     ),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 25,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
+                  ],
                 ),
               ),
               SizedBox(
-                height: height*0.020,
+                height: height * 0.020,
               ),
               Container(
                 width: width,
@@ -72,38 +86,33 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                   color: Colors.green[100],
                 ),
                 child: Container(
-                  padding: EdgeInsets.all(height*0.020),
+                  padding: EdgeInsets.all(height * 0.020),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          loadedItems.name!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                            color: mainColor,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        Center(
+                          child: Text(
+                            transs?loadedItems.name!:loadedItems.nameAr!,
+                            style:
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      color: mainColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
                         ),
-                        SizedBox(
-                          height: height*0.02,
-                        ),
                         Text(
-                          loadedItems.ItemDescription!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                            color: Colors.grey[800],
-                            fontSize: 20,
-                          ),
-                          maxLines: isShowmore ? 3: null,
-                          overflow: TextOverflow.fade,
-                          textAlign: TextAlign.start,
+                          transs ? loadedItems.ItemDescription! : loadedItems.ItemDescriptionAr!,
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    color: Colors.grey[800],
+                                    // fontSize: 20,
+                                  ),
+                          maxLines: isShowmore ? 4 : null,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.justify,
                         ),
                         TextButton(
                           onPressed: () {
@@ -125,27 +134,22 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                 ),
               ),
               SizedBox(
-                height:height *0.020,
+                height: height * 0.020,
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    Text(
-                      loadedItems.ItemTitle!,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(
-                        color: mainColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                child: Center(
+                  child: Text(
+                   transs?loadedItems.ItemTitle!:loadedItems.ItemTitleAr!,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: mainColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
               ),
               SizedBox(
-                height:height *0.020,
+                height: height * 0.020,
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -155,7 +159,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                       children: [
                         Container(
                           margin: EdgeInsets.all(10),
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -167,36 +171,41 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                             ),
                           ),
                         ),
-                        SizedBox(height:height *0.020,),
+                        SizedBox(
+                          height: height * 0.020,
+                        ),
                         Container(
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.35,
                           child: Container(
                             color: Colors.green[50],
-                            padding: EdgeInsets.all(height*0.020),
+                            padding: EdgeInsets.all(height * 0.020),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    loadedItems.Atitle!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                      color: mainColor,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      transs?loadedItems.Atitle!:loadedItems.AtitleAr!,
+
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: mainColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
                                   ),
                                   Text(
-                                    loadedItems.Adescription!,
+                                    transs ?loadedItems.Adescription!:loadedItems.AdescriptionAr!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.grey[800],
-                                    ),
+                                          color: Colors.grey[800],
+                                        ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
                                   ),
@@ -211,7 +220,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                       children: [
                         Container(
                           margin: EdgeInsets.all(10),
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -223,38 +232,43 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                             ),
                           ),
                         ),
-                        SizedBox(height:height *0.020,),
+                        SizedBox(
+                          height: height * 0.020,
+                        ),
                         Container(
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.35,
                           decoration: BoxDecoration(
-                            color: Colors.green[100],
+                            color: Colors.green[50],
                           ),
                           child: Container(
-                            padding: EdgeInsets.all(height*0.020),
+                            padding: EdgeInsets.all(height * 0.020),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    loadedItems.Btitle!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                      color: mainColor,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      transs?loadedItems.Btitle!:loadedItems.BtitleAr!,
+
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: mainColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
                                   ),
                                   Text(
-                                    loadedItems.Bdescription!,
+                                    transs ?loadedItems.Bdescription!:loadedItems.BdescriptionAr!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.grey[800],
-                                    ),
+                                          color: Colors.grey[800],
+                                        ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
                                   ),
@@ -269,7 +283,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                       children: [
                         Container(
                           margin: EdgeInsets.all(10),
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -281,39 +295,43 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                             ),
                           ),
                         ),
-                        SizedBox(height:height *0.020,),
+                        SizedBox(
+                          height: height * 0.020,
+                        ),
                         Container(
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.35,
                           child: Container(
                             color: Colors.green[50],
-                            padding: EdgeInsets.all(height*0.020),
+                            padding: EdgeInsets.all(height * 0.020),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    loadedItems.Ctitle!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                      color: mainColor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                      loadedItems.Cdescription!,
+                                  Center(
+                                    child: Text(
+                                      transs?loadedItems.Ctitle!:loadedItems.CtitleAr!,
+
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                        color: Colors.grey[800],
-                                      ),
-                                      overflow: TextOverflow.fade,
-                                      textAlign: TextAlign.justify
+                                            color: mainColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
                                   ),
+                                  Text(
+                                      transs ?loadedItems.Cdescription!:loadedItems.CdescriptionAr!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: Colors.grey[800],
+                                          ),
+                                      overflow: TextOverflow.fade,
+                                      textAlign: TextAlign.justify),
                                 ],
                               ),
                             ),
@@ -325,7 +343,7 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                       children: [
                         Container(
                           margin: EdgeInsets.all(10),
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -337,36 +355,41 @@ class _ClimateChangeDetailState extends State<ClimateChangeDetail> {
                             ),
                           ),
                         ),
-                        SizedBox(height:height *0.020,),
+                        SizedBox(
+                          height: height * 0.020,
+                        ),
                         Container(
-                          width: width*0.90,
+                          width: width * 0.90,
                           height: height * 0.35,
                           child: Container(
                             color: Colors.green[50],
-                            padding: EdgeInsets.all(height*0.020),
+                            padding: EdgeInsets.all(height * 0.020),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    loadedItems.Dtitle!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                      color: mainColor,
-                                      fontWeight: FontWeight.bold,
+                                  Center(
+                                    child: Text(
+                                      transs?loadedItems.Dtitle!:loadedItems.DtitleAr!,
+
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            color: mainColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
                                   ),
                                   Text(
-                                    loadedItems.Ddescription!,
+                                    transs ?loadedItems.Ddescription!:loadedItems.DdescriptionAr!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                      color: Colors.grey[800],
-                                    ),
+                                          color: Colors.grey[800],
+                                        ),
                                     overflow: TextOverflow.fade,
                                     textAlign: TextAlign.justify,
                                   ),

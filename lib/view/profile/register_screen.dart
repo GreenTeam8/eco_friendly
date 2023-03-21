@@ -16,32 +16,35 @@ class RegisterScreen extends StatelessWidget {
     SizeConfig().init(context);
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
-    return Scaffold(
-      body: Stack(
-        children: [
-          ClipPath(
-            child: Container(
-              color: mColor,
-              width: width,
-              height: height! * 0.4,
+    return WillPopScope(
+      onWillPop: () async => true,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            ClipPath(
+              child: Container(
+                color: mColor,
+                width: width,
+                height: height! * 0.4,
+              ),
+              clipper: OvalBottomBorderClipper(),
             ),
-            clipper: OvalBottomBorderClipper(),
-          ),
-          Center(
-              child: SafeArea(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ProfileLogoWidget(),
-                      AuthenticationScreen(),
-                    ],
+            Center(
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ProfileLogoWidget(),
+                        AuthenticationScreen(),
+                      ],
+                    ),
                   ),
-                ),
-              )
-          ),
-        ],
+                )
+            ),
+          ],
 
+        ),
       ),
     );
   }

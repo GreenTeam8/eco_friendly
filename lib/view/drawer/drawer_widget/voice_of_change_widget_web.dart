@@ -3,58 +3,57 @@ import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class VoicesOfChangeWidget extends StatefulWidget {
+class VoicesOfChangeWidgetWeb extends StatefulWidget {
   int index;
-  VoicesOfChangeWidget({ required this.index,Key? key}) : super(key: key);
+  VoicesOfChangeWidgetWeb({ required this.index,Key? key}) : super(key: key);
 
   @override
-  State<VoicesOfChangeWidget> createState() => _VoicesOfChangeWidgetState();
+  State<VoicesOfChangeWidgetWeb> createState() => _VoicesOfChangeWidgetWebState();
 }
- bool lan =true;
-class _VoicesOfChangeWidgetState extends State<VoicesOfChangeWidget> {
+bool lan =true;
+class _VoicesOfChangeWidgetWebState extends State<VoicesOfChangeWidgetWeb> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     final climateChange = Provider.of<ClimateChangeController>(context, listen: false);
-    return Column(
+    return Row(
       children: [
         Container(
           alignment: Alignment.bottomLeft,
-          width: width,
-          height: height*0.36,
+          width: width*0.45,
+          height: height*0.60,
           margin: EdgeInsets.all(height * 0.01),
           decoration: BoxDecoration(
             borderRadius:BorderRadius.circular(20),
-              image: DecorationImage(
-                  image:NetworkImage(
-                    climateChange.getVoiceOfChangeList[widget.index].VoiceImage!,
-                  ),
-                  fit: BoxFit.fill,
+            image: DecorationImage(
+              image:NetworkImage(
+                climateChange.getVoiceOfChangeList[widget.index].VoiceImage!,
               ),
+              fit: BoxFit.fill,
+            ),
           ),
           child:  Container(
             color: Colors.green[100],
             padding: EdgeInsets.all(10),
             child: Text(
-             lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
+              lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
                   .copyWith(
-                color: Colors.grey[800],
-                fontWeight: FontWeight.bold
+                  color: Colors.grey[800],
+                  fontWeight: FontWeight.bold
               ),
             ),
           ),
         ),
-        SizedBox(
-          height: height*0.05,
-        ),
+        SizedBox(width: width*0.02,),
         Container(
+          width:width* 0.45,
           color: Colors.green[100],
-          height: height*0.40,
+          height: height*0.60,
           padding: EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Text(
