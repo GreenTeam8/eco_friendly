@@ -36,13 +36,21 @@ class CustomAppBarWeb extends StatelessWidget {
           ]),
       child: Row(
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage(
-              'assets/images/ecoIcon.png',
+          Container(
+            height: height * 0.05,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white,
             ),
-            radius: height * 0.025,
-            backgroundColor: Colors.white,
+            child: Image.asset('assets/images/ecoIcon.png'),
           ),
+          // CircleAvatar(
+          //   backgroundImage: AssetImage(
+          //     'assets/images/ecoIcon.png',
+          //   ),
+          //   radius: height * 0.025,
+          //   backgroundColor: Colors.white,
+          // ),
           SizedBox(
             width: width * 0.01,
           ),

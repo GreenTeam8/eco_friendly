@@ -5,14 +5,16 @@ import 'package:provider/provider.dart';
 
 import '../../controller/cart_controller.dart';
 import '../../controller/orders_controller.dart';
+import '../orders/orders_screen.dart';
 
 class OrderButton extends StatefulWidget {
+  final CartController cart;
+
   const OrderButton({
     Key? key,
     required this.cart,
   }) : super(key: key);
 
-  final CartController cart;
 
   @override
   State<OrderButton> createState() => _OrderButtonState();
@@ -23,11 +25,15 @@ class _OrderButtonState extends State<OrderButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: (widget.cart.totalAmount <= 0 ||  _isLoading) ? null :() async{
+        onPressed: (
+          widget.cart.totalAmount <= 0 ||  _isLoading) ? null :() async{
           setState(() {
             _isLoading = true;
           });
-          await Provider.of<OrdersController>(context, listen: false).addOrder(widget.cart.items.values.toList(), widget.cart.totalAmount);
+          await Provider.of<OrdersController>(context, listen: false)
+              .addOrder(widget.cart.items.values.toList(), widget.cart.totalAmount);
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) => OrdersScreen()));
           setState(() {
             _isLoading = false;
           });

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:eco_friendly/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +57,6 @@ class ProductController with ChangeNotifier {
     _favsList = favLoadedProducts;
     notifyListeners();
   }
-
 
   Future<void> deleteFavProduct(String id, String productId) async{
     final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/userFavorites/$id/$productId.json?auth=$authToken';

@@ -30,7 +30,7 @@ class SideItemsWidget extends StatelessWidget {
           Text(
             text,
             style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                color: Colors.grey[700], fontSize: width <= 880 ? 11 : null),
+                fontWeight: FontWeight.bold,color: Colors.grey[700], fontSize: width <= 880 ? 11 : null),
           )
         ],
       ),

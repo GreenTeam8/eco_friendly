@@ -21,8 +21,9 @@ class DrawerComponentsWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(height * 0.01),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: mainColor)),
+          // borderRadius: BorderRadius.circular(10),
+          // border: Border.all(color: mainColor)),
+      ),
       child: Column(
         children: [
           SideItemsWidget(
@@ -37,7 +38,9 @@ class DrawerComponentsWidget extends StatelessWidget {
             height: height * 0.04,
           ),
           SideItemsWidget(
-              icon: Icons.task_alt, text: 'Egypt Contribution', onTap: () {}),
+              icon: Icons.task_alt, text: 'Egypt Contribution', onTap: () {
+
+          }),
           SizedBox(
             height: height * 0.04,
           ),

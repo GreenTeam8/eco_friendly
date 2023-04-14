@@ -28,8 +28,8 @@ class SplashScreen extends StatelessWidget {
         splash: Center(
           ///here we created a Container of the splash_screen screen content
             child: Container(
-              width: width * 0.4,
-              height: height * 0.4,
+               width: width * 0.4,
+               height: height * 0.4,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
