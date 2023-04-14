@@ -111,7 +111,7 @@ class _ClimateChangeDetailMobilState extends State<ClimateChangeDetailMobil> {
                                     // fontSize: 20,
                                   ),
                           maxLines: isShowmore ? 4 : null,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.clip,
                           textAlign: TextAlign.justify,
                         ),
                         TextButton(

@@ -42,43 +42,43 @@ class _ClimateChangeCaroselState extends State<ClimateChangeCarosel> {
     return  Container(
       width: width,
       height: height *0.40,
-      child: Container(
-       child: GridView.builder(
-      itemCount: ClimateCaroselSliderData.getClimateChangeList.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          childAspectRatio: 2 /3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-            return ChangeNotifierProvider.value(
-                value: climateCarosel[index],
-                child: MobileCarosileWidget(index: index));
-          },
+      // child: Container(
+      //  child: GridView.builder(
+      // itemCount: ClimateCaroselSliderData.getClimateChangeList.length,
+      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      //     crossAxisCount: 1,
+      //     childAspectRatio: 1.5 /3,
+      //     crossAxisSpacing: 10,
+      //     mainAxisSpacing: 10,
+      //   ),
+      //   scrollDirection: Axis.horizontal,
+      //   itemBuilder: (context, index) {
+      //       return ChangeNotifierProvider.value(
+      //           value: climateCarosel[index],
+      //           child: MobileCarosileWidget(index: index));
+      //     },
+      //   ),
+      // ),
+     child: Container(
+      width: width,
+      height: height*0.30,
+      child: CarouselSlider.builder(
+        itemCount: ClimateCaroselSliderData.getClimateCaroselList.length,
+        itemBuilder: (BuildContext,index,real) {
+          return ChangeNotifierProvider.value(
+              value: climateCarosel[index],
+              child: MobileCarosileWidget(index: index));
+        },
+        options: CarouselOptions(
+          enlargeCenterPage: true,
+          autoPlay: true,
+          viewportFraction: 1,
+          enlargeFactor: 0.3,
+          autoPlayAnimationDuration: Duration(seconds: 4),
+          autoPlayInterval: const Duration(seconds: 8),
         ),
       ),
-     // child: Container(
-     //  width: width,
-     //  height: height*0.30,
-     //  child: CarouselSlider.builder(
-     //    itemCount: ClimateCaroselSliderData.getClimateCaroselList.length,
-     //    itemBuilder: (BuildContext,index,real) {
-     //      return ChangeNotifierProvider.value(
-     //          value: climateCarosel[index],
-     //          child: MobileCarosileWidget(index: index));
-     //    },
-     //    options: CarouselOptions(
-     //      enlargeCenterPage: true,
-     //      autoPlay: true,
-     //      viewportFraction: 1,
-     //      enlargeFactor: 0.3,
-     //      autoPlayAnimationDuration: Duration(seconds: 4),
-     //      autoPlayInterval: const Duration(seconds: 8),
-     //    ),
-     //  ),
-     // ),
+     ),
     );
   }
 }

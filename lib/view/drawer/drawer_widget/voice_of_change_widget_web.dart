@@ -1,4 +1,5 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +23,8 @@ class _VoicesOfChangeWidgetWebState extends State<VoicesOfChangeWidgetWeb> {
       children: [
         Container(
           alignment: Alignment.bottomLeft,
-          width: width*0.45,
-          height: height*0.60,
+          width: width*0.40,
+          height: height*0.50,
           margin: EdgeInsets.all(height * 0.01),
           decoration: BoxDecoration(
             borderRadius:BorderRadius.circular(20),
@@ -34,38 +35,64 @@ class _VoicesOfChangeWidgetWebState extends State<VoicesOfChangeWidgetWeb> {
               fit: BoxFit.fill,
             ),
           ),
-          child:  Container(
-            color: Colors.green[100],
-            padding: EdgeInsets.all(10),
-            child: Text(
-              lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(
-                  color: Colors.grey[800],
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-          ),
+          // child:  Container(
+          //   color: Colors.green[100],
+          //   padding: EdgeInsets.all(10),
+          //   child: Text(
+          //     lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
+          //     style: Theme.of(context)
+          //         .textTheme
+          //         .bodyMedium!
+          //         .copyWith(
+          //         color: Colors.grey[800],
+          //         fontWeight: FontWeight.bold
+          //     ),
+          //   ),
+          // ),
         ),
         SizedBox(width: width*0.02,),
         Container(
           width:width* 0.45,
-          color: Colors.green[100],
-          height: height*0.60,
-          padding: EdgeInsets.all(10),
-          child: SingleChildScrollView(
-            child: Text(
-              lan?climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!:climateChange.getVoiceOfChangeList[widget.index].VoiceDescriptionAr!,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(
-                color: Colors.grey[800],
+          height: height*0.50,
+          decoration: BoxDecoration(
+              border: Border.all(
+                color: mainColor,
               ),
-              textAlign: TextAlign.justify,
-            ),
+              borderRadius: BorderRadius.circular(10)),
+          // color: Colors.green[100],
+          padding: EdgeInsets.all(10),
+          child: ListView(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(
+                        color: mainColor,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  SizedBox(
+                    height: height*0.02,
+                  ),
+                  Text(
+                    lan?climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!:climateChange.getVoiceOfChangeList[widget.index].VoiceDescriptionAr!,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(
+                      color: Colors.grey[800],
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ],

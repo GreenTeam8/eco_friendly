@@ -57,7 +57,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
     final Map routeArguments =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
+    ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
 
     ///appliances or electronics or plastic ban or plants
     productCategoryId = routeArguments['CategoryId'];
@@ -89,7 +89,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
             }else{
               return Responsive.isWeb(context)
-                ? GridView.builder(
+                  ? GridView.builder(
                 itemCount: loadedProducts.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: width <= 1000 ? 2 : 3,
@@ -104,7 +104,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                 },
               )
 
-               : Column(
+                  : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(

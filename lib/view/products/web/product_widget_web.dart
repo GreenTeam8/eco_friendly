@@ -25,7 +25,7 @@ class ProductWidgetWeb extends StatelessWidget {
     final cart = Provider.of<CartController>(context, listen: false);
     final auth = Provider.of<AuthenticationController>(context, listen: false);
     final delFavProduct =
-        Provider.of<ProductController>(context, listen: false);
+    Provider.of<ProductController>(context, listen: false);
 
     ///as gridtile view different approach of view
     return Container(
@@ -38,34 +38,34 @@ class ProductWidgetWeb extends StatelessWidget {
 
             /// added consumer to manipulate the favorites
             leading:  IconButton(
-                icon: Icon(
-                  product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                ),
-                color: Colors.red,
-                onPressed: () {
-                  if (auth.isAuth) {
-                    product.toggleFavoriteStatue(
-                      auth.token!,
-                      auth.userId!,
-                    );
-                  }
-                  if (product.isFavorite == false) {
-                    delFavProduct.deleteFavProduct(
-                        auth.userId, product.productId!);
-                  } else {
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                        'Please Sign In !',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: mainColor),
-                      ),
-                      duration: Duration(seconds: 3),
-                    ));
-                  }
-                },
+              icon: Icon(
+                product.isFavorite ? Icons.favorite : Icons.favorite_border,
+              ),
+              color: Colors.red,
+              onPressed: () {
+                if (auth.isAuth) {
+                  product.toggleFavoriteStatue(
+                    auth.token!,
+                    auth.userId!,
+                  );
+                }
+                if (product.isFavorite == false) {
+                  delFavProduct.deleteFavProduct(
+                      auth.userId, product.productId!);
+                } else {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                      'Please Sign In !',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(color: mainColor),
+                    ),
+                    duration: Duration(seconds: 3),
+                  ));
+                }
+              },
             ),
             title: Hero(
                 tag: 'heroName${product.productId}',

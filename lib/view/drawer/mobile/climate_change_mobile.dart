@@ -86,34 +86,36 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
                 children: [
                   Column(
                     children: [
-                      // Container(
-                      //   height: height*0.30,
-                      //   // width: width*0.90,
-                      //   child:ClimateChangeCarosel(),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: Row(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
-                      //       Text(
-                      //         "Climate Issues",
-                      //         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      //           color: mainColor,
-                      //           // fontWeight: FontWeight.bold,
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
+                      Container(
+                        height: height*0.30,
+                        // width: width*0.90,
+                        child:ClimateChangeCarosel(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              transs? "Climate Issues":"قضاياالمناخ",
+                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                color: mainColor,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                         Container(
                           // width: width,
                           height: height*0.90 ,
+                          decoration: BoxDecoration(
+                          ),
                           child: GridView.builder(
                             itemCount: ClimateChangeData.getClimateChangeList.length,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 1,
-                              childAspectRatio: 4 /2.5,
+                              childAspectRatio: 4/2.5,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
                             ),

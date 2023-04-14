@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,13 +44,13 @@ class _TaclingClimateWidgetState extends State<TaclingClimateWidget> {
           ),
           Center(
             child: Text(
-              taclingClimate.getTacklingClimateList[widget.index].title!,
+              transWeb?taclingClimate.getTacklingClimateList[widget.index].title!:taclingClimate.getTacklingClimateList[widget.index].titleAr!,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
                   .copyWith(
                   color: Colors.grey[800],
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
               ),
             ),
           ),

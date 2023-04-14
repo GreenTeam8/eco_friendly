@@ -158,6 +158,7 @@ class ClimateChangeController with ChangeNotifier{
         loadTaclingClimate.add(
           TaclingClimate(
             title: TaclingClimateData['title'],
+            titleAr: TaclingClimateData['titleAr'],
             image: TaclingClimateData['image'],
             description: TaclingClimateData['description'],
           ),

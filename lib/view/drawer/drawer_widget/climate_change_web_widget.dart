@@ -4,6 +4,7 @@ import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 
 import 'package:eco_friendly/view/drawer/web/climate_change_details_web.dart';
+import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,10 +48,10 @@ class _ClimateChangeWebWidgetState extends State<ClimateChangeWebWidget> {
           height: height,
           padding: EdgeInsets.all(10),
           child: Text(
-            climateChanges.getClimateChangeList[widget.index].name!,
+            transWeb?climateChanges.getClimateChangeList[widget.index].name!:climateChanges.getClimateChangeList[widget.index].nameAr!,
             style: Theme.of(context)
                 .textTheme
-                .bodyMedium!
+                .bodyText2!
                 .copyWith(
               color: Colors.white,
 

@@ -50,61 +50,44 @@ class _ClimateVoicesWebState extends State<ClimateVoicesWeb> {
                 child: Column(
                   children: [
                     Container(
-                      height: height,
-                      width: width,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: height * 0.75,
-                            width: width,
-                            decoration: BoxDecoration(
-                              // borderRadius: BorderRadius.circular(10),
-                              image:DecorationImage(
-                                image:AssetImage('assets/images/voice.jpg',),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top:400,
-                            left: width*0.50,
-                            right:0,
-                            bottom: 0,
-                            child: Container(
-                              height: height ,
-                              width: width ,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20)
-                                ),
-                                color:Colors.green.withOpacity(0.7),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(height*0.020),
-
-                                ),
-                              ),
-                            ),
-                        ],
+                      height: height * 0.65,
+                      width: width*0.90,
+                      margin: EdgeInsets.all(height*0.02),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image:DecorationImage(
+                          image:AssetImage('assets/images/voice.jpg',),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: width,
+                          width: width*0.90,
                           height: height,
-                          child: Swiper(
-                            itemWidth: width*0.95,
-                            itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
-                            itemBuilder: (Context,index) {
-                              return ChangeNotifierProvider.value(
-                                  value: VoiceOfChange[index],
-                                  child: VoicesOfChangeWidgetWeb(index: index));
-                            },
-                            layout: SwiperLayout.STACK,
-                            scale: 0.8,
-                            index: 0,
+                          child: ListView.builder(
+                              itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
+                              itemBuilder: (Context,index) {
+                                  return ChangeNotifierProvider.value(
+                                      value: VoiceOfChange[index],
+                                      child: VoicesOfChangeWidgetWeb(index: index));
+                                },
                           ),
+                          // child: Swiper(
+                          //   itemWidth: width*0.95,
+                          //   itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
+                          //   itemBuilder: (Context,index) {
+                          //     return ChangeNotifierProvider.value(
+                          //         value: VoiceOfChange[index],
+                          //         child: VoicesOfChangeWidgetWeb(index: index));
+                          //   },
+                          //   layout: SwiperLayout.STACK,
+                          //   scale: 0.8,
+                          //   index: 0,
+                          // ),
                         ),
                         // Container(
                         //   height: height*0.50,

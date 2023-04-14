@@ -1,4 +1,5 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:flutter/material.dart';
@@ -20,37 +21,50 @@ class _ClimateChangeWidgetState extends State<ClimateChangeWidget> {
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     final climateChange = Provider.of<ClimateChangeController>(context, listen: false);
-    return GestureDetector(
-      onTap: () {
-          Navigator.of(context).pushNamed(
-            ClimateChangeDetailMobil.CLIMATE_DETAILS_MOBILE_ROUTE_NAME, arguments:
-          {'Id': climateChange.getClimateChangeList[widget.index].Id},);
-      },
-      child: Container(
-        alignment: Alignment.bottomCenter,
-        width: width,
-        height: height*0.50,
-        margin: EdgeInsets.all(height * 0.01),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image:NetworkImage(
-                  climateChange.getClimateChangeList[widget.index].image!,
-                ),
-                fit: BoxFit.cover,
-    ),
+    return Container(
+      width: width*0.50,
+      height: height*0.50,
+      padding: EdgeInsets.all(height * 0.001),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: mainColor,
         ),
-        child:  Container(
-          padding: EdgeInsets.all(10),
-          child: Text(
-            transs?climateChange.getClimateChangeList[widget.index].name!: climateChange.getClimateChangeList[widget.index].nameAr!,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .copyWith(
-              color: Colors.grey[100],
+      ),
+      child: GestureDetector(
+        onTap: () {
+            Navigator.of(context).pushNamed(
+              ClimateChangeDetailMobil.CLIMATE_DETAILS_MOBILE_ROUTE_NAME, arguments:
+            {'Id': climateChange.getClimateChangeList[widget.index].Id},);
+        },
+        child:Container(
+          width: width*0.50,
+          height: height*0.50,
+          margin: EdgeInsets.all(height * 0.01),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image:NetworkImage(
+                climateChange.getClimateChangeList[widget.index].image!,
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Container(
+            width: width*0.55,
+            height: height*0.20,
+            alignment: Alignment.bottomCenter,
+            // padding: EdgeInsets.all(10),
+            child: Text(
+              transs?climateChange.getClimateChangeList[widget.index].name!: climateChange.getClimateChangeList[widget.index].nameAr!,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(
+                color: Colors.grey[100],
 
-              // fontWeight: FontWeight.bold,
+                // fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

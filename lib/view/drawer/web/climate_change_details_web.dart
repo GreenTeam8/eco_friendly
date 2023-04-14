@@ -6,6 +6,7 @@ import 'package:eco_friendly/helpers/responsive.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_mobile.dart';
+import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 import 'package:eco_friendly/view/drawer/web/custom_clip_path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                             colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.15), BlendMode.multiply),
+                                Colors.black.withOpacity(0.08), BlendMode.multiply),
                           image: NetworkImage(
                             loadItems.image!,
                           ),
@@ -86,7 +87,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                transs?loadItems.name!:loadItems.nameAr!,
+                                transWeb?loadItems.name!:loadItems.nameAr!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
@@ -100,15 +101,17 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                 height: height*0.02,
                               ),
                               Text(
-                                transs?loadItems.ItemDescription!:loadItems.ItemDescription!,
+                                transWeb?loadItems.ItemDescription!:loadItems.ItemDescriptionAr!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
                                     .copyWith(
                                   color: Colors.white,
+                                  fontSize: 20,
                                 ),
                                 overflow: TextOverflow.fade,
                                 textAlign: TextAlign.start,
+
                               ),
                             ],
                           ),
@@ -126,10 +129,10 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                             child: Row(
                               children: [
                                 Text(
-                                  loadItems.ItemTitle!,
+                                  transWeb?loadItems.ItemTitle!:loadItems.ItemTitleAr!,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyLarge!
+                                      .bodyText1!
                                       .copyWith(
                                     color: mainColor,
                                     fontWeight: FontWeight.bold,
@@ -170,7 +173,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                       children: [
                                         Center(
                                           child: Text(
-                                            transs?loadItems.Atitle!:loadItems.AtitleAr!,
+                                            transWeb?loadItems.Atitle!:loadItems.AtitleAr!,
 
                                             style: Theme.of(context)
                                                 .textTheme
@@ -182,7 +185,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                           ),
                                         ),
                                         Text(
-                                          transs ?loadItems.Adescription!:loadItems.AdescriptionAr!,
+                                          transWeb ?loadItems.Adescription!:loadItems.AdescriptionAr!,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -222,7 +225,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                       children: [
                                         Center(
                                           child: Text(
-                                            transs?loadItems.Btitle!:loadItems.BtitleAr!,
+                                            transWeb?loadItems.Btitle!:loadItems.BtitleAr!,
 
                                             style: Theme.of(context)
                                                 .textTheme
@@ -234,7 +237,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                           ),
                                         ),
                                         Text(
-                                          transs ?loadItems.Bdescription!:loadItems.BdescriptionAr!,
+                                          transWeb ?loadItems.Bdescription!:loadItems.BdescriptionAr!,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium!
@@ -309,7 +312,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                   children: [
                                     Center(
                                       child: Text(
-                                        transs?loadItems.Ctitle!:loadItems.CtitleAr!,
+                                        transWeb?loadItems.Ctitle!:loadItems.CtitleAr!,
 
                                         style: Theme.of(context)
                                             .textTheme
@@ -321,7 +324,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                       ),
                                     ),
                                     Text(
-                                      transs ?loadItems.Cdescription!:loadItems.CdescriptionAr!,
+                                      transWeb ?loadItems.Cdescription!:loadItems.CdescriptionAr!,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
@@ -361,7 +364,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                     children: [
                                       Center(
                                         child: Text(
-                                          transs?loadItems.Dtitle!:loadItems.DtitleAr!,
+                                          transWeb?loadItems.Dtitle!:loadItems.DtitleAr!,
 
                                           style: Theme.of(context)
                                               .textTheme
@@ -373,7 +376,7 @@ class _ClimateChangeDetailWebState extends State<ClimateChangeDetailWeb> {
                                         ),
                                       ),
                                       Text(
-                                        transs ?loadItems.Ddescription!:loadItems.DdescriptionAr!,
+                                        transWeb ?loadItems.Ddescription!:loadItems.DdescriptionAr!,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium!
