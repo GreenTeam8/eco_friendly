@@ -1,5 +1,6 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/mobile/climate_change_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,7 @@ class _MobileCarosileWidgetState extends State<MobileCarosileWidget> {
         height: height,
         width: width,
         child: Text(
-          climateCarosel.getClimateCaroselList[widget.index].description!,
+          transs?climateCarosel.getClimateCaroselList[widget.index].description!:climateCarosel.getClimateCaroselList[widget.index].descriptionAr!,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.bold,

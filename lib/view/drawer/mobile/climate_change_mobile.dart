@@ -54,7 +54,7 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
         ),
         title: Center(
           child: Text(
-           transs? "Climate Issues":"قضاياالمناخ",
+            transs? "Climate Issues":"قضاياالمناخ",
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
               color:mainColor,
             ),
@@ -81,54 +81,49 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
             if(snapshot.connectionState == ConnectionState.waiting){
               return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
             }else{
-              return  ListView(
-                physics: NeverScrollableScrollPhysics(),
+              return  Column(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: height*0.30,
-                        // width: width*0.90,
-                        child:ClimateChangeCarosel(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              transs? "Climate Issues":"قضاياالمناخ",
-                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                color: mainColor,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                        Container(
-                          // width: width,
-                          height: height*0.90 ,
-                          decoration: BoxDecoration(
-                          ),
-                          child: GridView.builder(
-                            itemCount: ClimateChangeData.getClimateChangeList.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              childAspectRatio: 4/2.5,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                            ),
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) {
-                              return ChangeNotifierProvider.value(
-                                  value: climateChange[index],
-                                  child: ClimateChangeWidget(index: index));
-                            },
-                          ),
-                        ),
-                    ],
+                  Container(
+                    height: height*0.30,
+                    // width: width*0.90,
+                    child:ClimateChangeCarosel(),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          transs? "Climate Issues":"قضاياالمناخ",
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: mainColor,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                    Container(
+                      // width: width,
+                      height: height *0.50,
+                      decoration: BoxDecoration(
+                      ),
+                      child: GridView.builder(
+                        itemCount: ClimateChangeData.getClimateChangeList.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 3/2.3,
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 3,
+                        ),
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          return ChangeNotifierProvider.value(
+                              value: climateChange[index],
+                              child: ClimateChangeWidget(index: index));
+                        },
+                      ),
+                    ),
                 ],
               );
             }
