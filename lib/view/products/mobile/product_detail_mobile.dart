@@ -168,14 +168,16 @@ class ProductDetailsMobile extends StatelessWidget {
                                   ),
                                   child: Hero(
                                     tag: 'heroPrice${product.productId}',
-                                    child: Text(
-                                      '${product.productPrice}' ' \$',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w800,
-                                              ),
+                                    child: FittedBox(
+                                      child: Text(
+                                        '${product.productPrice}' ' \$',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                fontWeight: FontWeight.w800,
+                                                ),
+                                      ),
                                     ),
                                   ),
                                 )
