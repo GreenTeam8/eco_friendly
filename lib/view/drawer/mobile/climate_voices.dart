@@ -55,7 +55,7 @@ class _ClimateVoicesMobileState extends State<ClimateVoicesMobile> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.g_translate),
+            icon: const Icon(Icons.language),
             color: Colors.white,
             onPressed: () {
               setState(() {

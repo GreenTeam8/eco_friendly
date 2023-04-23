@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/web/climate_voice_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +69,7 @@ class _VoicesOfChangeWidgetWebState extends State<VoicesOfChangeWidgetWeb> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    lan?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
+                    LangWeb?climateChange.getVoiceOfChangeList[widget.index].VoiceName!:climateChange.getVoiceOfChangeList[widget.index].VoiceNameAr!,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -81,7 +82,7 @@ class _VoicesOfChangeWidgetWebState extends State<VoicesOfChangeWidgetWeb> {
                     height: height*0.02,
                   ),
                   Text(
-                    lan?climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!:climateChange.getVoiceOfChangeList[widget.index].VoiceDescriptionAr!,
+                    LangWeb?climateChange.getVoiceOfChangeList[widget.index].VoiceDescription!:climateChange.getVoiceOfChangeList[widget.index].VoiceDescriptionAr!,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!

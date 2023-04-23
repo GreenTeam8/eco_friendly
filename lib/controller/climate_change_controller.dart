@@ -108,6 +108,7 @@ class ClimateChangeController with ChangeNotifier{
             id: id,
             image: ClimateCaroselSliderData['image'],
             description: ClimateCaroselSliderData['description'],
+            descriptionAr: ClimateCaroselSliderData['descriptionAr'],
 
 
           ),

@@ -44,7 +44,7 @@ class DrawerComponentsWidget extends StatelessWidget {
           SizedBox(
             height: height * 0.04,
           ),
-          SideItemsWidget(icon: Icons.vertical_split, text: 'Voices of Change ', onTap: () {
+          SideItemsWidget(icon: Icons.record_voice_over_sharp, text: 'Voices of Change ', onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(
                     builder: (context) =>

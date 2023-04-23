@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:eco_friendly/controller/climate_change_controller.dart';
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/responsive.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/drawer_widget/voice_of_change_widget.dart';
@@ -14,7 +15,7 @@ class  ClimateVoicesWeb extends StatefulWidget {
   @override
   State<ClimateVoicesWeb> createState() => _ClimateVoicesWebState();
 }
-
+bool LangWeb=true;
 class _ClimateVoicesWebState extends State<ClimateVoicesWeb> {
   Future? _climateVoices;
   Future _climateVoicesItems (){
@@ -49,17 +50,39 @@ class _ClimateVoicesWebState extends State<ClimateVoicesWeb> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
-                      height: height * 0.65,
-                      width: width*0.90,
-                      margin: EdgeInsets.all(height*0.02),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image:DecorationImage(
-                          image:AssetImage('assets/images/voice.jpg',),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                    Stack(
+                       children: [
+                         Container(
+                           height: height * 0.65,
+                           width: width*0.90,
+                           margin: EdgeInsets.all(height*0.02),
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10),
+                             image:DecorationImage(
+                               image:AssetImage('assets/images/voice.jpg',),
+                               fit: BoxFit.fill,
+                             ),
+                           ),
+                         ),
+                         Positioned(
+                           top:20,
+                           left: 1300,
+                           right:10,
+                           // bottom: 0,
+                           child: IconButton(
+                             icon: Icon(
+                               Icons.language_sharp,
+                               color: Colors.white,
+                               size: 30,
+                             ),
+                             onPressed: () {
+                               setState(() {
+                                 LangWeb=!LangWeb;
+                               });
+                             },
+                           ),
+                         ),
+                       ],
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

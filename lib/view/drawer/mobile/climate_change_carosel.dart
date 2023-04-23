@@ -40,8 +40,9 @@ class _ClimateChangeCaroselState extends State<ClimateChangeCarosel> {
     Provider.of<ClimateChangeController>(context);
     final climateCarosel = ClimateCaroselSliderData.getClimateCaroselList;
     return  Container(
-      width: width,
-      height: height *0.40,
+      // width: width,
+      // height: height *0.40,
+      // color: Colors.green.withOpacity(0.8),
       // child: Container(
       //  child: GridView.builder(
       // itemCount: ClimateCaroselSliderData.getClimateChangeList.length,
