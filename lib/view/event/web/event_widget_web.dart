@@ -47,6 +47,7 @@ class EventWidgetWeb extends StatelessWidget {
                           .caption!
                           .copyWith(
                         fontWeight: FontWeight.w800,
+                        color: Colors.white
                       ),
                     ),
                   ),

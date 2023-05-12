@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
-                                  ClimateGoal(),
+                                  //ClimateGoal(),
                                   const CategoryCardWeb(),
                                   SizedBox(
                                     height: height * 0.02,
@@ -152,9 +152,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ///Mobile UI
                 : Column(
                     children: [
-                      SearchMobile(),
+                      //SearchMobile(),
                       BannerCardMobile(),
-                      ClimateGoal(),
+                      //ClimateGoal(),
                       FutureBuilder(
                           future: _categoryFuture,
                           builder: (context, snapshot) {

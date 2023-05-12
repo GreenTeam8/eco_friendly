@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import '../../helpers/responsive.dart';
+import '../Home/home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const REGISTERSCREEN_ROUTE_NAME = '/registerScreen';
@@ -27,6 +28,12 @@ class RegisterScreen extends StatelessWidget {
             ),
             clipper: OvalBottomBorderClipper(),
           ),
+          IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+            },
+          ),
           Center(
               child: SafeArea(
                 child: SingleChildScrollView(
@@ -41,7 +48,6 @@ class RegisterScreen extends StatelessWidget {
               )
           ),
         ],
-
       ),
     );
   }

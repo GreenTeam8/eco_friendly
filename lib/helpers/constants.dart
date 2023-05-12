@@ -15,9 +15,14 @@ const pColor2 = Color(0xFF94D82D);
 const secondaryColor = Color(0xFFb9c48c);
 
 ///new palette
-const mColor =  Color(0xff4b7043);
+//const mColor =  Color(0xff4b7043);
+///for heads
+const mColor =  Color(0xff376752);
+///color for text
 const mainColor = Color(0xffbdd071);
 const mmColor = Color(0xFFFFFFD3);
+///for background
+const bgColor = Color(0xfff3faee);
 
 
 // const mColor =  Color(0xFF3c5733);

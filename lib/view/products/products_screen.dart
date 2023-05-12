@@ -1,4 +1,5 @@
 
+import 'package:eco_friendly/view/Home/home_screen.dart';
 import 'package:eco_friendly/view/products/web/product_widget_web.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -10,6 +11,7 @@ import '../../helpers/responsive.dart';
 import '../../model/product.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/size_config.dart';
+import '../root_screen/root_screen.dart';
 import 'mobile/product_widget_mobile.dart';
 
 
@@ -75,10 +77,22 @@ class _ProductsScreenState extends State<ProductsScreen> {
               productCategoryId!.toUpperCase(),
               style: Theme.of(context).textTheme.bodyText1,
             )),
-        leading: Responsive.isWeb(context) ? null : IconButton(
+        ///back arrow for mobile
+        leading: Responsive.isWeb(context)
+            ? IconButton(
           icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
           onPressed: () {
-            Navigator.pop(context);
+             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+          },
+        )
+            : IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RootScreen(),));
+            // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+           //  Navigator.of(context).pushNamed(
+           //                    HomeScreen.HOME_SCREEN_ROUTE_NAME,
+           //                  );
           },
         ),
       ),

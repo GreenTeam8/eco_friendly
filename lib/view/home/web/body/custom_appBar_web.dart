@@ -28,21 +28,23 @@ class CustomAppBarWeb extends StatelessWidget {
       decoration: BoxDecoration(
           color: mColor,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-                offset: const Offset(0, -2),
-                blurRadius: 30,
-                color: Colors.black.withOpacity(0.15))
-          ]),
+
+          // boxShadow: [
+          //   BoxShadow(
+          //       offset: const Offset(0, -2),
+          //       blurRadius: 30,
+          //       color: Colors.black.withOpacity(0.15))
+          // ]
+      ),
       child: Row(
         children: [
           Container(
             height: height * 0.05,
             decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
+              shape: BoxShape.circle,
               color: Colors.white,
             ),
-            child: Image.asset('assets/images/ecoIcon.png'),
+            child: Image.asset('assets/images/ecoIcon.png',),
           ),
           // CircleAvatar(
           //   backgroundImage: AssetImage(
@@ -62,7 +64,7 @@ class CustomAppBarWeb extends StatelessWidget {
           MI.MenuItem(
             title: 'Favorites',
             onTap: () {
-              Navigator.pushNamed(context, FavoritesScreen.FAVORITES_ROUTE_NAME);
+             // Navigator.pushNamed(context, FavoritesScreen.FAVORITES_ROUTE_NAME);
             },
           ),
           MI.MenuItem(

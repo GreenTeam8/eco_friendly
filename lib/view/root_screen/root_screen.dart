@@ -47,7 +47,7 @@ class _RootScreenState extends State<RootScreen> {
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: GNav(
-                  backgroundColor: Colors.white,
+                  backgroundColor: bgColor,
                   color: Colors.grey[400],
                   activeColor: mainColor,
                   curve: Curves.bounceIn,

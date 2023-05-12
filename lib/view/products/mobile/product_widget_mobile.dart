@@ -85,7 +85,7 @@ class ProductWidgetMobile extends StatelessWidget {
             margin: EdgeInsets.all(height * 0.01),
             padding: EdgeInsets.all(height * 0.01),
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: bgColor,
                 borderRadius: BorderRadius.circular(15),
                ),
             child: Row(
@@ -146,7 +146,7 @@ class ProductWidgetMobile extends StatelessWidget {
                                 color: mColor,
                                 onPressed: () {
                                   if(value.isAuth){
-                                    cart.addItem(product.productId!, product.productPrice!, product.productName!);
+                                    cart.addItem(product.productId!, product.productPrice!, product.productName!, product.productImage!);
                                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                       content: Text('Item added to cart!',style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor)),

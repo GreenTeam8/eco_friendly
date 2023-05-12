@@ -7,7 +7,9 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/cart_controller.dart';
+import '../../helpers/responsive.dart';
 import '../../helpers/size_config.dart';
+import '../Home/home_screen.dart';
 
 class CartScreen extends StatelessWidget {
 
@@ -22,7 +24,14 @@ class CartScreen extends StatelessWidget {
     double width = SizeConfig.screenWidth!;
     final cart = Provider.of<CartController>(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Your Cart', style: Theme.of(context).textTheme.bodyText1,)
+      appBar: AppBar(
+          title: Text('Your Cart', style: Theme.of(context).textTheme.bodyText1,),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+          },
+        ),
       ),
       body: Consumer<AuthenticationController>(
         builder: (context, value, child) =>
@@ -34,6 +43,7 @@ class CartScreen extends StatelessWidget {
                     itemBuilder: (context, index) => CartItemWidget(
                         cart.items.values.toList()[index]!.itemId,
                         cart.items.keys.toList()[index],
+                        cart.items.values.toList()[index]!.itemImage!,
                         cart.items.values.toList()[index]!.itemTitle,
                         cart.items.values.toList()[index]!.quantity,
                         cart.items.values.toList()[index]!.price,
@@ -44,7 +54,7 @@ class CartScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Lottie.asset('assets/lottie/cart.json',height: height * 0.3),
+                   Responsive.checkPlatform() ? Image.asset('assets/images/staticCart.png', height: height * 0.3,):Lottie.asset('assets/lottie/cart.json',height: height * 0.3,),
                     Text('Your cart is empty!', style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey),)
                   ],
                 ),
@@ -84,7 +94,8 @@ class CartScreen extends StatelessWidget {
                : Column(
              mainAxisAlignment: MainAxisAlignment.center,
              children: [
-               Center(child: Lottie.asset('assets/lottie/cart.json',height: height * 0.3)),
+               Center(
+                   child: Responsive.checkPlatform() ? Image.asset('assets/images/staticCart.png'):Lottie.asset('assets/lottie/cart.json',height: height * 0.3)),
                Text('Your cart is empty!', style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey),)
              ],
            ),

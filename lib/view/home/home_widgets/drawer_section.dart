@@ -23,14 +23,17 @@ class DrawerSection extends StatelessWidget {
     return SafeArea(
       child: Container(
         height: height,
+
         //color: mColor.withOpacity(0.3),
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset('assets/images/eco-friendly_planet.png'),
             Text(
               'Stay Aware!',
               style: Theme.of(context).textTheme.bodyText1,
             ),
+
             SizedBox(
               height: height * 0.02,
             ),
@@ -38,6 +41,7 @@ class DrawerSection extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
+
             //Spacer(),
             //const HelpCenter(),
 

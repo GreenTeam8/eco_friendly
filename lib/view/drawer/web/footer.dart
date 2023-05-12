@@ -25,14 +25,14 @@ class FooterWeb extends StatelessWidget {
       width: width,
       height: height * 0.4,
       padding: EdgeInsets.only(top: 40),
-      //color:mColor,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/footer-image.jpg',),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.multiply)
-          )
-      ),
+      color:mColor,
+      // decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //         image: AssetImage('assets/images/footer-image.jpg',),
+      //         fit: BoxFit.cover,
+      //         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.7), BlendMode.multiply)
+      //     )
+      // ),
       child: Column(
         children: [
           Row(

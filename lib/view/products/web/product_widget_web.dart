@@ -86,7 +86,7 @@ class ProductWidgetWeb extends StatelessWidget {
                 color: mColor,
                 onPressed: () {
                   if(auth.isAuth){
-                    cart.addItem(product.productId!, product.productPrice!, product.productName!);
+                    cart.addItem(product.productId!, product.productPrice!, product.productName!, product.productImage!);
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar( SnackBar(
                       content: Text('Item added to cart!',style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor)),

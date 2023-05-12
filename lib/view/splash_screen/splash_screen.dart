@@ -43,7 +43,7 @@ class SplashScreen extends StatelessWidget {
         ///specifying the duration of the splash_screen screen
         duration: 1000,
         ///the way of displaying the splash_screen content
-        splashTransition: SplashTransition.fadeTransition,
+        splashTransition: SplashTransition.rotationTransition,
         backgroundColor: mColor,
         /// the duration of splash_screen transition
         animationDuration: const Duration(milliseconds: 1200),

@@ -118,12 +118,12 @@ import '../model/category.dart';
 
 class CategoryController with ChangeNotifier{
 
-  List<Color> categoryColor = [
-    mColor.withOpacity(0.8),
-    mColor.withOpacity(0.8),
-    mColor.withOpacity(0.8),
-    mColor.withOpacity(0.8),
-  ];
+  // List<Color> categoryColor = [
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  // ];
   List<Category> _categoriesList = [];
 
   /// getter for categoriesList to access the list from widgets and screen ENCAPSULATION Approach

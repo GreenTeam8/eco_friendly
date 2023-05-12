@@ -220,7 +220,7 @@ class ProductDetailsMobile extends StatelessWidget {
               padding: MaterialStateProperty.all(EdgeInsets.all(height * 0.03))),
           onPressed: () {
             if(value.isAuth){
-              cart.addItem(product.productId!, product.productPrice!, product.productName!);
+              cart.addItem(product.productId!, product.productPrice!, product.productName!,product.productImage!);
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar( SnackBar(
                 content: Text('Item added to cart!',style: Theme.of(context).textTheme.bodyText2!.copyWith(color: pColor)),

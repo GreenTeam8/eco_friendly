@@ -51,39 +51,65 @@ class _CategoryCardWidgetState extends State<CategoryCardWidget> {
       splashColor: mColor,
       focusColor: mColor,
       child: Container(
-        alignment: Alignment.center,
+        //alignment: Alignment.center,
         height: height,
         width: width * 0.70,
         margin: EdgeInsets.all(height * 0.01),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
-          color: categories.categoryColor[widget.index],
+         // color: mColor.withOpacity(0.4),
+          color: mainColor.withOpacity(0.4)
         ),
-        child: FittedBox(
-          child: Padding(
-            padding: EdgeInsets.all(width * 0.01),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-            Container(
-              alignment: Alignment.center,
-                child: Image.network(categories.getCategoriesList[widget.index].categoryImage!,
-                  fit: BoxFit.contain,
-                  height: height * 0.15,
-                )
-            ),
-            Text(
-              categories.getCategoriesList[widget.index].categoryName!,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ],
-            ),
-
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+        Expanded(
+          child: Container(
+            alignment: Alignment.center,
+              child: Image.network(categories.getCategoriesList[widget.index].categoryImage!,
+                fit: BoxFit.contain,
+                height: height * 0.20,
+              )
           ),
+        ),
+        Text(
+          categories.getCategoriesList[widget.index].categoryName!,
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            Container(
+              height: height * 0.06,
+              decoration: BoxDecoration(
+                color: mColor.withOpacity(0.8),
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding:  EdgeInsets.all(width * 0.005),
+                    child: Image.asset('assets/images/100-percent.png',
+                      width: 50, height: 50,
+                      fit: BoxFit.contain,
+                      color: Colors.lime,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    'See all',
+                    style:  TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade200),
+                  ),
+                  Icon(Icons.arrow_forward_ios, color: Colors.grey.shade200, size: 20,)
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
