@@ -1,10 +1,14 @@
 import 'package:eco_friendly/controller/orders_controller.dart';
+import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/constants.dart';
+import '../../helpers/responsive.dart';
 import '../../helpers/size_config.dart';
+import '../Home/home_screen.dart';
+import '../root_screen/root_screen.dart';
 import 'orders_widgets/order_widget.dart';
 
 
@@ -40,10 +44,21 @@ class _OrdersScreenState extends State<OrdersScreen> {
     double height = SizeConfig.screenHeight!;
     return Scaffold(
         appBar: AppBar(title: Text('My Orders', style: Theme.of(context).textTheme.bodyText1,),
-          leading:IconButton(
+          leading: Responsive.isWeb(context)
+              ? IconButton(
             icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+            },
+          )
+              : IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserProfileScreen(),));
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+              //  Navigator.of(context).pushNamed(
+              //                    HomeScreen.HOME_SCREEN_ROUTE_NAME,
+              //                  );
             },
           ),
         ),

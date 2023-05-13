@@ -29,7 +29,7 @@ import 'package:eco_friendly/view/root_screen/root_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
+//import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '/view/splash_screen/splash_screen.dart';
@@ -90,7 +90,6 @@ class MyApp extends StatelessWidget {
           create: (context) => ProductController(),),
         ChangeNotifierProvider(
           create: (context) => AuthenticationController(),),
-
         // ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
         //   create: (context) => ProductController('','', []),
         //   update: (context, auth, previousProducts) {
@@ -117,11 +116,8 @@ class MyApp extends StatelessWidget {
 
         ChangeNotifierProvider(
           create: (context) => EventController(),),
-
         ChangeNotifierProvider(
           create: (context) => ECategoryController(),),
-
-
         ChangeNotifierProvider(
           create: (context) => Product(),),
         ChangeNotifierProvider(
@@ -138,23 +134,33 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
                 fontFamily: 'Poppins',
                 primaryColor: mColor,
-                //canvasColor: mmColor,
+                canvasColor: bgColor,
+
                 //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green).copyWith(secondary: Colors.lightGreenAccent),
                 textTheme: ThemeData.light().textTheme.copyWith(
                       bodyText1: const TextStyle(
                           color: mainColor,
                           fontSize: 25,
-                          fontFamily: 'Russo One',
+                          //fontFamily: 'Russo One',
                           letterSpacing: 1.2,
                           fontWeight: FontWeight.bold),
                       bodyText2: TextStyle(
-                          color: Colors.grey[700], fontFamily: 'Poppins', fontSize: 16,),
+                          color: Colors.grey[700],
+                          //fontFamily: 'Poppins',
+                          fontSize: 16,),
                     ),
                 appBarTheme: const AppBarTheme(
-                  backgroundColor: Colors.white,
+                  backgroundColor: bgColor,
                   elevation: 0,
                 )),
-            home: Responsive.checkPlatform() ? RootScreen() : SplashScreen(),
+            home: Responsive.checkPlatform() ? HomeScreen() : SplashScreen(),
+            //initialRoute: '/home_Screen',
+          onGenerateRoute: (settings) {
+            if (settings.name == '/home_Screen') {
+              return MaterialPageRoute(builder: (context) => HomeScreen());
+            }
+            // Handle other routes as needed
+          },
 
           routes:{
 
@@ -162,6 +168,8 @@ class MyApp extends StatelessWidget {
           //  onUnknownRoute: Responsive.checkPlatform() ? (settings) => MaterialPageRoute(builder: (context) => RootScreen(),) : null,
 
             //  '/' : (context)=> RootScreen(),
+            //'/': (context)=> HomeScreen(),
+              HomeScreen.HOME_SCREEN_ROUTE_NAME: (context)=> HomeScreen(),
               ProductsScreen.PRODUCTS_ROUTE_NAME: (context)=> ProductsScreen(),
               ProductDetailsMobile.PRODUCTS_DETAILS_MOBILE_ROUTE_NAME: (context) => ProductDetailsMobile(),
               ProductDetailsWeb.PRODUCTS_DETAILS_WEB_ROUTE_NAME: (context) => ProductDetailsWeb(),

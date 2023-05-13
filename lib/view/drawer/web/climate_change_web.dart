@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:eco_friendly/controller/climate_change_controller.dart';
@@ -12,7 +12,7 @@ import 'package:eco_friendly/view/drawer/web/climate_change_details_web.dart';
 import 'package:eco_friendly/view/drawer/web/custom_clip_path.dart';
 import 'package:eco_friendly/view/drawer/web/tacling_climate_web.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+//import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../mobile/climate_change_mobile.dart';

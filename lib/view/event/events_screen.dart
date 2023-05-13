@@ -9,6 +9,8 @@ import '../../controller/event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../helpers/constants.dart';
+import '../Home/home_screen.dart';
+import '../root_screen/root_screen.dart';
 
 class Test_Page extends StatefulWidget {
   static const EVENTS_ROUTE_NAME = '/events_screen';
@@ -67,10 +69,18 @@ class _EventPageState extends State<Test_Page> {
               eCategoryId!.toUpperCase(),
               style: Theme.of(context).textTheme.bodyText1,
             )),
-        leading: IconButton(
+        leading: Responsive.isWeb(context)
+            ? IconButton(
           icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+          },
+        )
+            : IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: mColor, size: 25),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RootScreen(),));
+
           },
         ),
       ),
@@ -98,7 +108,7 @@ class _EventPageState extends State<Test_Page> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SearchMobile(),
+                    //SearchMobile(),
                     Expanded(
                         child: ListView.builder(
                           itemCount: loadedEvents.length,

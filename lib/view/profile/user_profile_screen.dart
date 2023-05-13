@@ -9,6 +9,8 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/size_config.dart';
+import '../Home/home_screen.dart';
+import '../root_screen/root_screen.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static const USERPROFILESCREEN_ROUTE_NAME = '/userProfileScreen';
@@ -21,6 +23,7 @@ class UserProfileScreen extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
     return Scaffold(
+
       body: Column(
         children: [
           Expanded(
@@ -34,6 +37,12 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                   clipper: OvalBottomBorderClipper(),
                 ),
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+                  },
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -42,10 +51,12 @@ class UserProfileScreen extends StatelessWidget {
                       height: height * 0.15,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: width * 0.01),
+                        border: Border.all(color: Colors.white, width: width * 0.005),
                         shape: BoxShape.circle,
                       ),
-                      child: Text('Hello User', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white),),
+                      child: 
+                        Image.asset('assets/images/profileIcon.png', color: Colors.white,)
+                      //Text('Hello User', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white),),
                     ),
                     //Text('Email@email.com',style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.grey[400])),
                   ],
@@ -54,7 +65,8 @@ class UserProfileScreen extends StatelessWidget {
             ),
           ),
         
-          ProfileBodyWidget(title: 'MY ORDERS',iconSrc: Icons.delivery_dining, onPress: (){
+          ProfileBodyWidget(title: 'MY ORDERS',iconSrc: Icons.delivery_dining,
+              onPress: (){
             Navigator.push(context, MaterialPageRoute(
               builder: (context) => OrdersScreen(),)
             );

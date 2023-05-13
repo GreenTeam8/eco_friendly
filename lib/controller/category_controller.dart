@@ -110,6 +110,7 @@
 ///
 ///
 import 'dart:convert';
+import 'package:eco_friendly/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -117,12 +118,12 @@ import '../model/category.dart';
 
 class CategoryController with ChangeNotifier{
 
-  List<Color> categoryColor = [
-    Colors.teal,
-    Colors.teal.shade700,
-    Colors.green,
-    Colors.lightGreen,
-  ];
+  // List<Color> categoryColor = [
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  //   mColor.withOpacity(0.8),
+  // ];
   List<Category> _categoriesList = [];
 
   /// getter for categoriesList to access the list from widgets and screen ENCAPSULATION Approach

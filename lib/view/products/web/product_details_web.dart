@@ -39,7 +39,7 @@ class ProductDetailsWeb extends StatelessWidget {
                 child: Container(
                   color: mColor,
                   width: width,
-                  height: height! * 0.3,
+                  height: height! * 0.2,
                 ),
                 clipper: OvalTopBorderClipper(),
               ),
@@ -68,6 +68,7 @@ class ProductDetailsWeb extends StatelessWidget {
                         child: Image.network(
                           product.productImage!,
                           fit: BoxFit.contain,
+                          height: height * 0.5,
                         ),
                       ),
                     ),
@@ -119,14 +120,16 @@ class ProductDetailsWeb extends StatelessWidget {
                                 ),
                                 child: Hero(
                                   tag: 'heroPrice${product.productId}',
-                                  child: Text(
-                                    '${product.productPrice}' ' \$',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w800,
-                                        ),
+                                  child: FittedBox(
+                                    child: Text(
+                                      '${product.productPrice}' ' \$',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               )
@@ -203,6 +206,7 @@ class ProductDetailsWeb extends StatelessWidget {
                                     cart.addItem(
                                         product.productId!,
                                         product.productPrice!,
+                                        product.productImage!,
                                         product.productName!);
                                     ScaffoldMessenger.of(context)
                                         .hideCurrentSnackBar();

@@ -12,9 +12,10 @@ class CartItemWidget extends StatelessWidget {
   final double price;
   final int quantity;
   final String title;
+  final String img;
 
 
-  const CartItemWidget(this.cartItemId, this.productId, this.title, this.quantity, this.price,{Key? key}) : super(key: key);
+  const CartItemWidget(this.cartItemId,this.img, this.productId, this.title, this.quantity, this.price,{Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +59,11 @@ class CartItemWidget extends StatelessWidget {
             leading: CircleAvatar(
                 backgroundColor: mainColor,
                 radius: width * 0.1,
-                child: FittedBox(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('${price}\$', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white),),
-                    )
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child:
+                  //Image.network(img)
+                  Text('${price}\$', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.white),),
                 )
             ),
             title: Text(title),

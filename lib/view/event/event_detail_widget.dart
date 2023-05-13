@@ -148,7 +148,7 @@ class EventDetailsWidget extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                      Icon(Icons.people_alt)
+                                      Icon(Icons.people_alt, color: Colors.grey,)
                                     ],
                                   ),
                                 )
@@ -192,6 +192,7 @@ class EventDetailsWidget extends StatelessWidget {
                     .subtitle1!
                     .copyWith(
                   fontWeight: FontWeight.w800,
+                  color: Colors.white
                 ),
               ),
               Icon(Icons.add)

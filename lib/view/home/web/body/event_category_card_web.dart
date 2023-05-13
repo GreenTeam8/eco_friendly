@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:eco_friendly/controller/eventcategory_controller.dart';
 import 'package:eco_friendly/model/eventcategory.dart';
 
+import '../../../../helpers/constants.dart';
+
 class EventCardWeb extends StatelessWidget {
   const EventCardWeb ({Key? key}) : super(key: key);
 
@@ -19,9 +21,15 @@ class EventCardWeb extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Events',
-          style: Theme.of(context).textTheme.bodyText1,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.event, color: mainColor, size: 25,),
+            Text(
+              'Events',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
         ),
         Container(
           //width: width,

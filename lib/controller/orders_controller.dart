@@ -39,7 +39,9 @@ class OrdersController with ChangeNotifier{
               itemId: element['id'],
               itemTitle: element['title'],
               quantity: element['quantity'],
-              price: element['price'])
+              price: element['price'],
+              //itemImage: element['image']
+          )
           ).toList(),
         ));
         _ordersList = loadedOrders;
@@ -63,7 +65,8 @@ class OrdersController with ChangeNotifier{
         'id' : cartProduct.itemId,
         'title' : cartProduct.itemTitle,
         'quantity' : cartProduct.quantity,
-        'price' : cartProduct.price
+        'price' : cartProduct.price,
+        'image':cartProduct.itemImage
       }).toList()
     }));
     _ordersList.insert(0, Order(

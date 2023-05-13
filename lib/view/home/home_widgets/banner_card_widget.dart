@@ -80,7 +80,7 @@ class BannerCardWidget extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: Responsive.isWeb(context) ? 35 : 14))
+                                fontSize: Responsive.isWeb(context) ? 32 : 14))
                       ])),
                 ],
               )),

@@ -21,6 +21,7 @@ class CategoryCardWeb extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.category, color: mainColor, size: 25,),
             Text(

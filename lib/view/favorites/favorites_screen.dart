@@ -73,7 +73,7 @@ bool _isInit = true;
             crossAxisAlignment: CrossAxisAlignment.stretch,
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Lottie.asset('assets/lottie/Like.json', height: height * 0.4 ,reverse: true),
+              Lottie.asset('assets/lottie/Like.json', height: height * 0.4 ,),
               Center(child: Text('No Favorite items!', style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.grey)))
             ],
           ),

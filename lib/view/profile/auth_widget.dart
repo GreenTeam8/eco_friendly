@@ -240,9 +240,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                    ),
                    onPressed:(){
                      _submit();
+
                      Responsive.checkPlatform()
                          ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RootScreen(),))
                          : null;
+
+
                    //   Responsive.isWeb(context)?
                    //   Future(() => Future.delayed(Duration(seconds: 3)),).then((value) {
                    //     if(auth.isAuth){
