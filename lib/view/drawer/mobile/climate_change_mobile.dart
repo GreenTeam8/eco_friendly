@@ -5,6 +5,7 @@ import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/drawer_widget/climate_change_mobile_widget.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_carosel.dart';
+import 'package:eco_friendly/view/drawer/mobile/tacling_climate_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -81,7 +82,7 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
             if(snapshot.connectionState == ConnectionState.waiting){
               return Center(child: Lottie.asset('assets/lottie/loading.json', height: height * 0.2),);
             }else{
-              return  Column(
+              return ListView(
                 children: [
                   Container(
                     height: height*0.30,
@@ -89,7 +90,7 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
                     child:ClimateChangeCarosel(),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(width*0.015),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -124,6 +125,77 @@ class _ClimateChangeMobileState extends State<ClimateChangeMobile> {
                         },
                       ),
                     ),
+                  Padding(
+                    padding: EdgeInsets.all(width*0.015),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          transs? "Tacling Climate Change":"التعامل مع تغير المناخ",
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            color: mainColor,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.010),
+                    height: height * 0.15,
+                    width: width,
+                    decoration: BoxDecoration(
+                        color:mColor,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TaclingClimateMobile(),
+                        // RichText(
+                        //   text: TextSpan(
+                        //     text: 'Things to do: \n',
+                        //     style: Theme.of(context).textTheme.bodyText2!.
+                        //     copyWith(
+                        //       fontWeight: FontWeight.bold,
+                        //       color: mainColor,
+                        //     ),
+                        //     children:[
+                        //       TextSpan(text: 'Buy eco-friendly products.\n',
+                        //         style: Theme.of(context).textTheme.bodyText2!.
+                        //         copyWith(
+                        //           //fontWeight: FontWeight.bold,
+                        //           color: Colors.white,
+                        //         ),),
+                        //       TextSpan(text: 'Offset your carbon emissions.\n',
+                        //         style: Theme.of(context).textTheme.bodyText2!.
+                        //         copyWith(
+                        //           //fontWeight: FontWeight.bold,
+                        //           color: Colors.white,
+                        //         ),),
+                        //       TextSpan(text: 'Reduce your plastic waste.\n',
+                        //         style: Theme.of(context).textTheme.bodyText2!.
+                        //         copyWith(
+                        //           //fontWeight: FontWeight.bold,
+                        //           color: Colors.white,
+                        //         ),),
+                        //       TextSpan(text: 'Awareness-raising.\n',
+                        //         style: Theme.of(context).textTheme.bodyText2!.
+                        //         copyWith(
+                        //           //fontWeight: FontWeight.bold,
+                        //           color: Colors.white,
+                        //         ),),
+                        //
+                        //     ],
+                        //   ),
+                        // ),
+                        // Image.asset('assets/images/sustainable_climate.png',
+                        //     width:  width * 0.30,
+                        //     height: height,
+                        //     fit: BoxFit.contain),
+                      ],
+                    ),
+                  ),
                 ],
               );
             }

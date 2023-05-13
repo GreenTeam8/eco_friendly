@@ -30,13 +30,7 @@ class _ClimateChangeDetailMobilState extends State<ClimateChangeDetailMobil> {
     ItemCategoryId = routeArguments['Id'];
     final loadedItems = Provider.of<ClimateChangeController>(context)
         .findItemsById(ItemCategoryId!);
-    // void transs(){
-    //   setState(() {
-    //     dataToTrans=loadedItems.ItemImage!;
-    //     print(dataToTrans);
-    //   });
-    //
-    // }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

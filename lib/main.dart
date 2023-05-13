@@ -10,11 +10,13 @@ import 'package:eco_friendly/controller/products_controller.dart';
 import 'package:eco_friendly/view/Home/home_screen.dart';
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/cart/cart_screen.dart';
+import 'package:eco_friendly/view/drawer/mobile/tacling_climate_details_mobile.dart';
 import 'package:eco_friendly/view/drawer/web/climate_change_details_web.dart';
 import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 
 import 'package:eco_friendly/view/drawer/mobile/climate_change_details_mobile.dart';
 import 'package:eco_friendly/view/cart/cart_screen.dart';
+import 'package:eco_friendly/view/drawer/web/tacling_climate_details_web.dart';
 import 'package:eco_friendly/view/event/web/event_details_web.dart';
 import 'package:eco_friendly/view/favorites/favorites_screen.dart';
 import 'package:eco_friendly/view/orders/orders_screen.dart';
@@ -55,16 +57,19 @@ Future<void> main() async {
 //     GoRoute(
 //       routes: <GoRoute>[
 //         GoRoute(
+//           name: 'page2',
 //           path: 'page2',
 //           builder: (BuildContext context, GoRouterState state )=>
 //           const ClimateChangeWeb(),
 //         ),
 //         GoRoute(
+//           name: 'page3',
 //           path: 'page3',
 //           builder: (BuildContext context, GoRouterState state )=>
 //               ClimateChangeDetailWeb(),
 //         ),
 //       ],
+//       name: 'page1',
 //       path: '/',
 //       builder: (BuildContext context, GoRouterState state )=>
 //           HomeScreen(),
@@ -166,6 +171,8 @@ class MyApp extends StatelessWidget {
 
               ClimateChangeDetailMobil.CLIMATE_DETAILS_MOBILE_ROUTE_NAME:(context)=>ClimateChangeDetailMobil(),
               ClimateChangeDetailWeb.CLIMATE_DETAILS_WEB_ROUTE_NAME:(context)=>ClimateChangeDetailWeb(),
+              TaclingClimateChangeDetailWeb.TACLING_CLIMATE_DETAILS_WEB_ROUTE_NAME:(context)=>TaclingClimateChangeDetailWeb(),
+            TaclingClimateChangeDetailMobile.TACLING_CLIMATE_DETAILS_MOBILE_ROUTE_NAME:(context)=>TaclingClimateChangeDetailMobile(),
 
               FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
               CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),

@@ -2,6 +2,7 @@
 import 'package:eco_friendly/view/drawer/mobile/climate_voices.dart';
 import 'package:eco_friendly/view/drawer/web/climate_change_web.dart';
 import 'package:eco_friendly/view/drawer/web/climate_voice_web.dart';
+import 'package:eco_friendly/view/drawer/web/egypt_contribution_web.dart';
 import 'package:flutter/material.dart';
 
 
@@ -39,7 +40,10 @@ class DrawerComponentsWidget extends StatelessWidget {
           ),
           SideItemsWidget(
               icon: Icons.task_alt, text: 'Egypt Contribution', onTap: () {
-
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        EgyptContributionWeb()));
           }),
           SizedBox(
             height: height * 0.04,

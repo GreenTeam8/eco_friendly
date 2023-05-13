@@ -34,11 +34,10 @@ class _ClimateVoicesMobileState extends State<ClimateVoicesMobile> {
     final  VoiceOfChange = VoicesOfChangeData.getVoiceOfChangeList;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mColor,
         leading:  IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Colors.white,
+            color: mainColor,
             size: 25,
           ),
           onPressed: () {
@@ -49,14 +48,14 @@ class _ClimateVoicesMobileState extends State<ClimateVoicesMobile> {
           child: Text(
             lan?"Speak up now! ":"! تكلم الآن",
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
-              color: Colors.white,
+              color: mainColor,
             ),
           ),
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.language),
-            color: Colors.white,
+            color: mainColor,
             onPressed: () {
               setState(() {
                 lan=!lan;

@@ -47,80 +47,60 @@ class _ClimateVoicesWebState extends State<ClimateVoicesWeb> {
                 child: Text(''),
               );
             } else {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Stack(
-                       children: [
-                         Container(
-                           height: height * 0.65,
-                           width: width*0.90,
-                           margin: EdgeInsets.all(height*0.02),
-                           decoration: BoxDecoration(
-                             borderRadius: BorderRadius.circular(10),
-                             image:DecorationImage(
-                               image:AssetImage('assets/images/voice.jpg',),
-                               fit: BoxFit.fill,
-                             ),
-                           ),
-                         ),
-                         Positioned(
-                           top:20,
-                           left: 1300,
-                           right:10,
-                           // bottom: 0,
-                           child: IconButton(
-                             icon: Icon(
-                               Icons.language_sharp,
-                               color: Colors.white,
-                               size: 30,
-                             ),
-                             onPressed: () {
-                               setState(() {
-                                 LangWeb=!LangWeb;
-                               });
-                             },
-                           ),
-                         ),
-                       ],
+              return ListView(
+                children: [
+                  Container(
+                    alignment: Alignment.topRight,
+                    height: height * 0.65,
+                    width: width*0.90,
+                    padding: EdgeInsets.all(height*0.02),
+                    margin: EdgeInsets.all(height*0.02),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image:DecorationImage(
+                        image:AssetImage('assets/images/voice.jpg',),
+                        fit: BoxFit.fill,
+                      ),
+
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: width*0.90,
-                          height: height,
-                          child: ListView.builder(
-                              itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
-                              itemBuilder: (Context,index) {
-                                  return ChangeNotifierProvider.value(
-                                      value: VoiceOfChange[index],
-                                      child: VoicesOfChangeWidgetWeb(index: index));
-                                },
-                          ),
-                          // child: Swiper(
-                          //   itemWidth: width*0.95,
-                          //   itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
-                          //   itemBuilder: (Context,index) {
-                          //     return ChangeNotifierProvider.value(
-                          //         value: VoiceOfChange[index],
-                          //         child: VoicesOfChangeWidgetWeb(index: index));
-                          //   },
-                          //   layout: SwiperLayout.STACK,
-                          //   scale: 0.8,
-                          //   index: 0,
-                          // ),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.language_sharp,
+                        color: Colors.white,
+                        size: width*0.020,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          LangWeb=!LangWeb;
+                        });
+                      },
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: width*0.90,
+                        height: height,
+                        child: ListView.builder(
+                          // physics: NeverScrollableScrollPhysics(),
+                          itemCount: VoicesOfChangeData.getVoiceOfChangeList.length,
+                          itemBuilder: (Context,index) {
+                            return ChangeNotifierProvider.value(
+                                value: VoiceOfChange[index],
+                                child: VoicesOfChangeWidgetWeb(index: index));
+                          },
                         ),
-                        // Container(
-                        //   height: height*0.50,
-                        //   width: width*0.50,
-                        //   color: Colors.red,
-                        // ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      // Container(
+                      //   height: height*0.50,
+                      //   width: width*0.50,
+                      //   color: Colors.red,
+                      // ),
+                    ],
+                  ),
+                ],
               );
             }
           },

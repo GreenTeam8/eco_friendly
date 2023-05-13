@@ -23,7 +23,7 @@ class _ClimateChangeWebWidgetState extends State<ClimateChangeWebWidget> {
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     final climateChanges = Provider.of<ClimateChangeController>(context, listen: false);
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         Navigator.of(context).pushNamed(
           ClimateChangeDetailWeb.CLIMATE_DETAILS_WEB_ROUTE_NAME, arguments:

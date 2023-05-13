@@ -4,14 +4,16 @@ import 'package:eco_friendly/view/drawer/drawer_widget/tacling_climate_widget.da
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class TaclingClimateWeb extends StatefulWidget {
-  const TaclingClimateWeb({Key? key}) : super(key: key);
+import '../drawer_widget/tacling_climate_mobile_widget.dart';
+
+class TaclingClimateMobile extends StatefulWidget {
+  const TaclingClimateMobile({Key? key}) : super(key: key);
 
   @override
-  State<TaclingClimateWeb> createState() => _TaclingClimateWebState();
+  State<TaclingClimateMobile> createState() => _TaclingClimateMobileState();
 }
 
-class _TaclingClimateWebState extends State<TaclingClimateWeb> {
+class _TaclingClimateMobileState extends State<TaclingClimateMobile> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -20,15 +22,15 @@ class _TaclingClimateWebState extends State<TaclingClimateWeb> {
     final TaclingClimateData = Provider.of<ClimateChangeController>(context);
     final taclingClimate = TaclingClimateData.getTacklingClimateList;
     return  Container(
-      height:height *0.10,
-      width: width*0.10 ,
+      height:height ,
+      width: width*0.98 ,
       child:ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: TaclingClimateData.getTacklingClimateList.length,
         itemBuilder: (context, index) {
           return ChangeNotifierProvider.value(
               value: taclingClimate[index],
-              child: TaclingClimateWidget(index: index));
+              child: TaclingClimateMobileWidget(index: index));
         },
       ),
     );

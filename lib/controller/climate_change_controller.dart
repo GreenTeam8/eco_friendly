@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:eco_friendly/model/climate_carosel_slider.dart';
 import 'package:eco_friendly/model/climate_chamge.dart';
+import 'package:eco_friendly/model/egypt_contribution.dart';
 import 'package:eco_friendly/model/tacling_climate.dart';
 import 'package:eco_friendly/model/voices%20_of_change.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class ClimateChangeController with ChangeNotifier{
   List<ClimateCaroselSlider> _climateCarosel = [];
   List<VoicesOfChange> _voiceOfChangeList = [];
   List<TaclingClimate> _tacklingClimateList = [];
+  List<EgyptContribution> _egyptContributionList = [];
 
   /// getter for Lists to access the list from widgets and screen ENCAPSULATION Approach
 
@@ -27,8 +29,11 @@ class ClimateChangeController with ChangeNotifier{
   List<TaclingClimate> get getTacklingClimateList {
     return [..._tacklingClimateList];
   }
+  List<EgyptContribution> get getEgyptContributionList {
+    return [..._egyptContributionList];
+  }
 
-
+  /// Climate Change
   List<ClimateChange> findAllItemsById(String ItemCategoryId) {
     return getClimateChangeList
         .where((element) => element.ItemCategory == ItemCategoryId)
@@ -38,7 +43,16 @@ class ClimateChangeController with ChangeNotifier{
     return getClimateChangeList
         .firstWhere((element) => element.Id == ItemId);
   }
-
+   /// EgyptContribution
+  List<TaclingClimate> findAllEgyItemsById(String TaclingItemCategoryId) {
+    return getTacklingClimateList
+        .where((element) => element.TaclingItemCategory == TaclingItemCategoryId)
+        .toList();
+  }
+  TaclingClimate findTaclingItemsById(String EgyItemId) {
+    return getTacklingClimateList
+        .firstWhere((element) => element.Id == EgyItemId);
+  }
 
   ///methods For fetch
   Future<void> fetchClimateChange () async{
@@ -155,17 +169,51 @@ class ClimateChangeController with ChangeNotifier{
       print('***********************');
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<TaclingClimate> loadTaclingClimate = [];
-      extractedData.forEach((id, TaclingClimateData) {
+      extractedData.forEach((Id, TaclingClimateData) {
         loadTaclingClimate.add(
           TaclingClimate(
+            Id: Id,
             title: TaclingClimateData['title'],
+            title2: TaclingClimateData['title2'],
+            title3: TaclingClimateData['title3'],
             titleAr: TaclingClimateData['titleAr'],
             image: TaclingClimateData['image'],
+            image2: TaclingClimateData['image2'],
+            image3: TaclingClimateData['image3'],
+            image4: TaclingClimateData['image4'],
             description: TaclingClimateData['description'],
+            description3: TaclingClimateData['description3'],
+            description4: TaclingClimateData['description4'],
           ),
         );
       });
       _tacklingClimateList = loadTaclingClimate;
+      notifyListeners();
+    }catch(error){
+      print(error);
+      throw (error);
+    }
+  }
+  Future<void> fetchEgyptContribution () async{
+    try{
+      final  url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/egyptContribution.json';
+      final response = await http.get(Uri.parse(url));
+      print(json.decode(response.body));
+      print('***********************');
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<EgyptContribution> loadEgyptContribution = [];
+      extractedData.forEach((id, EgyptContributionData) {
+        loadEgyptContribution.add(
+          EgyptContribution(
+            title: EgyptContributionData['title'],
+            titleAr: EgyptContributionData['titleAr'],
+            image: EgyptContributionData['image'],
+            Aimage: EgyptContributionData['Aimage'],
+            Description: EgyptContributionData['Description'],
+          ),
+        );
+      });
+      _egyptContributionList = loadEgyptContribution;
       notifyListeners();
     }catch(error){
       print(error);
