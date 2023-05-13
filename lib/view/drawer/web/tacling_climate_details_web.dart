@@ -23,8 +23,6 @@ class TaclingClimateChangeDetailWeb extends StatefulWidget {
 
 class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDetailWeb> {
   String? TaclingItemsId;
-  bool isShowmore=true;
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
