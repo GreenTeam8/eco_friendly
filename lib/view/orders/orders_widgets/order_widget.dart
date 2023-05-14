@@ -28,7 +28,15 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
       margin: EdgeInsets.all(10),
       child: Column(
         children: [
-          ListTile(title: Text('${'Total Amount: '}''${widget.order.amount} \$'),
+          ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/cash.png', height: height * 0.04, width: width * 0.1,),
+                Text('Cash on delivery', ),
+              ],
+            ),
+            title: Text('${'Total Amount: '}''${widget.order.amount} \$'),
             subtitle: Text(DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime)),
             trailing: IconButton(icon: Icon(_showOrderDetails ? Icons.expand_less: Icons.expand_more),
                 onPressed: (){
@@ -44,12 +52,10 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
             child: ListView(
               children:
             widget.order.products.map((product) => Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(product.itemTitle, overflow: TextOverflow.ellipsis ,style: Theme.of(context).textTheme.bodyText2),
                 Text('${product.quantity} * ${product.price}\$', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: Colors.grey),),
                 Divider(color: mainColor, thickness: 1, indent: 20, endIndent: 20,),
-
               ],
             )).toList(),
             ),

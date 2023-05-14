@@ -26,12 +26,13 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text('Your Cart', style: Theme.of(context).textTheme.bodyText1,),
-        leading: IconButton(
+        leading:  Responsive.checkPlatform() ? IconButton(
           icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
           onPressed: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
           },
-        ),
+        )
+            : null,
       ),
       body: Consumer<AuthenticationController>(
         builder: (context, value, child) =>

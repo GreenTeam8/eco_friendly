@@ -1,4 +1,5 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
+import 'package:eco_friendly/helpers/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import '../../controller/products_controller.dart';
 import '../../model/product.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/size_config.dart';
+import '../Home/home_screen.dart';
 import '../products/mobile/product_detail_mobile.dart';
 
 import '../profile/register_screen.dart';
@@ -45,8 +47,16 @@ bool _isInit = true;
 
     return Scaffold(
       appBar: AppBar(
+        leading: Responsive.checkPlatform() ? IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+          },
+        )
+        : null,
         title: Text('Favorites', style: Theme.of(context).textTheme.bodyText1,),),
-        body: Consumer<AuthenticationController>(
+
+      body: Consumer<AuthenticationController>(
           builder: (context, value, child) =>
           value.isAuth ?
           ListView.builder(

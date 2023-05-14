@@ -23,7 +23,16 @@ class UserProfileScreen extends StatelessWidget {
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
     return Scaffold(
-
+      // appBar: AppBar(
+      //   leading:
+      //   Responsive.checkPlatform()
+      //       ? IconButton(
+      //     icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+      //     onPressed: () {
+      //       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+      //     },)
+      //       :null,
+      // ),
       body: Column(
         children: [
           Expanded(
@@ -85,10 +94,12 @@ class UserProfileScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8)))),
               onPressed: () {
                 value.logout();
+                //Navigator.pop(context);
                 Responsive.checkPlatform()
                     ? Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => RegisterScreen(),))
-                    : null;
+                    : Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => RootScreen(),));
               },
             ),
           )

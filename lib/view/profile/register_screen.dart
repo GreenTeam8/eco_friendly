@@ -18,6 +18,16 @@ class RegisterScreen extends StatelessWidget {
     double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
     return Scaffold(
+      // appBar: AppBar(
+      //   leading:
+      //   Responsive.checkPlatform()
+      //       ? IconButton(
+      //     icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+      //     onPressed: () {
+      //       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+      //     },)
+      //       :null,
+      // ),
       body: Stack(
         children: [
           ClipPath(
@@ -28,12 +38,11 @@ class RegisterScreen extends StatelessWidget {
             ),
             clipper: OvalBottomBorderClipper(),
           ),
-          IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
-            },
-          ),
+    IconButton(
+        icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+        onPressed: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+        },),
           Center(
               child: SafeArea(
                 child: SingleChildScrollView(
