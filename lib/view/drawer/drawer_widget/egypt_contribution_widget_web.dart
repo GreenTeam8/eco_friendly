@@ -30,14 +30,14 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
           children: [
             Container(
               width:width* 0.40,
-              height: height*0.30,
+              height: height*0.25,
               decoration: BoxDecoration(
                   color: Colors.green[400],
                   ),
               padding: EdgeInsets.all(10),
               child:  Center(
                 child: Text(
-                  EygTransWed?'Contributions':"المساهمة",
+                  EygTransWed?'Contributions'!:"المساهمات"!,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -56,7 +56,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                     color: mainColor,
                   ),
                    ),
-              padding: EdgeInsets.all(10),
+              // padding: EdgeInsets.all(height*0.010),
               child: ListView(
                 physics: NeverScrollableScrollPhysics(),
                 children: [
@@ -67,15 +67,15 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width:width* 0.40,
-                          height: height*0.45,
+                          width:width* 0.45,
+                          height: height*0.46,
                           child: Column(
                             children: [
                               Text(
                                 EygTransWed?EgyptContribution.getEgyptContributionList[widget.index].title!:EgyptContribution.getEgyptContributionList[widget.index].titleAr!,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyText2!
                                     .copyWith(
                                     color: mainColor,
                                     fontWeight: FontWeight.bold
@@ -115,7 +115,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                           ),
 
                           child: Text(
-                            EygTransWed?"Show More":'المزيد',
+                            EygTransWed?"Show More"!:'المزيد'!,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
