@@ -13,6 +13,9 @@ class TaclingClimate with ChangeNotifier{
   String? description;
   String? description3;
   String? description4;
+  String? descriptionAr;
+  String? descriptionAr3;
+  String? descriptionAr4;
   String? TaclingItemCategory;
 
   TaclingClimate({
@@ -28,6 +31,9 @@ class TaclingClimate with ChangeNotifier{
     this.description,
     this.description3,
     this.description4,
+    this.descriptionAr,
+    this.descriptionAr3,
+    this.descriptionAr4,
     this.TaclingItemCategory,
   });
 }

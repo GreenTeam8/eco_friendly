@@ -184,6 +184,9 @@ class ClimateChangeController with ChangeNotifier{
             description: TaclingClimateData['description'],
             description3: TaclingClimateData['description3'],
             description4: TaclingClimateData['description4'],
+            descriptionAr: TaclingClimateData['descriptionAr'],
+            descriptionAr3: TaclingClimateData['descriptionAr3'],
+            descriptionAr4: TaclingClimateData['descriptionAr4'],
           ),
         );
       });
@@ -208,8 +211,8 @@ class ClimateChangeController with ChangeNotifier{
             title: EgyptContributionData['title'],
             titleAr: EgyptContributionData['titleAr'],
             image: EgyptContributionData['image'],
-            Aimage: EgyptContributionData['Aimage'],
             Description: EgyptContributionData['Description'],
+            DescriptionAr: EgyptContributionData['DescriptionAr'],
           ),
         );
       });

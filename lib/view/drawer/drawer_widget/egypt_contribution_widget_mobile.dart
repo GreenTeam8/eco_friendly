@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/mobile/egypt_contribution_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class _EgyptContributionWidgetMobileState extends State<EgyptContributionWidgetM
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               image: NetworkImage(
                 EgyptContribution.getEgyptContributionList[widget.index].image!,
               ),
@@ -47,7 +48,7 @@ class _EgyptContributionWidgetMobileState extends State<EgyptContributionWidgetM
           child: Column(
             children: [
               Text(
-               EgyptContribution.getEgyptContributionList[widget.index].title!,
+                EygTrans?EgyptContribution.getEgyptContributionList[widget.index].title!:EgyptContribution.getEgyptContributionList[widget.index].titleAr!,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1!
@@ -60,7 +61,7 @@ class _EgyptContributionWidgetMobileState extends State<EgyptContributionWidgetM
                 height: height*0.02,
               ),
               Text(
-                EgyptContribution.getEgyptContributionList[widget.index].Description!,
+                EygTrans?EgyptContribution.getEgyptContributionList[widget.index].Description!:EgyptContribution.getEgyptContributionList[widget.index].DescriptionAr!,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!

@@ -15,7 +15,7 @@ class  EgyptContributionWeb extends StatefulWidget {
   @override
   State<EgyptContributionWeb> createState() => _EgyptContributionWebState();
 }
-bool LangWeb=true;
+bool EygTransWed =true;
 class _EgyptContributionWebState extends State<EgyptContributionWeb> {
   Future? _egyptContribution;
   Future _egyptContributionItems (){
@@ -67,12 +67,12 @@ class _EgyptContributionWebState extends State<EgyptContributionWeb> {
                     child: IconButton(
                       icon: Icon(
                         Icons.language_sharp,
-                        color: Colors.white,
+                        color: Colors.green,
                         size: width*0.020,
                       ),
                       onPressed: () {
                         setState(() {
-                          LangWeb=!LangWeb;
+                          EygTransWed=!EygTransWed;
                         });
                       },
                     ),

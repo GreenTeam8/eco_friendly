@@ -3,6 +3,8 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/mobile/climate_change_mobile.dart';
+import 'package:eco_friendly/view/drawer/mobile/tacling_climate_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +20,7 @@ class TaclingClimateChangeDetailMobile extends StatefulWidget {
 
 class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeDetailMobile> {
   String? TaclingItemsId;
-  bool transTacling=true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +47,12 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
         ),
         title: Center(
           child: Text(
-            transTacling ? "Tacling Climate" : "التعامل مع المناخ",
+            transs ? "Tacling Climate" : "التعامل مع المناخ",
             style: Theme.of(context).textTheme.bodyText1!.copyWith(
               color: mainColor,
             ),
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.language_sharp,
-              color: mainColor,
-              size: 25,
-            ),
-            onPressed: () {
-              setState(() {
-                transTacling = !transTacling;
-              });
-            },
-          ),
-        ],
       ),
       body: ListView(
         children: [
@@ -87,13 +75,13 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
           ),
           Container(
             width:width,
-            height: height*0.45,
+            height: height*0.33,
             padding: EdgeInsets.all(width*0.030),
             color: Colors.green[100],
             child: Column(
               children: [
                 Text(
-                  loadItems.title!,
+                  transs ?loadItems.title!:"",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -106,7 +94,7 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
                   height: height*0.02,
                 ),
                 Text(
-                  loadItems.description!,
+                  transs ?loadItems.description!:loadItems.descriptionAr!,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2!
@@ -143,7 +131,7 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
             child: ListView(
               children: [
                 Text(
-                  loadItems.title2!,
+                  transs ?loadItems.title2!:"",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -156,7 +144,7 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
                   height: height*0.02,
                 ),
                 Text(
-                  loadItems.description3!,
+                  transs?loadItems.description3!:loadItems.descriptionAr3!,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2!
@@ -193,7 +181,7 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
             child: ListView(
               children: [
                 Text(
-                  loadItems.title3!,
+                  transs ?loadItems.title3!:"",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -206,7 +194,7 @@ class _TaclingClimateChangeDetailMobileState extends State<TaclingClimateChangeD
                   height: height*0.02,
                 ),
                 Text(
-                  loadItems.description4!,
+                  transs?loadItems.description4!:loadItems.descriptionAr4!,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText2!

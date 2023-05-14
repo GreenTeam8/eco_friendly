@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
+import 'package:eco_friendly/view/drawer/web/egypt_contribution_web.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,7 @@ class EgyptContributionWidgetWeb extends StatefulWidget {
   @override
   State<EgyptContributionWidgetWeb> createState() => _EgyptContributionWidgetWebState();
 }
-bool lan =true;
+
 class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb> {
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
               padding: EdgeInsets.all(10),
               child:  Center(
                 child: Text(
-                  'Contributions',
+                  EygTransWed?'Contributions':"المساهمة",
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
@@ -71,7 +72,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                           child: Column(
                             children: [
                               Text(
-                                LangWeb?EgyptContribution.getEgyptContributionList[widget.index].title!:EgyptContribution.getEgyptContributionList[widget.index].titleAr!,
+                                EygTransWed?EgyptContribution.getEgyptContributionList[widget.index].title!:EgyptContribution.getEgyptContributionList[widget.index].titleAr!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
@@ -84,7 +85,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                                 height: height*0.02,
                               ),
                               Text(
-                                LangWeb?EgyptContribution.getEgyptContributionList[widget.index].Description!:EgyptContribution.getEgyptContributionList[widget.index].titleAr!,
+                                EygTransWed?EgyptContribution.getEgyptContributionList[widget.index].Description!:EgyptContribution.getEgyptContributionList[widget.index].DescriptionAr!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText2!
@@ -114,7 +115,7 @@ class _EgyptContributionWidgetWebState extends State<EgyptContributionWidgetWeb>
                           ),
 
                           child: Text(
-                            "Show More",
+                            EygTransWed?"Show More":'المزيد',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!

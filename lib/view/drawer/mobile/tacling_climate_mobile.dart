@@ -12,7 +12,7 @@ class TaclingClimateMobile extends StatefulWidget {
   @override
   State<TaclingClimateMobile> createState() => _TaclingClimateMobileState();
 }
-
+bool transTacling=true;
 class _TaclingClimateMobileState extends State<TaclingClimateMobile> {
   @override
   Widget build(BuildContext context) {

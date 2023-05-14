@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/climate_change_controller.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 import 'package:eco_friendly/view/drawer/mobile/tacling_climate_details_mobile.dart';
+import 'package:eco_friendly/view/drawer/mobile/tacling_climate_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,7 @@ class _TaclingClimateMobileWidgetState extends State<TaclingClimateMobileWidget>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: height*0.050,
+              radius: height*0.040,
               backgroundColor: Colors.grey[100],
               child: Container(
                 height: height*0.10 ,
@@ -48,7 +49,7 @@ class _TaclingClimateMobileWidgetState extends State<TaclingClimateMobileWidget>
                 decoration: BoxDecoration(
                   image:DecorationImage(
                     image:NetworkImage(
-                      taclingClimate.getTacklingClimateList[widget.index].image!,
+                     taclingClimate.getTacklingClimateList[widget.index].image!,
                     ),
                     fit: BoxFit.contain,
                   ),),

@@ -99,7 +99,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                           height: height*0.02,
                         ),
                         Text(
-                          transWeb?loadItems.description!:loadItems.titleAr!,
+                          transWeb?loadItems.description!:loadItems.descriptionAr!,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2!
@@ -127,7 +127,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                       child: Row(
                         children: [
                           Text(
-                            'Tacling Climate Change',
+                            transWeb?'Tacling Climate Change':'مكافحة تغير المناخ',
                             // transWeb?loadItems.ItemTitle!:loadItems.ItemTitleAr!,
                             style: Theme.of(context)
                                 .textTheme
@@ -172,7 +172,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                                 children: [
                                   Center(
                                     child: Text(
-                                      transWeb?loadItems.title2!:loadItems.titleAr!,
+                                      transWeb?loadItems.title2!:'',
 
                                       style: Theme.of(context)
                                           .textTheme
@@ -184,7 +184,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                                     ),
                                   ),
                                   Text(
-                                    transWeb ?loadItems.description3!:loadItems.description3!,
+                                    transWeb ?loadItems.description3!:loadItems.descriptionAr3!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
@@ -224,7 +224,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                                   children: [
                                     Center(
                                       child: Text(
-                                        transWeb?loadItems.title3!:loadItems.titleAr!,
+                                        transWeb?loadItems.title3!:''!,
 
                                         style: Theme.of(context)
                                             .textTheme
@@ -236,7 +236,7 @@ class _TaclingClimateChangeDetailWebState extends State<TaclingClimateChangeDeta
                                       ),
                                     ),
                                     Text(
-                                      transWeb ?loadItems.description4!:loadItems.description4!,
+                                      transWeb ?loadItems.description4!:loadItems.descriptionAr4!,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!

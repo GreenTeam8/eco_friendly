@@ -30,7 +30,7 @@ class _EgyptContributionMobileState extends State<EgyptContributionMobile> {
     super.initState();
   }
 
-  final ScrollController _controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -86,9 +86,7 @@ class _EgyptContributionMobileState extends State<EgyptContributionMobile> {
               width: width,
               height: height * 0.90,
               child: ListView.builder(
-                controller: _controller,
-                itemCount:
-                    EgyptContributionData.getEgyptContributionList.length,
+                itemCount: EgyptContributionData.getEgyptContributionList.length,
                 itemBuilder: (Context, index) {
                   return ChangeNotifierProvider.value(
                       value: EgyptContribution[index],
