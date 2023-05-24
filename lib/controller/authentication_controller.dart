@@ -24,9 +24,9 @@ class AuthenticationController with ChangeNotifier{
   //  }
   // }
 
-  bool get isAuth{
-
-    return token != '';
+// Returns `true` if the user is authenticated, and `false` otherwise.
+  bool get isAuth {
+    return _token != null && _token!.isNotEmpty;
   }
 
   String get token {
@@ -36,8 +36,15 @@ class AuthenticationController with ChangeNotifier{
     return '';
   }
 
-  String get userId{
-    return _userId!;
+// The get method returns _userId . the method always returns a non-null string value.
+  String get userId {
+    return _userId ?? '';
+  }
+
+// A set method provided to update the value of _userId and notify listeners.
+  set userId(String? value) {
+    _userId = value;
+    notifyListeners();
   }
 
   Future<void> _authentication(String email, String password, String urlSegment) async {

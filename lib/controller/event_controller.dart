@@ -1,75 +1,60 @@
 import 'dart:convert';
-import 'package:eco_friendly/model/event.dart';
+import 'package:eco_friendly/helpers/http_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:eco_friendly/model/event.dart';
+
+// Define the EventController class and make it a ChangeNotifier
 class EventController with ChangeNotifier {
+
+  // List of events
   List<Event> _eventsList = [];
 
-  /*
-  final String authToken;
-  final String userId;
-
-  EventController(this.authToken, this.userId);
-*/
-
-  Map <String, Event> _items = {};
-
-
-  /// to get the map (_items) and manipulate it
-
-  /// getter for eventsList to access the list from widgets and screen ENCAPSULATION Approach
+// Getter for the list of events
   List<Event> get getEventsList {
     return [..._eventsList];
   }
 
-
+// Find all events with the given event category ID
   List<Event> findAllEventsById(String eCategoryId) {
     return getEventsList
         .where((element) => element.eventCategory == eCategoryId)
         .toList();
   }
 
+// Find the event with the given event ID
   Event findEventsById(String eventId) {
     return getEventsList
         .firstWhere((element) => element.eventId == eventId);
   }
 
-
-  /// FETCHING events from firebase using GET method then mapping it to our event Model
+// Fetch the list of events from the Firebase Realtime Database
   Future<void> fetchEvents() async {
     try {
-      final url =
-          'https://climate-change-ec951-default-rtdb.firebaseio.com/events.json';
+      final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/events.json';
       final response = await http.get(Uri.parse(url));
-      //print(json.decode(response.body));
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Event> loadedEvents = [];
-      extractedData.forEach((eventId, eventData) {
-        ///printing for testing
-        print('event id ' '${eventId}');
-        print('event dataName ' '${eventData['eventName']}');
-        print('event dataImage ' '${eventData['eventImage']}');
-        print('event dataPrice ' '${eventData['eventNumber']}');
-        print('event dataDescription ' '${eventData['eventDescription']}');
-        print('event dataCategory ' '${eventData['eventCategory']}');
-
-        // final joinUrl = 'https://climate-change-ec951-default-rtdb.firebaseio.com/joinneduser/$userId.json?auth=$authToken';
-        // final joinResponse = await http.get(Uri.parse(joinUrl));
-        // final joinData = json.decode(joinResponse.body) ;
+      for (final eventId in extractedData.keys) {
+        final eventData = extractedData[eventId] as Map<String, dynamic>;
+        final participantsUrl = 'https://climate-change-ec951-default-rtdb.firebaseio.com/events/$eventId/participants.json';
+        final participantsResponse = await http.get(Uri.parse(participantsUrl));
+        final participantsData = json.decode(participantsResponse.body) as List<dynamic>?;
+        final participants = participantsData?.map((userId) => userId.toString()).toSet() ?? {};
         loadedEvents.add(
           Event(
             eventId: eventId,
             eventName: eventData['eventName'],
             eventImage: eventData['eventImage'],
-            eventNumber: eventData['eventNumber'],
-            eventDescription: eventData['eventDescription'],
             eventCategory: eventData['eventCategory'],
+            eventDescription: eventData['eventDescription'],
             firstdateTime:eventData['firstdateTime'],
             eventCountry:eventData['eventCountry'],
+            participants: participants,
           ),
         );
-      });
+      }
       _eventsList = loadedEvents;
       notifyListeners();
     } catch (error) {
@@ -78,17 +63,26 @@ class EventController with ChangeNotifier {
     }
   }
 
-}
-/*
-  void toggleJoin(String eventId, bool isJoinned , int eventNumber){
-    if(isJoinned = false){
-      isJoinned = true;
-      eventNumber +1;
+// Add a participant with the given userId to the given event
+  Future<void> addParticipant(Event event, String userId) async {
+    try {
+      await event.addParticipant(userId);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw (error);
     }
-    else{
-      isJoinned = false;
-      eventNumber -1;
-    }
-    notifyListeners();
   }
-*/
+
+// Remove a participant with the given userId from the given event
+  Future<void> removeParticipantFromEvent(Event event, String userId) async {
+    try {
+      await event.removeParticipant(userId);
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw (error);
+    }
+  }
+
+}

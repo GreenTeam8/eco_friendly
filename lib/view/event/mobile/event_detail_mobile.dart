@@ -1,28 +1,35 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/event_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
-import 'package:eco_friendly/view/profile/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
 
-class EventDetailsWidget extends StatelessWidget {
-  const EventDetailsWidget({Key? key}) : super(key: key);
+
+
+class EventDetailsMobile extends StatefulWidget {
+  const EventDetailsMobile({Key? key}) : super(key: key);
   static const EVENTS_DETAILS_ROUTE_NAME = '/eventsDetailsScreen';
 
+  @override
+  State<EventDetailsMobile> createState() => _EventDetailsMobileState();
+}
+
+class _EventDetailsMobileState extends State<EventDetailsMobile> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double height = SizeConfig.screenHeight!;
     double width = SizeConfig.screenWidth!;
-    final routeArguments = ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
+    final routeArguments =
+    ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
 
-    ///e1,e2 e3.....
     final eventId = routeArguments['eventId'];
     final event =
     Provider.of<EventController>(context).findEventsById(eventId!);
 
     return Scaffold(
+      //floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked, //floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: SafeArea(
         child: Stack(
           children: [
@@ -45,8 +52,7 @@ class EventDetailsWidget extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(18),
                           child: Container(
-                            decoration:
-                            BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Colors.white,
                             ),
                             child: ClipRRect(
@@ -56,7 +62,8 @@ class EventDetailsWidget extends StatelessWidget {
                                 height: height * 0.45,
                                 child: Hero(
                                   tag: 'hero${event.eventId}',
-                                  child: Image.network((event.eventImage!),
+                                  child: Image.network(
+                                    (event.eventImage!),
                                     fit: BoxFit.fitHeight,
                                   ),
                                 ),
@@ -109,13 +116,35 @@ class EventDetailsWidget extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.only(
                               top: height * 0.02, bottom: height * 0.02),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${event.eventCategory!}',
+                                Text(
+                                  '${event.eventCategory!}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2!
+                                      .copyWith(
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: height * 0.07,
+                              width: width * 0.2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: mainColor),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Hero(
+                                    tag: 'Number',
+                                    child: Text(
+                                      '${event.participantCount}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText2!
@@ -123,36 +152,12 @@ class EventDetailsWidget extends StatelessWidget {
                                         fontWeight: FontWeight.w800,
                                       ),
                                     ),
-                                  ],
-                                ),
-                                Container(
-                                  height: height * 0.07,
-                                  width: width * 0.2,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: mainColor),
-                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Hero(
-                                        tag: 'Number',
-                                        child: Text(
-                                          '${event.eventNumber!}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2!
-                                              .copyWith(
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                        ),
-                                      ),
-                                      Icon(Icons.people_alt, color: Colors.grey,)
-                                    ],
-                                  ),
-                                )
-                              ]),
+                                  Icon(Icons.people_alt)
+                                ],
+                              ),
+                            )
+                          ]),
                         )
                       ],
                     ),
@@ -168,9 +173,11 @@ class EventDetailsWidget extends StatelessWidget {
                     child: SingleChildScrollView(
                         child: Text(
                           '${event.eventDescription!}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!,
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            fontStyle: FontStyle.normal,
+                            color: Colors.black,
+                          ),
                         )),
                   ),
                 ],
@@ -186,13 +193,12 @@ class EventDetailsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Join',
+                '${event.isParticipant(value.userId) ? "Joined" : "Join"}',
                 style: Theme.of(context)
                     .textTheme
                     .subtitle1!
                     .copyWith(
                   fontWeight: FontWeight.w800,
-                  color: Colors.white
                 ),
               ),
               Icon(Icons.add)
@@ -200,24 +206,32 @@ class EventDetailsWidget extends StatelessWidget {
           ),
           style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
-              backgroundColor: MaterialStateProperty.all(mColor),
+              backgroundColor: MaterialStateProperty.all(
+                  event.isParticipant(value.userId)
+                      ? Colors.grey
+                      : Colors.green),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30))),
-              padding: MaterialStateProperty.all(EdgeInsets.all(height * 0.02))),
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.all(height * 0.02))),
           onPressed: () {
-            if(value.isAuth){
-
-              print('joined');
-              print(event.isJoinned);
-              print(event.eventNumber!);
-              print(event.eventName!);
-            }else{
+            if (value != null && value.isAuth) {
+              if (event.isParticipant(value.userId)) {
+                Provider.of<EventController>(context, listen: false)
+                    .removeParticipantFromEvent(event, value.userId);
+              } else {
+                Provider.of<EventController>(context, listen: false)
+                    .addParticipant(event, value.userId);
+              }
+            } else {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
+                content: Text(
+                  'Please Sign In!',
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),
+                ),
                 duration: Duration(seconds: 3),
-              )
-              );
+              ));
             }
           },
         ),
@@ -225,3 +239,6 @@ class EventDetailsWidget extends StatelessWidget {
     );
   }
 }
+
+
+

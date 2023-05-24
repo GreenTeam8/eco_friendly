@@ -27,7 +27,7 @@ class _ECategoryCardWidgetState extends State<ECategoryCardWidget> {
     return InkWell(
       onTap: () {
         Navigator.of(context)
-            .pushNamed(Test_Page.EVENTS_ROUTE_NAME, arguments: {
+            .pushNamed(Event_Screen.EVENTS_ROUTE_NAME, arguments: {
           'eCategoryId': Ecategories.getECategoriesList[widget.index].eCategoryId
         });
       },

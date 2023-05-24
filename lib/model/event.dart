@@ -1,8 +1,10 @@
+import 'package:eco_friendly/helpers/http_exception.dart';
 import 'package:eco_friendly/model/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+// Define the Event class and make it a ChangeNotifier
 class Event with ChangeNotifier {
   String? eventId;
   String? eventName;
@@ -15,13 +17,14 @@ class Event with ChangeNotifier {
   String? eventStreet;
   String? eventCity;
   String? eventCountry;
-  bool isJoinned;
+  final Set<String> participants;
+  int participantCount;
 
 
   /*  */
 
 
-
+// Define the Event class and make it a ChangeNotifier
   Event(
       {this.eventId,
         this.eventName,
@@ -34,45 +37,51 @@ class Event with ChangeNotifier {
         this.eventStreet,
         this.eventCity,
         this.eventCountry,
-        this.isJoinned = false
-      });
+        required this.participants,
+      }) : participantCount = participants.length; // Initialize participantCount to the length of participants
 
-/*
-  void _setJoinValue (bool newValue){
-    isJoinned = newValue;
-    notifyListeners();
+
+// Check if a user with the given userId is a participant of the event
+  bool isParticipant(String userId) {
+    return participants?.contains(userId) ?? false;
   }
 
-  Future <void> toggleJoinStatue(String token, String userId,) async{
-    final oldStatus = isJoinned;
-    isJoinned = !isJoinned;
-    notifyListeners();
-
-    final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/joinneduser/$userId/$eventId.json?auth=$token';
-    try{
-      final response = await http.put(Uri.parse(url), body: json.encode(
-          {
-            'isJoinned':isJoinned,
-            'eventName':eventName,
-            'eventImage':eventImage,
-            'eventNumber':eventNumber,
-            'eventDescription':eventDescription,
-            'firstdateTime':firstdateTime,
-            'lastdateTime':lastdateTime,
-            'eventStreet':eventStreet,
-            'eventCity':eventCity,
-            'eventCountry':eventCountry
-          }
-      ));
-
-      if(response.statusCode >= 400){
-        _setJoinValue(oldStatus);
+// Add a participant with the given userId to the participants set
+  Future<void> addParticipant(String userId) async {
+    try {
+      participants.add(userId);
+      participantCount = participants.length;
+      final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/events/$eventId/participants.json';
+      final response = await http.put(
+        Uri.parse(url),
+        body: json.encode(participants.toList()),
+      );
+      if (response.statusCode >= 400) {
+        throw HttpException('Failed to add participant.');
       }
-    }catch(error){
-      _setJoinValue(oldStatus);
-      throw error;
+    } catch (error) {
+      print(error);
+      throw (error);
     }
-
   }
-*/
+
+// Remove a participant with the given userId from the participants set
+  Future<void> removeParticipant(String userId) async {
+    try {
+      participants.remove(userId);
+      participantCount = participants.length;
+      final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/events/$eventId/participants.json';
+      final response = await http.put(
+        Uri.parse(url),
+        body: json.encode(participants.toList()),
+      );
+      if (response.statusCode >= 400) {
+        throw HttpException('Failed to remove participant.');
+      }
+    } catch (error) {
+      print(error);
+      throw (error);
+    }
+  }
 }
+

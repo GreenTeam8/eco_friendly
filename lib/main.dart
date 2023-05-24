@@ -39,7 +39,7 @@ import 'controller/category_controller.dart';
 import 'firebase_options.dart';
 import 'model/product.dart';
 import 'helpers/horizontal_scroll_helper.dart';
-import 'package:eco_friendly/view/event/event_detail_widget.dart';
+import 'package:eco_friendly/view/event/mobile/event_detail_mobile.dart';
 import 'package:eco_friendly/view/event/events_screen.dart';
 
 
@@ -184,8 +184,8 @@ class MyApp extends StatelessWidget {
 
               FavoritesScreen.FAVORITES_ROUTE_NAME:(context) => FavoritesScreen(),
               CartScreen.CART_SCREEN_ROUTE_NAME:(context) => CartScreen(),
-              Test_Page.EVENTS_ROUTE_NAME:(context)=> Test_Page(),
-              EventDetailsWidget.EVENTS_DETAILS_ROUTE_NAME: (context) => EventDetailsWidget(),
+              Event_Screen.EVENTS_ROUTE_NAME:(context)=> Event_Screen(),
+              EventDetailsMobile.EVENTS_DETAILS_ROUTE_NAME: (context) => EventDetailsMobile(),
               EventDetailsWeb.EVENTS_DETAILS_WEB_ROUTE_NAME: (context) => EventDetailsWeb(),
               OrdersScreen.ORDERS_SCREEN_ROUTE_NAME:(context) => OrdersScreen(),
 
