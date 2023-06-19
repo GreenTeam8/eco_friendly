@@ -46,12 +46,12 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                   clipper: OvalBottomBorderClipper(),
                 ),
-                // IconButton(
-                //   icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
-                //   onPressed: () {
-                //     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
-                //   },
-                // ),
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios, color: mainColor, size: 25),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
+                  },
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
