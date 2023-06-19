@@ -28,7 +28,7 @@ class ProfileBodyWidget extends StatelessWidget {
               SizedBox(width: width * 0.05,),
               Text(title!, style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
               Spacer(),
-              Icon(Icons.arrow_forward_ios,  color: mainColor,)
+              //Icon(Icons.arrow_forward_ios,  color: mainColor,)
             ],
           ),
         ),

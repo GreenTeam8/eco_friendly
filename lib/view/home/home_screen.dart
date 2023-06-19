@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:eco_friendly/controller/eventcategory_controller.dart';
 import 'package:eco_friendly/view/home/mobile/ecategory_card_mobile.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../helpers/constants.dart';
 import '../../helpers/responsive.dart';
@@ -69,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
     //double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
+    final String url = 'https://drive.google.com/file/d/14pYr8ynzVaERxMaN1Pn2vb_rHfyMufg-/view?usp=sharing';
     final GlobalKey<ScaffoldState>_scaffoldKey=GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
@@ -94,11 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 actions: [
                   IconButton(
-                    icon: const Icon(Icons.notifications_active),
-                    color: mColor,
-                    onPressed: () {},
-                  )
-                ],
+                icon: Icon(Icons.download, color: mColor, size: 30,),
+                onPressed: () async {
+                  // check url whether supported or not
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launch(url,
+                      forceWebView: true,
+                      enableDomStorage: true,
+                      enableJavaScript: true,);
+                  } else {
+                    print('Url is not supported');
+                  }
+                })],
               ),
         body: SafeArea(
           child: SingleChildScrollView(
