@@ -10,11 +10,10 @@ import '../helpers/http_exception.dart';
 
 class AuthenticationController with ChangeNotifier{
   String? _token;
-  //User? user;
   String? _userId;
   DateTime? _expiryDate;
   Timer? _authTimer;
-
+  String? _email;
 
   // bool isAuthMethod ([bool toLogout = false]){
   //  if(toLogout == false){
@@ -23,6 +22,7 @@ class AuthenticationController with ChangeNotifier{
   //    return false;
   //  }
   // }
+
 
 // Returns `true` if the user is authenticated, and `false` otherwise.
   bool get isAuth {
@@ -34,6 +34,15 @@ class AuthenticationController with ChangeNotifier{
       return _token!;
     }
     return '';
+  }
+
+  String get email {
+    return _email ?? '';
+  }
+
+  set email(String? value) {
+    _email = value;
+    notifyListeners();
   }
 
 // The get method returns _userId . the method always returns a non-null string value.
@@ -64,15 +73,22 @@ class AuthenticationController with ChangeNotifier{
       _token = responseData['idToken']; /// to get and store idToken which is retrieved from the response in firebase auth docs
       _userId = responseData['localId'];
       _expiryDate = DateTime.now().add(Duration(seconds: int.parse(responseData['expiresIn'])));
+      _email = responseData['email'];
+
+
+      notifyListeners();
+
       print(_token);
       print(_userId);
       print(_expiryDate);
+      print(_email);
+
       //autoLogout();
       notifyListeners();
 
       /// storing user data in the device storage + working with preferences involves working with futures
       final prefs = await SharedPreferences.getInstance();
-      final userData = json.encode({'token': _token, 'userId' : _userId, 'expiryDate': _expiryDate!.toIso8601String()});
+      final userData = json.encode({'token': _token, 'userId' : _userId, 'expiryDate': _expiryDate!.toIso8601String(), 'email': _email});
       prefs.setString('userData', userData);
 
     }catch(error){
@@ -94,6 +110,7 @@ class AuthenticationController with ChangeNotifier{
     _token = extractedUserData['token'];
     _userId = extractedUserData['userId'];
     _expiryDate = expiryDate;
+    _email = extractedUserData['email'];
     notifyListeners();
     //autoLogout();
 

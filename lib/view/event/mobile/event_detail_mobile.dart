@@ -1,6 +1,7 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/event_controller.dart';
 import 'package:eco_friendly/helpers/constants.dart';
+import 'package:eco_friendly/view/event/mobile/event_comment_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eco_friendly/helpers/size_config.dart';
@@ -81,13 +82,44 @@ class _EventDetailsMobileState extends State<EventDetailsMobile> {
                                 IconButton(
                                   icon: Icon(
                                     Icons.arrow_back_ios,
-                                    color: mColor,
+                                    color: mainColor,
                                     size: 25,
                                   ),
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
                                 ),
+                                Consumer<AuthenticationController>(
+                                  builder: (context, auth, _) {
+                                    return IconButton(
+                                      icon: Icon(
+                                        auth.isAuth ? Icons.comment : Icons.comments_disabled,
+                                        color: auth.isAuth ? mColor : Colors.grey,
+                                        size: 25,
+                                      ),
+                                      onPressed: auth.isAuth
+                                          ? () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => EventCommentsScreen(eventId: eventId),
+                                          ),
+                                        );
+                                      }
+                                          : () {
+                                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Please Sign In!',
+                                              style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),
+                                            ),
+                                            duration: Duration(seconds: 3),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
                               ],
                             ),
                           ),
@@ -239,6 +271,5 @@ class _EventDetailsMobileState extends State<EventDetailsMobile> {
     );
   }
 }
-
 
 

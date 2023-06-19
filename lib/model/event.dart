@@ -1,9 +1,15 @@
 import 'package:eco_friendly/helpers/http_exception.dart';
-import 'package:eco_friendly/model/cart_item.dart';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+class User {
+  final String id;
+  final double rating;
+
+  User({required this.id, required this.rating});
+}
 // Define the Event class and make it a ChangeNotifier
 class Event with ChangeNotifier {
   String? eventId;
@@ -19,6 +25,7 @@ class Event with ChangeNotifier {
   String? eventCountry;
   final Set<String> participants;
   int participantCount;
+  double eventRating;
 
 
   /*  */
@@ -37,6 +44,7 @@ class Event with ChangeNotifier {
         this.eventStreet,
         this.eventCity,
         this.eventCountry,
+        this.eventRating = 0.0,
         required this.participants,
       }) : participantCount = participants.length; // Initialize participantCount to the length of participants
 
@@ -83,5 +91,6 @@ class Event with ChangeNotifier {
       throw (error);
     }
   }
+
 }
 

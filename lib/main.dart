@@ -3,6 +3,7 @@ import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/carousel_controller.dart';
 import 'package:eco_friendly/controller/cart_controller.dart';
 import 'package:eco_friendly/controller/climate_change_controller.dart';
+import 'package:eco_friendly/controller/comment_controller.dart';
 import 'package:eco_friendly/controller/event_controller.dart';
 import 'package:eco_friendly/controller/eventcategory_controller.dart';
 import 'package:eco_friendly/controller/orders_controller.dart';
@@ -118,6 +119,8 @@ class MyApp extends StatelessWidget {
           create: (context) => EventController(),),
         ChangeNotifierProvider(
           create: (context) => ECategoryController(),),
+        ChangeNotifierProvider(
+          create: (context) => CommentController(),),
         ChangeNotifierProvider(
           create: (context) => Product(),),
         ChangeNotifierProvider(

@@ -1,5 +1,6 @@
 import 'package:eco_friendly/controller/authentication_controller.dart';
 import 'package:eco_friendly/controller/event_controller.dart';
+import 'package:eco_friendly/view/event/mobile/event_comment_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:provider/provider.dart';
@@ -80,6 +81,37 @@ class _EventDetailsWebState extends State<EventDetailsWeb> {
                           ),
                         ),
                       ),
+                    ),
+                    Consumer<AuthenticationController>(
+                      builder: (context, auth, _) {
+                        return OutlinedButton.icon(
+                          icon: Icon(
+                            auth.isAuth ? Icons.comment : Icons.comments_disabled,
+                            color: auth.isAuth ? mColor : Colors.grey,
+                            size: 25,
+                          ),
+                          onPressed: auth.isAuth
+                              ? () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EventCommentsScreen(eventId: eventId),
+                              ),
+                            );
+                          }
+                              : () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Please Sign In!',
+                                  style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),
+                                ),
+                                duration: Duration(seconds: 3),
+                              ),
+                            );
+                          }, label: Text('Comments'),
+                        );
+                      },
                     ),
                     Divider(
                       height: height * 0.2,
