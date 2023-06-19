@@ -64,7 +64,7 @@ class CustomAppBarWeb extends StatelessWidget {
           MI.MenuItem(
             title: 'Favorites',
             onTap: () {
-             // Navigator.pushNamed(context, FavoritesScreen.FAVORITES_ROUTE_NAME);
+              Navigator.pushNamed(context, FavoritesScreen.FAVORITES_ROUTE_NAME);
             },
           ),
           MI.MenuItem(

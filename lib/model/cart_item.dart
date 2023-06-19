@@ -5,12 +5,13 @@ class CartItem{
   final String itemTitle;
   final int quantity;
   final double price;
-  final String? itemImage;
+  //final String? itemImage;
 
   CartItem({
     required this.itemId,
     required this.itemTitle,
     required this.quantity,
     required this.price,
-     this.itemImage,});
+     //this.itemImage,
+  });
 }

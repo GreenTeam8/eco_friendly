@@ -66,7 +66,7 @@ class OrdersController with ChangeNotifier{
         'title' : cartProduct.itemTitle,
         'quantity' : cartProduct.quantity,
         'price' : cartProduct.price,
-        'image':cartProduct.itemImage
+        //'image':cartProduct.itemImage
       }).toList()
     }));
     _ordersList.insert(0, Order(

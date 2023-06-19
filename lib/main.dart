@@ -86,16 +86,16 @@ class MyApp extends StatelessWidget {
           create: (context) => CarousellController(),),
         ChangeNotifierProvider(
           create: (context) => CategoryController(),),
-        ChangeNotifierProvider(
-          create: (context) => ProductController(),),
+        // ChangeNotifierProvider(
+        //   create: (context) => ProductController(),),
         ChangeNotifierProvider(
           create: (context) => AuthenticationController(),),
-        // ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
-        //   create: (context) => ProductController('','', []),
-        //   update: (context, auth, previousProducts) {
-        //     return ProductController(auth.token!, auth.userId!, previousProducts == null ? [] : previousProducts.getProductsList);
-        //   },
-        // ),
+        ChangeNotifierProxyProvider<AuthenticationController, ProductController>(
+          create: (context) => ProductController('','', []),
+          update: (context, auth, previousProducts) {
+            return ProductController(auth.token!, auth.userId!, previousProducts == null ? [] : previousProducts.getProductsList);
+          },
+        ),
         ChangeNotifierProvider(
           create: (context) => CartController(),),
         ChangeNotifierProxyProvider<AuthenticationController, OrdersController>(

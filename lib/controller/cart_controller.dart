@@ -34,13 +34,15 @@ class CartController with ChangeNotifier{
           itemId: existingCartItem.itemId,
           itemTitle: existingCartItem.itemTitle,
           price: existingCartItem.price,
-          itemImage: existingCartItem.itemImage,
+          //itemImage: existingCartItem.itemImage,
           quantity: existingCartItem.quantity +1,
 
       ));
     }else{
       _items.putIfAbsent(productId, () => CartItem(
-          itemId: DateTime.now().toString(), itemTitle: title, quantity: 1, price: price, itemImage: image));
+          itemId: DateTime.now().toString(), itemTitle: title, quantity: 1, price: price,
+          //itemImage: image
+      ));
     }
     notifyListeners();
   }
@@ -59,7 +61,7 @@ class CartController with ChangeNotifier{
           itemTitle: existingCartItem.itemTitle,
           quantity: existingCartItem.quantity -1,
           price: existingCartItem.price,
-        itemImage: existingCartItem.itemImage
+       // itemImage: existingCartItem.itemImage
 
       ));
     }else{

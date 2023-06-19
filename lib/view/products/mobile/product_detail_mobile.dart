@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../controller/cart_controller.dart';
 import '../../../helpers/size_config.dart';
+import '../../../model/product.dart';
 import '../../profile/register_screen.dart';
 
 class ProductDetailsMobile extends StatelessWidget {
@@ -93,27 +94,33 @@ class ProductDetailsMobile extends StatelessWidget {
                                     Navigator.pop(context);
                                   },
                                 ),
-                                IconButton(
-                                  icon: Icon(product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                                      color: Colors.red, size: 25),
-                                  onPressed: () {
-                                    if(auth.isAuth){
-                                      product.toggleFavoriteStatue(auth.token!, auth.userId!,);
-                                    }
-                                    if(product.isFavorite == false){
-                                      delFavProduct.deleteFavProduct(auth.userId, product.productId!);
-                                    }
-                                    else{
-                                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
-                                        duration: Duration(seconds: 3),
-                                      )
-                                      );
-                                    }
+                                Consumer<Product>(
+                                  builder: (context, value, child) =>
+                                      IconButton(
+                                        icon: Icon(
+                                          product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                                        ),
+                                        color: Colors.red,
+                                        onPressed: () {
+                                          if(auth.isAuth){
+                                            product.toggleFavoriteStatue(auth.token!, auth.userId!,);
+                                          }
+                                          // if(product.isFavorite == false){
+                                          //   delFavProduct.deleteFavProduct(auth.userId, product.productId!);
+                                          // }
+                                          else{
+                                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                              content: Text('Please Sign In !', style: Theme.of(context).textTheme.bodyText2!.copyWith(color: mainColor),),
+                                              duration: Duration(seconds: 3),
+                                            )
+                                            );
+                                          }
 
 
-                                  },
+                                        },
+                                      ),
+
                                 ),
                               ],
                             ),

@@ -2,6 +2,7 @@ import 'package:eco_friendly/view/profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/authentication_controller.dart';
 import '../../helpers/size_config.dart';
@@ -39,6 +40,7 @@ class _RootScreenState extends State<RootScreen> {
     SizeConfig().init(context);
     //double width = SizeConfig.screenWidth!;
     double height = SizeConfig.screenHeight!;
+    final String url = 'https://drive.google.com/file/d/14pYr8ynzVaERxMaN1Pn2vb_rHfyMufg-/view?usp=sharing';
     return Scaffold(
      // resizeToAvoidBottomInset: false,
       body: screens[currentIndex],
@@ -80,6 +82,23 @@ class _RootScreenState extends State<RootScreen> {
                     ),
                   ]),
             ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 5,
+          child: Icon(Icons.download),
+          backgroundColor: mColor,
+          onPressed: () async{
+            // check url whether supported or not
+            if(await canLaunchUrl(Uri.parse(url))){
+            await launch(url,
+              forceWebView: true,
+              enableDomStorage: true,
+              enableJavaScript: true,);
+            }else{
+            print('Url is not supported');
+            }
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
     );
   }
 }

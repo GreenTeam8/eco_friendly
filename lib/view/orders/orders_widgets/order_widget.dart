@@ -32,7 +32,7 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/cash.png', height: height * 0.04, width: width * 0.1,),
+                Image.asset('assets/images/cash.png', height: height * 0.03, width: width * 0.1,),
                 Text('Cash on delivery', ),
               ],
             ),

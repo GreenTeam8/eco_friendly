@@ -3,19 +3,21 @@ import 'package:eco_friendly/model/product.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../helpers/http_exception.dart';
+
 class ProductController with ChangeNotifier {
-  List<Product> _productsList = [];
+  List<Product>? productsList = [];
   List<Product> _favsList = [];
   final String? authToken;
   final String? userId;
 
-  ProductController({this.authToken, this.userId, });
-  //ProductController({this.authToken, this.userId, this._productsList});
+  //ProductController({this.authToken, this.userId, });
+  ProductController(this.authToken, this.userId, this.productsList);
 
 
   /// getter for productsList to access the list from widgets and screen ENCAPSULATION Approach
   List<Product> get getProductsList {
-    return [..._productsList];
+    return [...?productsList];
   }
 
 
@@ -35,7 +37,7 @@ class ProductController with ChangeNotifier {
   }
 
   List<Product> get favoriteItems{
-    return _favsList.where((product) => product.isFavorite).toList();
+    return productsList!.where((product) => product.isFavorite).toList();
   }
 
   ///problem with fetching favorites!!!!
@@ -49,9 +51,9 @@ class ProductController with ChangeNotifier {
         productId: productId,
         productName: productData['productName'],
         productDescription: productData['productDescription'],
-        productPrice: productData['productPrice'],
+       // productPrice: productData['productPrice'],
         productImage: productData['productImage'],
-        isFavorite: favoriteData == '' ? false : favoriteData['isFavorite'] ?? false,
+        //isFavorite: favoriteData == '' ? false : favoriteData['isFavorite'] ?? false,
       ));
     });
     _favsList = favLoadedProducts;
@@ -60,10 +62,10 @@ class ProductController with ChangeNotifier {
 
   Future<void> deleteFavProduct(String id, String productId) async{
     final url = 'https://climate-change-ec951-default-rtdb.firebaseio.com/userFavorites/$id/$productId.json?auth=$authToken';
-    // final existingProductIndex = _favsList.indexWhere((element) => element.productId == id);
-    // Product? existingProduct = _favsList[existingProductIndex];
-    // _favsList.removeAt(existingProductIndex);
-    notifyListeners();
+    final existingProductIndex = _favsList.indexWhere((element) => element.productId == id);
+    Product? existingProduct = _favsList[existingProductIndex];
+    _favsList.removeAt(existingProductIndex);
+
     final response = await http.delete(Uri.parse(url));
     // if(response.statusCode >= 400){
     //   _favsList.insert(existingProductIndex, existingProduct);
@@ -71,9 +73,9 @@ class ProductController with ChangeNotifier {
     //   throw HttpException('Could not delete the product');
     // }
     // existingProduct = null;
-    // _items.removeWhere((element) => element.productId == id);
+    // _favsList.removeWhere((element) => element.productId == id);
   print(response.body);
-
+    notifyListeners();
   }
 
   /// FETCHING products from firebase using GET method then mapping it to our Product Model
@@ -83,7 +85,10 @@ class ProductController with ChangeNotifier {
           'https://climate-change-ec951-default-rtdb.firebaseio.com/products.json';
       final response = await http.get(Uri.parse(url));
       //print(json.decode(response.body));
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body) as Map<String, dynamic>?;
+      if(extractedData == null){
+        return;
+      }
       final List<Product> loadedProducts = [];
       extractedData.forEach((productId, productData) {
         ///printing for testing
@@ -105,15 +110,19 @@ class ProductController with ChangeNotifier {
             productPrice: productData['productPrice'],
             productDescription: productData['productDescription'],
             productCategory: productData['productCategory'],
-           // isFavorite: favoriteData == null ? false : favoriteData[productId] ?? false,
+            //isFavorite: favoriteData == null ? false : favoriteData[productId] ?? false,
           ),
         );
       });
-      _productsList = loadedProducts;
+      productsList = loadedProducts;
       notifyListeners();
     } catch (error) {
       print(error);
       throw (error);
     }
   }
+
+
+
+
 }

@@ -71,7 +71,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               if(snapshot.error != null){
                 print(snapshot.error);
                 return Center(
-                  child: Text('Error occurred'),);
+                  child: Text('No Orders'),);
               }else{
                     return ListView.builder(
                       itemCount: orders.getOrdersList.length,

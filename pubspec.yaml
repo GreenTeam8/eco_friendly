@@ -51,8 +51,8 @@ dependencies:
   lottie: ^1.4.2
   card_swiper: ^2.0.1
   flutter_svg: ^1.1.6
-
   responsive_builder: ^0.6.3
+  url_launcher: ^6.1.11
 
 
 
